@@ -36,7 +36,7 @@ IDF_name = r'C:\Users\oriol\PycharmProjects\Buildingcards\HR_AJ_19802010\run\in.
 # IDD file from E+ installation (needed to import IDF with geomeppy)
 iddfile = r"C:\EnergyPlusV25-2-0\Energy+.idd"
 fname1 = IDF.setiddname(iddfile)
-idf1 = IDF(base_path+"\\"+IDF_name)
+idf1 = IDF(IDF_name)
 # =====================================================
 # LOAD OPENSTUDIO MODEL
 # =====================================================
