@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.1</schema_version>
+  <name>set_building_to_construction_set</name>
+  <uid>718d27f6-02f6-4306-8b9a-07d13b126376</uid>
+  <version_id>9205c96c-1a9a-449e-9da7-4da261f58720</version_id>
+  <version_modified>2025-12-06T11:48:58Z</version_modified>
+  <xml_checksum>16F8EDFC</xml_checksum>
+  <class_name>SetBuildingToConstructionSet</class_name>
+  <display_name>Set Building To Construction Set</display_name>
+  <description>This measures changes the building's default construction set to one selected by the user from a list of available default construction sets.</description>
+  <modeler_description>No checking of any sorts is performed. The available default construction sets are obtained via the constructionset = SELECTFROM(model.getDefaultConstructionSets) method and the seleted construction set is applied via the building = model.getBuilding and building.setDefaultConstructionSet(constructionset) methods.</modeler_description>
+  <arguments>
+    <argument>
+      <name>constructionset</name>
+      <display_name>Select new construction set:</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Envelope.Construction Sets</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E7161B14</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>1.13.0</identifier>
+        <min_compatible>1.13.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>654161A8</checksum>
+    </file>
+    <file>
+      <filename>TestModel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>11A75CC8</checksum>
+    </file>
+    <file>
+      <filename>new_measure_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BFD0A1F0</checksum>
+    </file>
+  </files>
+</measure>

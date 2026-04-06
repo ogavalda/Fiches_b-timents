@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1a1f2e;
+    --ink-light: #5a6070;
+    --rule:      #dde1e9;
+    --bg:        #f7f8fa;
+    --surface:   #ffffff;
+    --accent:    #2c5f8a;
+    --accent-lt: #e8f0f8;
+    --mono:      'DM Mono', monospace;
+    --sans:      'DM Sans', sans-serif;
+    --radius:    6px;
+  }
+
+  body {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 28px 32px;
+    line-height: 1.5;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .logo-box {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .logo-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--rule);
+  }
+
+  .report-title { text-align: right; }
+
+  .report-title h1 {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    color: var(--ink);
+  }
+
+  .report-title .subtitle {
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Two-column layout ── */
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .col { display: flex; flex-direction: column; gap: 16px; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--accent-lt);
+  }
+
+  /* ── Images ── */
+  .img-wrap {
+    border-radius: calc(var(--radius) - 2px);
+    overflow: hidden;
+    margin-bottom: 14px;
+    border: 1px solid var(--rule);
+  }
+
+  .img-wrap img { display: block; width: 100%; }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 10.5px;
+  }
+
+  thead th {
+    background: var(--accent-lt);
+    color: var(--accent);
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  tbody tr:nth-child(even) td { background: #fafbfc; }
+
+  td {
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    vertical-align: middle;
+  }
+
+  td:first-child {
+    color: var(--ink-light);
+    font-size: 10px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 20px;
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--ink-light);
+    letter-spacing: .04em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="logo-group">
+
+    <!-- Logo 1: replace SVG with <img src="logo1.png" alt="…"> if you have image files -->
+    <div class="logo-box">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="5" fill="#2c5f8a"/>
+        <rect x="7"  y="14" width="4" height="9"  fill="white" opacity=".9"/>
+        <rect x="12" y="10" width="4" height="13" fill="white" opacity=".9"/>
+        <rect x="17" y="6"  width="4" height="17" fill="white" opacity=".9"/>
+        <line x1="7" y1="22" x2="21" y2="6" stroke="white" stroke-width="1.2" opacity=".35"/>
+      </svg>
+      Prototype Building Energy Card Archetype-QC
+    </div>
+
+    <div class="logo-divider"></div>
+
+    <!-- Logo 2 -->
+    <div class="logo-box">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="5" fill="#1a1f2e"/>
+        <polygon points="14,5 23,22 5,22" fill="none" stroke="white" stroke-width="1.4" opacity=".85"/>
+        <circle cx="14" cy="15" r="3" fill="white" opacity=".9"/>
+      </svg>
+      Multi-Unit Residential Buildings
+    </div>
+
+  </div>
+
+  <div class="report-title">
+    <div class="subtitle">Automated Report</div>
+    <h1>Building Energy Card</h1>
+  </div>
+</header>
+
+<!-- ══════════ BODY ══════════ -->
+<div class="container">
+
+  <!-- LEFT column -->
+  <div class="col">
+    <div class="panel">
+      <h2>Energy Profile</h2>
+      <div class="img-wrap"><img src="test2.png" alt="Energy model"></div>
+      <table>
+        <thead><tr><th>Concept</th><th>Value</th></tr></thead>
+        <tbody>
+          
+          <tr><td>Total Energy [kWh]</td><td>1487792.9</td></tr>
+          
+          <tr><td>EUI Total Area [kWh/m2]</td><td>115.5</td></tr>
+          
+          <tr><td>EUI Conditioned Area [kWh/m2]</td><td>115.5</td></tr>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Building Description</h2>
+      <table>
+        <tbody>
+          <tr><td>Floor Area</td><td>12880.0</td></tr>
+          <tr><td>Stories</td><td>14</td></tr>
+          <tr><td>Climate Zone</td><td>6A</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RIGHT column -->
+  <div class="col">
+    <div class="panel">
+      <h2>Window Wall Ratio</h2>
+      <table>
+        <thead><tr><th>Facade</th><th>WWR</th></tr></thead>
+        <tbody>
+          
+          <tr><td>North</td><td>0.3</td></tr>
+          
+          <tr><td>South</td><td>0.3</td></tr>
+          
+          <tr><td>East</td><td>0.3</td></tr>
+          
+          <tr><td>West</td><td>0.3</td></tr>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>End Uses — Electricity [kWh]</h2>
+      <table>
+        <thead><tr><th>End Use</th><th>kWh</th></tr></thead>
+        <tbody>
+          
+          <tr><td>Heating</td><td>391603.1</td></tr>
+          
+          <tr><td>Cooling</td><td>135445.5</td></tr>
+          
+          <tr><td>Interior Lighting</td><td>49608.7</td></tr>
+          
+          <tr><td>Interior Equipment</td><td>899521.1</td></tr>
+          
+          <tr><td>Fans</td><td>11622.3</td></tr>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Monthly Heating</h2>
+      <div class="img-wrap"><img src="monthly_heating.png" alt="Monthly heating chart"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <span>Generated automatically · Building Energy Card Archetype-QC</span>
+  <span></span>
+</footer>
+
+</body>
+</html>
