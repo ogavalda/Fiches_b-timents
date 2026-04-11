@@ -1,0 +1,1416 @@
+[openstudio.CLI] <-2> Setting Log Level to Debug (-2)
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
+[openstudio.workflow.OSWorkflow] <Debug> Registering that the workflow has started with the adapter
+[openstudio.workflow.OSWorkflow] <Debug> Initialization - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                         Starting State Initialization                          │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Debug> The root_dir for the datapoint is C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing generated files directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/generated_files
+[openstudio.workflow.OSWorkflow] <Debug> Creating generated files directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/generated_files
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing reports directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/reports
+[openstudio.workflow.OSWorkflow] <Info> Attempting to validate the measure workflow
+[openstudio.WorkflowJSON] <Debug> Validating step 0
+[openstudio.WorkflowJSON] <Debug> Validating step 1
+[openstudio.WorkflowJSON] <Debug> Validating step 2
+[openstudio.WorkflowJSON] <Debug> Validating step 3
+[openstudio.WorkflowJSON] <Debug> Validating step 4
+[openstudio.WorkflowJSON] <Debug> Validating step 5
+[openstudio.workflow.OSWorkflow] <Info> Validated the measure workflow
+[openstudio.workflow.OSWorkflow] <Debug> Finding and loading the seed file
+[openstudio.worklow.Util] <Info> Loading OSM model
+[openstudio.worklow.Util] <Info> Reading in OSM model C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/MR_ND_1945.osm
+[openstudio.osversion.VersionTranslator] <Debug> Starting translation from Version 3.10.0.
+[openstudio.osversion.VersionTranslator] <Debug> Initial model has 1791 objects.
+[openstudio.osversion.VersionTranslator] <Debug> Final model has 1791 objects in IDF form.
+[utilities.idf.Workspace] <Debug> Workspace::isValid called.
+[openstudio.osversion.VersionTranslator] <Debug> Final model has 1791 objects in Model form.
+[openstudio.workflow.OSWorkflow] <Debug> Initialize the weather file from osw
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file defined by osw 2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.EpwFile] <Info> Found 3 ground temperature depths in the EPW file 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw'
+[openstudio.EpwFile] <Debug> No Daylightings Saving start Date
+[openstudio.EpwFile] <Info> Header start day of the week and actual start day of the week do not match in EPW file 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw'. Data will be treated as typical (TMY)
+[38;2;000;128;000m#######################Returned from State Initialization#######################[0m
+[openstudio.workflow.OSWorkflow] <Debug> OpenStudioMeasures - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                       Starting State OpenStudioMeasures                        │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Info> Beginning to execute OpenStudio Measures
+[openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ModelMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Running step 0
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/000_AssignConstructionSetToBuilding'
+[openstudio.workflow.OSWorkflow] <Debug> Found AssignConstructionSetToBuilding at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AssignConstructionSetToBuilding/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: AssignConstructionSetToBuilding
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AssignConstructionSetToBuilding/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, szPath = 'C:\openstudioapplication-1.10.0\bin\openstudiolib.dll'
+[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/bin/openstudiolib.dll
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, found 'C:/openstudioapplication-1.10.0/bin/openstudiolib.dll'
+[ruby] <Debug> Found system gem abbrev 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem base64 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem benchmark 0.2.1, overrides embedded gem
+[ruby] <Debug> Found system gem bigdecimal 3.1.3, overrides embedded gem
+[ruby] <Debug> Found system gem bundler 2.4.10, overrides embedded gem
+[ruby] <Debug> Found system gem cgi 0.3.6, overrides embedded gem
+[ruby] <Debug> Found system gem csv 3.2.6, overrides embedded gem
+[ruby] <Debug> Found system gem date 3.3.3, overrides embedded gem
+[ruby] <Debug> Found system gem delegate 0.3.0, overrides embedded gem
+[ruby] <Debug> Found system gem did_you_mean 1.6.3, overrides embedded gem
+[ruby] <Debug> Found system gem digest 3.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem drb 2.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem english 0.7.2, overrides embedded gem
+[ruby] <Debug> Found system gem erb 4.0.2, overrides embedded gem
+[ruby] <Debug> Found system gem error_highlight 0.5.1, overrides embedded gem
+[ruby] <Debug> Found system gem etc 1.4.2, overrides embedded gem
+[ruby] <Debug> Found system gem fcntl 1.0.2, overrides embedded gem
+[ruby] <Debug> Found system gem fiddle 1.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem fileutils 1.7.0, overrides embedded gem
+[ruby] <Debug> Found system gem find 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem forwardable 1.3.3, overrides embedded gem
+[ruby] <Debug> Found system gem getoptlong 0.2.0, overrides embedded gem
+[ruby] <Debug> Found system gem io-nonblock 0.2.0, overrides embedded gem
+[ruby] <Debug> Found system gem io-wait 0.3.0, overrides embedded gem
+[ruby] <Debug> Found system gem ipaddr 1.2.5, overrides embedded gem
+[ruby] <Debug> Found system gem json 2.6.3, overrides embedded gem
+[ruby] <Debug> Found system gem logger 1.5.3, overrides embedded gem
+[ruby] <Debug> Found system gem mutex_m 0.1.2, overrides embedded gem
+[ruby] <Debug> Found system gem net-http 0.3.2, overrides embedded gem
+[ruby] <Debug> Found system gem net-protocol 0.2.1, overrides embedded gem
+[ruby] <Debug> Found system gem nkf 0.1.2, overrides embedded gem
+[ruby] <Debug> Found system gem observer 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem open-uri 0.3.0, overrides embedded gem
+[ruby] <Debug> Found system gem open3 0.1.2, overrides embedded gem
+[ruby] <Debug> Found system gem openssl 3.1.0, overrides embedded gem
+[ruby] <Debug> Found system gem optparse 0.3.1, overrides embedded gem
+[ruby] <Debug> Found system gem ostruct 0.5.5, overrides embedded gem
+[ruby] <Debug> Found system gem pathname 0.2.1, overrides embedded gem
+[ruby] <Debug> Found system gem pp 0.4.0, overrides embedded gem
+[ruby] <Debug> Found system gem prettyprint 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem pstore 0.1.2, overrides embedded gem
+[ruby] <Debug> Found system gem psych 5.0.1, overrides embedded gem
+[ruby] <Debug> Found system gem racc 1.6.2, overrides embedded gem
+[ruby] <Debug> Found system gem rdoc 6.5.0, overrides embedded gem
+[ruby] <Debug> Found system gem resolv 0.2.2, overrides embedded gem
+[ruby] <Debug> Found system gem resolv-replace 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem rinda 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem ruby2_keywords 0.0.5, overrides embedded gem
+[ruby] <Debug> Found system gem securerandom 0.2.2, overrides embedded gem
+[ruby] <Debug> Found system gem set 1.0.3, overrides embedded gem
+[ruby] <Debug> Found system gem shellwords 0.1.0, overrides embedded gem
+[ruby] <Debug> Found system gem singleton 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem stringio 3.0.4, overrides embedded gem
+[ruby] <Debug> Found system gem strscan 3.0.5, overrides embedded gem
+[ruby] <Debug> Found system gem syntax_suggest 1.0.2, overrides embedded gem
+[ruby] <Debug> Found system gem tempfile 0.1.3, overrides embedded gem
+[ruby] <Debug> Found system gem time 0.2.2, overrides embedded gem
+[ruby] <Debug> Found system gem timeout 0.3.1, overrides embedded gem
+[ruby] <Debug> Found system gem tmpdir 0.1.3, overrides embedded gem
+[ruby] <Debug> Found system gem tsort 0.1.1, overrides embedded gem
+[ruby] <Debug> Found system gem un 0.2.1, overrides embedded gem
+[ruby] <Debug> Found system gem uri 0.12.1, overrides embedded gem
+[ruby] <Debug> Found system gem weakref 0.1.2, overrides embedded gem
+[ruby] <Debug> Found system gem win32ole 1.8.9, overrides embedded gem
+[ruby] <Debug> Found system gem yaml 0.2.1, overrides embedded gem
+[ruby] <Debug> Found system gem zlib 3.0.0, overrides embedded gem
+[ruby] <Debug> Found system gem bundler 2.4.10, overrides embedded gem
+[ruby] <Debug> Found system gem rexml 3.2.5, overrides embedded gem
+[ruby] <Debug> Adding dependency on abbrev '~> 0.1.1'
+[ruby] <Debug> Adding dependency on base64 '~> 0.1.1'
+[ruby] <Debug> Adding dependency on benchmark '~> 0.2.1'
+[ruby] <Debug> Adding dependency on bigdecimal '~> 3.1.3'
+[ruby] <Debug> Adding dependency on bundler '~> 2.4.10'
+[ruby] <Debug> Adding dependency on cgi '~> 0.3.6'
+[ruby] <Debug> Adding dependency on csv '~> 3.2.6'
+[ruby] <Debug> Adding dependency on date '~> 3.3.3'
+[ruby] <Debug> Adding dependency on delegate '~> 0.3.0'
+[ruby] <Debug> Adding dependency on did_you_mean '~> 1.6.3'
+[ruby] <Debug> Adding dependency on digest '~> 3.1.1'
+[ruby] <Debug> Adding dependency on drb '~> 2.1.1'
+[ruby] <Debug> Adding dependency on english '~> 0.7.2'
+[ruby] <Debug> Adding dependency on erb '~> 4.0.2'
+[ruby] <Debug> Adding dependency on error_highlight '~> 0.5.1'
+[ruby] <Debug> Adding dependency on etc '~> 1.4.2'
+[ruby] <Debug> Adding dependency on fcntl '~> 1.0.2'
+[ruby] <Debug> Adding dependency on fiddle '~> 1.1.1'
+[ruby] <Debug> Adding dependency on fileutils '~> 1.7.0'
+[ruby] <Debug> Adding dependency on find '~> 0.1.1'
+[ruby] <Debug> Adding dependency on forwardable '~> 1.3.3'
+[ruby] <Debug> Adding dependency on getoptlong '~> 0.2.0'
+[ruby] <Debug> Adding dependency on io-nonblock '~> 0.2.0'
+[ruby] <Debug> Adding dependency on io-wait '~> 0.3.0'
+[ruby] <Debug> Adding dependency on ipaddr '~> 1.2.5'
+[ruby] <Debug> Adding dependency on json '~> 2.6.3'
+[ruby] <Debug> Adding dependency on logger '~> 1.5.3'
+[ruby] <Debug> Adding dependency on mutex_m '~> 0.1.2'
+[ruby] <Debug> Adding dependency on net-http '~> 0.3.2'
+[ruby] <Debug> Adding dependency on net-protocol '~> 0.2.1'
+[ruby] <Debug> Adding dependency on nkf '~> 0.1.2'
+[ruby] <Debug> Adding dependency on observer '~> 0.1.1'
+[ruby] <Debug> Adding dependency on open-uri '~> 0.3.0'
+[ruby] <Debug> Adding dependency on open3 '~> 0.1.2'
+[ruby] <Debug> Adding dependency on openssl '~> 3.1.0'
+[ruby] <Debug> Adding dependency on optparse '~> 0.3.1'
+[ruby] <Debug> Adding dependency on ostruct '~> 0.5.5'
+[ruby] <Debug> Adding dependency on pathname '~> 0.2.1'
+[ruby] <Debug> Adding dependency on pp '~> 0.4.0'
+[ruby] <Debug> Adding dependency on prettyprint '~> 0.1.1'
+[ruby] <Debug> Adding dependency on pstore '~> 0.1.2'
+[ruby] <Debug> Adding dependency on psych '~> 5.0.1'
+[ruby] <Debug> Adding dependency on racc '~> 1.6.2'
+[ruby] <Debug> Adding dependency on rdoc '~> 6.5.0'
+[ruby] <Debug> Adding dependency on resolv '~> 0.2.2'
+[ruby] <Debug> Adding dependency on resolv-replace '~> 0.1.1'
+[ruby] <Debug> Adding dependency on rinda '~> 0.1.1'
+[ruby] <Debug> Adding dependency on ruby2_keywords '~> 0.0.5'
+[ruby] <Debug> Adding dependency on securerandom '~> 0.2.2'
+[ruby] <Debug> Adding dependency on set '~> 1.0.3'
+[ruby] <Debug> Adding dependency on shellwords '~> 0.1.0'
+[ruby] <Debug> Adding dependency on singleton '~> 0.1.1'
+[ruby] <Debug> Adding dependency on stringio '~> 3.0.4'
+[ruby] <Debug> Adding dependency on strscan '~> 3.0.5'
+[ruby] <Debug> Adding dependency on syntax_suggest '~> 1.0.2'
+[ruby] <Debug> Adding dependency on tempfile '~> 0.1.3'
+[ruby] <Debug> Adding dependency on time '~> 0.2.2'
+[ruby] <Debug> Adding dependency on timeout '~> 0.3.1'
+[ruby] <Debug> Adding dependency on tmpdir '~> 0.1.3'
+[ruby] <Debug> Adding dependency on tsort '~> 0.1.1'
+[ruby] <Debug> Adding dependency on un '~> 0.2.1'
+[ruby] <Debug> Adding dependency on uri '~> 0.12.1'
+[ruby] <Debug> Adding dependency on weakref '~> 0.1.2'
+[ruby] <Debug> Adding dependency on win32ole '~> 1.8.9'
+[ruby] <Debug> Adding dependency on yaml '~> 0.2.1'
+[ruby] <Debug> Adding dependency on zlib '~> 3.0.0'
+[ruby] <Debug> Adding dependency on matrix '~> 0.4.3'
+[ruby] <Debug> Adding dependency on minitest '~> 5.14.4'
+[ruby] <Debug> Adding dependency on net-ftp '~> 0.2.0'
+[ruby] <Debug> Adding dependency on net-imap '~> 0.3.4'
+[ruby] <Debug> Adding dependency on net-pop '~> 0.1.2'
+[ruby] <Debug> Adding dependency on net-smtp '~> 0.3.3'
+[ruby] <Debug> Adding dependency on power_assert '~> 2.0.3'
+[ruby] <Debug> Adding dependency on prime '~> 0.1.2'
+[ruby] <Debug> Adding dependency on rake '~> 13.2.1'
+[ruby] <Debug> Adding dependency on rbs '~> 2.8.2'
+[ruby] <Debug> Adding dependency on rexml '~> 3.2.5'
+[ruby] <Debug> Adding dependency on rss '~> 0.2.9'
+[ruby] <Debug> Adding dependency on test-unit '~> 3.5.7'
+[ruby] <Debug> Adding dependency on typeprof '~> 0.21.3'
+[ruby] <Debug> Adding dependency on addressable '~> 2.8.1'
+[ruby] <Debug> Adding dependency on ansi '~> 1.5.0'
+[ruby] <Debug> Adding dependency on ast '~> 2.4.3'
+[ruby] <Debug> Adding dependency on bcl '~> 0.9.1'
+[ruby] <Debug> Adding dependency on builder '~> 3.2.4'
+[ruby] <Debug> Adding dependency on byebug '~> 11.1.3'
+[ruby] <Debug> Adding dependency on docile '~> 1.4.1'
+[ruby] <Debug> Adding dependency on faraday '~> 1.10.4'
+[ruby] <Debug> Adding dependency on faraday-em_http '~> 1.0.0'
+[ruby] <Debug> Adding dependency on faraday-em_synchrony '~> 1.0.1'
+[ruby] <Debug> Adding dependency on faraday-excon '~> 1.1.0'
+[ruby] <Debug> Adding dependency on faraday-httpclient '~> 1.0.1'
+[ruby] <Debug> Adding dependency on faraday-multipart '~> 1.1.0'
+[ruby] <Debug> Adding dependency on faraday-net_http '~> 1.0.2'
+[ruby] <Debug> Adding dependency on faraday-net_http_persistent '~> 1.2.0'
+[ruby] <Debug> Adding dependency on faraday-patron '~> 1.0.0'
+[ruby] <Debug> Adding dependency on faraday-rack '~> 1.0.0'
+[ruby] <Debug> Adding dependency on faraday-retry '~> 1.0.3'
+[ruby] <Debug> Adding dependency on git '~> 1.13.2'
+[ruby] <Debug> Adding dependency on jaro_winkler '~> 1.5.6'
+[ruby] <Debug> Adding dependency on json-schema '~> 4.3.1'
+[ruby] <Debug> Adding dependency on macaddr '~> 1.7.2'
+[ruby] <Debug> Adding dependency on mini_portile2 '~> 2.8.9'
+[ruby] <Debug> Adding dependency on minitar '~> 0.12.1'
+[ruby] <Debug> Adding dependency on minitest-reporters '~> 1.4.3'
+[ruby] <Debug> Adding dependency on msgpack '~> 1.7.2'
+[ruby] <Debug> Adding dependency on multipart-post '~> 2.4.1'
+[ruby] <Debug> Adding dependency on octokit '~> 4.18.0'
+[ruby] <Debug> Adding dependency on oga '~> 3.2'
+[ruby] <Debug> Adding dependency on openstudio-extension '~> 0.9.1'
+[ruby] <Debug> Adding dependency on openstudio-standards '~> 0.8.2'
+[ruby] <Debug> Adding dependency on openstudio-workflow '~> 2.5.0'
+[ruby] <Debug> Adding dependency on openstudio_measure_tester '~> 0.5.0'
+[ruby] <Debug> Adding dependency on oslg '~> 0.3.0'
+[ruby] <Debug> Adding dependency on osut '~> 0.6.0'
+[ruby] <Debug> Adding dependency on parallel '~> 1.19.2'
+[ruby] <Debug> Adding dependency on parser '~> 3.2.2.2'
+[ruby] <Debug> Adding dependency on public_suffix '~> 5.1.1'
+[ruby] <Debug> Adding dependency on rainbow '~> 3.1.1'
+[ruby] <Debug> Adding dependency on rchardet '~> 1.9.0'
+[ruby] <Debug> Adding dependency on regexp_parser '~> 2.9.0'
+[ruby] <Debug> Adding dependency on rubocop '~> 1.50.0'
+[ruby] <Debug> Adding dependency on rubocop-ast '~> 1.30.0'
+[ruby] <Debug> Adding dependency on rubocop-checkstyle_formatter '~> 0.6.0'
+[ruby] <Debug> Adding dependency on rubocop-performance '~> 1.20.0'
+[ruby] <Debug> Adding dependency on ruby-ll '~> 2.1.3'
+[ruby] <Debug> Adding dependency on ruby-ole '~> 1.2.13.1'
+[ruby] <Debug> Adding dependency on ruby-progressbar '~> 1.13.0'
+[ruby] <Debug> Adding dependency on rubyzip '~> 2.3.2'
+[ruby] <Debug> Adding dependency on sawyer '~> 0.8.2'
+[ruby] <Debug> Adding dependency on simplecov '~> 0.22.0'
+[ruby] <Debug> Adding dependency on simplecov-html '~> 0.13.1'
+[ruby] <Debug> Adding dependency on simplecov_json_formatter '~> 0.1.4'
+[ruby] <Debug> Adding dependency on spreadsheet '~> 1.2.9'
+[ruby] <Debug> Adding dependency on sqlite3 '~> 1.7.2'
+[ruby] <Debug> Adding dependency on systemu '~> 2.6.5'
+[ruby] <Debug> Adding dependency on tbd '~> 3.4.4'
+[ruby] <Debug> Adding dependency on topolys '~> 0.6.2'
+[ruby] <Debug> Adding dependency on unicode-display_width '~> 2.6.0'
+[ruby] <Debug> Adding dependency on uuid '~> 2.3.9'
+[ruby] <Debug> Adding dependency on webrick '~> 1.8.2'
+[ruby] <Debug> Adding dependency on yamler '~> 0.1.0'
+[ruby] <Debug> Adding dependency on zliby '~> 0.0.5'
+[ruby] <Debug> Processing 143 activation requests
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/abbrev-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/base64-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/benchmark-0.2.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/bigdecimal-3.1.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/bundler-2.4.10.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/cgi-0.3.6.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/csv-3.2.6.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/date-3.3.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/delegate-0.3.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/did_you_mean-1.6.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/digest-3.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/ruby2_keywords-0.0.5.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/drb-2.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/english-0.7.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/erb-4.0.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/error_highlight-0.5.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/etc-1.4.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/fcntl-1.0.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/fiddle-1.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/fileutils-1.7.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/find-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/forwardable-1.3.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/getoptlong-0.2.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/io-nonblock-0.2.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/io-wait-0.3.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/ipaddr-1.2.5.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/json-2.6.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/logger-1.5.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/mutex_m-0.1.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/uri-0.12.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/net-http-0.3.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/timeout-0.3.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/net-protocol-0.2.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/nkf-0.1.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/observer-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/time-0.2.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/stringio-3.0.4.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/open-uri-0.3.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/open3-0.1.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/openssl-3.1.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/optparse-0.3.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/ostruct-0.5.5.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/pathname-0.2.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/prettyprint-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/pp-0.4.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/pstore-0.1.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/psych-5.0.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/racc-1.6.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/rdoc-6.5.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/resolv-0.2.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/resolv-replace-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/rinda-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/securerandom-0.2.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/set-1.0.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/shellwords-0.1.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/singleton-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/strscan-3.0.5.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/syntax_suggest-1.0.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/tempfile-0.1.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/tmpdir-0.1.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/tsort-0.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/un-0.2.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/weakref-0.1.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/win32ole-1.8.9.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/yaml-0.2.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/zlib-3.0.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/matrix-0.4.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/minitest-5.14.4.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/net-ftp-0.2.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/net-imap-0.3.4.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/net-pop-0.1.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/net-smtp-0.3.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/power_assert-2.0.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/prime-0.1.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rake-13.2.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/rbs-2.8.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/rexml-3.2.5.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/rss-0.2.9.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/test-unit-3.5.7.gemspec
+[ruby] <Debug> Activating gem :/ruby/gems/3.2.0/specifications/typeprof-0.21.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/public_suffix-5.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/addressable-2.8.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/ansi-1.5.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/ast-2.4.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/zliby-0.0.5.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/yamler-0.1.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/systemu-2.6.5.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/macaddr-1.7.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/uuid-2.3.9.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/ruby-ole-1.2.13.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/spreadsheet-1.2.9.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rubyzip-2.3.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/parser-3.2.2.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/builder-3.2.4.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/ruby-progressbar-1.13.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/minitest-reporters-1.4.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rchardet-1.9.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/git-1.13.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/openstudio_measure_tester-0.5.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/minitar-0.12.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-retry-1.0.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-rack-1.0.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-patron-1.0.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-net_http_persistent-1.2.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-net_http-1.0.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/multipart-post-2.4.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-multipart-1.1.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-httpclient-1.0.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-excon-1.1.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-em_synchrony-1.0.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-em_http-1.0.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/faraday-1.10.4.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/bcl-0.9.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/byebug-11.1.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/docile-1.4.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/jaro_winkler-1.5.6.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/json-schema-4.3.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/mini_portile2-2.8.9.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/msgpack-1.7.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/sawyer-0.8.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/octokit-4.18.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/ruby-ll-2.1.3.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/oga-3.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/regexp_parser-2.9.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/parallel-1.19.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/openstudio-workflow-2.5.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/openstudio-extension-0.9.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/oslg-0.3.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/osut-0.6.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/topolys-0.6.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/tbd-3.4.4.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/openstudio-standards-0.8.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rainbow-3.1.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/unicode-display_width-2.6.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rubocop-ast-1.30.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rubocop-1.50.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rubocop-checkstyle_formatter-0.6.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/rubocop-performance-1.20.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/simplecov_json_formatter-0.1.4.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/simplecov-html-0.13.1.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/simplecov-0.22.0.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/sqlite3-1.7.2.gemspec
+[ruby] <Debug> Activating gem :/ruby/3.2.0/specifications/webrick-1.8.2.gemspec
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'AssignConstructionSetToBuilding'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 1 arguments
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'construction_set' to '{b36e77d3-8c54-4e5a-bdd0-fa9e4674555a}'
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"construction_set": "{b36e77d3-8c54-4e5a-bdd0-fa9e4674555a}"}
+[openstudio.measure.OSRunner] <Info> The initial model doesn't have a default construction set for the building.
+[openstudio.measure.OSRunner] <Info> The final default construction set for the building is Zone Pre1950 6A.
+[openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Running step 1
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/001_TBDMeasure'
+[openstudio.workflow.OSWorkflow] <Debug> Found TBDMeasure at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/TBDMeasure/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: TBDMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/TBDMeasure/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'Thermal Bridging and Derating - TBD'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 0 arguments
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"alter_model": "true", "floor_option": "NONE", "floor_ut": "0.162", "gen_UA_report": "false", "gen_kiva": "false", "gen_kiva_force": "false", "load_tbd_json": "false", "option": "poor (BETBG)", "parapet": "true", "reset_kiva": "false", "roof_option": "NONE", "roof_ut": "0.138", "sub_tol": "0.01", "ua_reference": "code (Quebec)", "wall_option": "NONE", "wall_ut": "0.21", "write_tbd_json": "false"}
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB roof Pre 1950 6A' to 'AQ_MURB_2024_MURB roof Pre 1950 6A 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024built-up roofing 1' to 'AQNC2024built-up roofing 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB roof Pre 1950 6A' to 'AQ_MURB_2024_MURB roof Pre 1950 6A 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024built-up roofing 1' to 'AQNC2024built-up roofing 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB roof Pre 1950 6A' to 'AQ_MURB_2024_MURB roof Pre 1950 6A 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024built-up roofing 1' to 'AQNC2024built-up roofing 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB roof Pre 1950 6A' to 'AQ_MURB_2024_MURB roof Pre 1950 6A 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024built-up roofing 1' to 'AQNC2024built-up roofing 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB roof Pre 1950 6A' to 'AQ_MURB_2024_MURB roof Pre 1950 6A 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024built-up roofing 1' to 'AQNC2024built-up roofing 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Construction' and named 'AQ_MURB_2024_MURB Wall Pre 1950 6A 1' to 'AQ_MURB_2024_MURB Wall Pre 1950 6A 2' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:Material' and named 'AQNC2024gypsum board' to 'AQNC2024gypsum board 1' to avoid a name conflict upon WorkspaceObject addition.
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.8% : Surface 10
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.4% : Surface 100
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.9% : Surface 101
+[openstudio.measure.OSRunner] <Info> RSi derated by -20.9% : Surface 102
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.7% : Surface 108
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.3% : Surface 109
+[openstudio.measure.OSRunner] <Info> RSi derated by -26.2% : Surface 110
+[openstudio.measure.OSRunner] <Info> RSi derated by -26.2% : Surface 111
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.7% : Surface 112
+[openstudio.measure.OSRunner] <Info> RSi derated by -24.0% : Surface 116
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.0% : Surface 117
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.7% : Surface 118
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.6% : Surface 122
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.9% : Surface 124
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.6% : Surface 127
+[openstudio.measure.OSRunner] <Info> RSi derated by -24.4% : Surface 13
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.1% : Surface 132
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.8% : Surface 133
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.4% : Surface 138
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.9% : Surface 139
+[openstudio.measure.OSRunner] <Info> RSi derated by -20.9% : Surface 140
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.7% : Surface 146
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.3% : Surface 147
+[openstudio.measure.OSRunner] <Info> RSi derated by -26.2% : Surface 148
+[openstudio.measure.OSRunner] <Info> RSi derated by -26.2% : Surface 149
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.7% : Surface 150
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.5% : Surface 154
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.5% : Surface 155
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.1% : Surface 156
+[openstudio.measure.OSRunner] <Info> RSi derated by -6.9% : Surface 158
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.1% : Surface 160
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.3% : Surface 162
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.0% : Surface 165
+[openstudio.measure.OSRunner] <Info> RSi derated by -2.3% : Surface 168
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.6% : Surface 170
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.2% : Surface 171
+[openstudio.measure.OSRunner] <Info> RSi derated by -4.3% : Surface 174
+[openstudio.measure.OSRunner] <Info> RSi derated by -20.9% : Surface 176
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.5% : Surface 177
+[openstudio.measure.OSRunner] <Info> RSi derated by -20.3% : Surface 178
+[openstudio.measure.OSRunner] <Info> RSi derated by -24.0% : Surface 18
+[openstudio.measure.OSRunner] <Info> RSi derated by -3.5% : Surface 181
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.3% : Surface 184
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.7% : Surface 185
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.8% : Surface 186
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.8% : Surface 187
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.2% : Surface 188
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.7% : Surface 19
+[openstudio.measure.OSRunner] <Info> RSi derated by -5.2% : Surface 190
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.7% : Surface 2
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.4% : Surface 24
+[openstudio.measure.OSRunner] <Info> RSi derated by -27.3% : Surface 25
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.9% : Surface 26
+[openstudio.measure.OSRunner] <Info> RSi derated by -24.8% : Surface 3
+[openstudio.measure.OSRunner] <Info> RSi derated by -27.2% : Surface 32
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.0% : Surface 33
+[openstudio.measure.OSRunner] <Info> RSi derated by -27.6% : Surface 34
+[openstudio.measure.OSRunner] <Info> RSi derated by -27.6% : Surface 35
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.3% : Surface 36
+[openstudio.measure.OSRunner] <Info> RSi derated by -24.5% : Surface 4
+[openstudio.measure.OSRunner] <Info> RSi derated by -24.0% : Surface 40
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.0% : Surface 41
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.7% : Surface 42
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.6% : Surface 46
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.9% : Surface 48
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.6% : Surface 51
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.1% : Surface 56
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.8% : Surface 57
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.4% : Surface 62
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.9% : Surface 63
+[openstudio.measure.OSRunner] <Info> RSi derated by -20.9% : Surface 64
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.7% : Surface 70
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.3% : Surface 71
+[openstudio.measure.OSRunner] <Info> RSi derated by -26.2% : Surface 72
+[openstudio.measure.OSRunner] <Info> RSi derated by -26.2% : Surface 73
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.7% : Surface 74
+[openstudio.measure.OSRunner] <Info> RSi derated by -24.0% : Surface 78
+[openstudio.measure.OSRunner] <Info> RSi derated by -23.0% : Surface 79
+[openstudio.measure.OSRunner] <Info> RSi derated by -27.1% : Surface 8
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.7% : Surface 80
+[openstudio.measure.OSRunner] <Info> RSi derated by -25.6% : Surface 84
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.9% : Surface 86
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.6% : Surface 89
+[openstudio.measure.OSRunner] <Info> RSi derated by -22.1% : Surface 94
+[openstudio.measure.OSRunner] <Info> RSi derated by -21.8% : Surface 95
+[openstudio.measure.OSRunner] <Info> Success! No errors, no warnings - see 'tbd.out.json'
+[openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Running step 2
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/002_SetNISTInfiltrationCorrelations'
+[openstudio.workflow.OSWorkflow] <Debug> Found SetNISTInfiltrationCorrelations at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/SetNISTInfiltrationCorrelations/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: SetNISTInfiltrationCorrelations
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/SetNISTInfiltrationCorrelations/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'SetNISTInfiltrationCorrelations'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 3 arguments
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'airtightness_value' to '13.5'
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'building_type' to 'HighriseApartment'
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'climate_zone' to '6A'
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"air_barrier": "false", "airtightness_area": "5-sided", "airtightness_pressure": "75", "airtightness_value": "13.5", "building_type": "HighriseApartment", "climate_zone": "6A", "hvac_schedule": "Lookup From Model"}
+[openstudio.measure.OSRunner] <Info> User-inputed airtightness design value 13.5 (m^3/h-m^2) at 75.0 Pa converts to 2.0085514 (m^3/h-m^2) at 4 Pa
+[openstudio.measure.OSRunner] <Info> 4-sided area = 1098.97 m^2, 5-sided area = 1363.97 m^2, 6-sided area = 1628.97 m^2.
+[openstudio.measure.OSRunner] <Info> 5-sided infiltration design value 0.0005579 (m^3/s-m^2) converted to 0.0005579 (m^3/s-m^2) based on 5-sided area 1363.97 m^2 and 5-sided area 1363.97 m^2 excluding ground boundary surfaces for energyplus.
+[openstudio.measure.OSRunner] <Warn> The largest airloop or HVAC system serves 0.0 m^2, which is less than 5% of the building area 1325.0 m^2. Attempting to use building hours of operation schedule instead.
+[openstudio.measure.OSRunner] <Warn> Unable to determine building hours of operation schedule. Treating the building as if there is no HVAC system schedule.
+[openstudio.measure.OSRunner] <Warn> Unable to determine the HVAC schedule. Treating the building as if there is no HVAC system with outdoor air.  If this is not the case, input a schedule argument, or assign one to an air loop in the model.
+[openstudio.measure.OSRunner] <Info> Using climate zone 6A from user arguments.
+[openstudio.measure.OSRunner] <Info> Using building type HighriseApartment from user arguments.
+[openstudio.measure.OSRunner] <Info> The modeled started with 0 infiltration objects and 0 effective leakage area objects.
+[openstudio.measure.OSRunner] <Info> The modeled finished with 50 infiltration objects.
+[openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Running step 3
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/003_ReduceElectricEquipmentLoadsByPercentage'
+[openstudio.workflow.OSWorkflow] <Debug> Found ReduceElectricEquipmentLoadsByPercentage at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ReduceElectricEquipmentLoadsByPercentage/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: ReduceElectricEquipmentLoadsByPercentage
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ReduceElectricEquipmentLoadsByPercentage/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'Reduce Electric Equipment Loads by Percentage'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 1 arguments
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'elecequip_power_reduction_percent' to '5'
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"demo_cost_initial_const": "false", "demolition_cost": "0", "elecequip_power_reduction_percent": "5", "expected_life": "15", "material_and_installation_cost": "0", "om_cost": "0", "om_frequency": "1", "space_type": "{161a51f0-9700-4aa1-8ba8-f2513d0eecae}", "years_until_costs_start": "0"}
+[openstudio.measure.OSRunner] <Info> The model's initial building electric equipment power was  49,278 watts, an electric equipment power density of 3.46 w/ft^2.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Chauffeau' to 'Chauffeau 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Secheuse' to 'Secheuse 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Laveuse' to 'Laveuse 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Congelateur' to 'Congelateur 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Lavevaisselle' to 'Lavevaisselle 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Autres' to 'Autres 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Fourcuisiniere' to 'Fourcuisiniere 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Refrigerateur' to 'Refrigerateur 1' to avoid a name conflict upon WorkspaceObject addition.
+[openstudio.measure.OSRunner] <Info> The model's final building electric equipment power was  46,814 watts, an electric equipment power density of 3.28 w/ft^2. Initial capital costs associated with the improvements are $0.
+[openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Running step 4
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/004_AddHourlyMeters'
+[openstudio.workflow.OSWorkflow] <Debug> Found AddHourlyMeters at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AddHourlyMeters/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: AddHourlyMeters
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AddHourlyMeters/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[OpenStudio.Measure] <Warn> ModelUserScript is deprecated, use OpenStudio::Measure::ModelMeasure instead.
+[OpenStudio.Measure] <Warn> ModelUserScript is deprecated, use OpenStudio::Measure::ModelMeasure instead.
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'Add Hourly Meters'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 0 arguments
+[OpenStudio.Measure] <Warn> OSArgumentVector is deprecated, use OpenStudio::Measure::OSArgumentVector instead.
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={}
+[OpenStudio.Measure] <Warn> OSArgumentVector is deprecated, use OpenStudio::Measure::OSArgumentVector instead.
+[openstudio.measure.OSRunner] <Info> The model started with 0 meter objects.
+[openstudio.measure.OSRunner] <Info> The model finished with 23 meter objects.
+[openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Info> Finished applying OpenStudio Measures.
+[openstudio.workflow.OSWorkflow] <Info> Beginning to execute Reporting Measures's Model Output Requests
+[openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ReportingMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Running step 5
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: ExportMetertoCSV
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ReportingMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 1 arguments
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'meter_name' to 'Electricity:Facility'
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"meter_name": "Electricity:Facility", "reporting_frequency": "Hourly"}
+[openstudio.workflow.OSWorkflow] <Debug> Reporting Measure 'ExportMetertoCSV' does not have a modelOutputRequests method
+[openstudio.workflow.OSWorkflow] <Info> Finished applying Reporting Measures's Model Output Requests.
+[38;2;000;128;000m#####################Returned from State OpenStudioMeasures#####################[0m
+[openstudio.workflow.OSWorkflow] <Debug> Translator - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                           Starting State Translator                            │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Info> Beginning the translation to IDF
+[openstudio.energyplus.ForwardTranslator] <Warn> Object of type 'OS:ShadingControl' and named 'Shading Control 1' does not control any SubSurfaces, it will not be translated
+[openstudio.energyplus.ForwardTranslator] <Warn> OS_ProgramControl is not currently translated
+[openstudio.workflow.OSWorkflow] <Info> Successfully translated to IDF
+[38;2;000;128;000m#########################Returned from State Translator#########################[0m
+[openstudio.workflow.OSWorkflow] <Debug> EnergyPlusMeasures - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                       Starting State EnergyPlusMeasures                        │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Info> Beginning to execute EnergyPlus Measures.
+[openstudio.workflow.OSWorkflow] <Debug> Finding measures of type EnergyPlusMeasure
+[openstudio.workflow.OSWorkflow] <Info> Finished applying EnergyPlus Measures.
+[38;2;000;128;000m#####################Returned from State EnergyPlusMeasures#####################[0m
+[openstudio.workflow.OSWorkflow] <Debug> PreProcess - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                           Starting State PreProcess                            │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Info> Beginning to collect EnergyPlus output requests from Reporting measures.
+[openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ReportingMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Running step 5
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: ExportMetertoCSV
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ReportingMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 1 arguments
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'meter_name' to 'Electricity:Facility'
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"meter_name": "Electricity:Facility", "reporting_frequency": "Hourly"}
+[openstudio.workflow.OSWorkflow] <Debug> Calling measure.energyPlusOutputRequests for 'ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Finished measure.energyPlusOutputRequests for 'ExportMetertoCSV', 0 output requests added
+[openstudio.workflow.OSWorkflow] <Info> Finished collecting EnergyPlus output requests from Reporting measures.
+[openstudio.workflow.OSWorkflow] <Info> Running EnergyPlus Preprocess
+[openstudio.workflow.OSWorkflow] <Info> Finished preprocess job for EnergyPlus simulation
+[openstudio.workflow.OSWorkflow] <Debug> Saved final IDF as C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/in.idf
+[38;2;000;128;000m#########################Returned from State PreProcess#########################[0m
+[openstudio.workflow.OSWorkflow] <Debug> EnergyPlus - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                           Starting State EnergyPlus                            │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Original Directory: C:/openstudioapplication-1.10.0/bin
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing To run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, szPath = 'C:\openstudioapplication-1.10.0\bin\openstudiolib.dll'
+[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/bin/openstudiolib.dll
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, found 'C:/openstudioapplication-1.10.0/bin/openstudiolib.dll'
+[ApplicationPathHelpers] <Debug> Searching for EnergyPlus in 'C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe'
+[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe
+[ApplicationPathHelpers] <Debug> Found EnergyPlus at 'C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe'
+[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> EnergyPlus executable path is C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> ExpandObjects executable path is C:/openstudioapplication-1.10.0/EnergyPlus/ExpandObjects.exe
+[openstudio.workflow.OSWorkflow] <Info> Starting simulation in run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
+[openstudio.workflow.OSWorkflow] <Info> Running command '"C:/openstudioapplication-1.10.0\EnergyPlus\ExpandObjects.exe"'
+ExpandObjects Started.
+No expanded file generated.
+ExpandObjects Finished. Time:     2.953
+[openstudio.workflow.OSWorkflow] <Info> Running command '"C:/openstudioapplication-1.10.0\EnergyPlus\energyplus.exe" in.idf'
+EnergyPlus Starting
+EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.01.20 15:57
+Initializing Response Factors
+Calculating CTFs for "AQ_MURB_2024_MURB GROUND PRE 1950 6A 2"
+Calculating CTFs for "SURFACE 10 C TBD"
+Calculating CTFs for "SURFACE 100 C TBD"
+Calculating CTFs for "SURFACE 101 C TBD"
+Calculating CTFs for "SURFACE 102 C TBD"
+Calculating CTFs for "SURFACE 108 C TBD"
+Calculating CTFs for "SURFACE 109 C TBD"
+Calculating CTFs for "SURFACE 110 C TBD"
+Calculating CTFs for "SURFACE 111 C TBD"
+Calculating CTFs for "SURFACE 112 C TBD"
+Calculating CTFs for "SURFACE 116 C TBD"
+Calculating CTFs for "SURFACE 117 C TBD"
+Calculating CTFs for "SURFACE 118 C TBD"
+Calculating CTFs for "SURFACE 122 C TBD"
+Calculating CTFs for "SURFACE 124 C TBD"
+Calculating CTFs for "SURFACE 127 C TBD"
+Calculating CTFs for "SURFACE 13 C TBD"
+Calculating CTFs for "SURFACE 132 C TBD"
+Calculating CTFs for "SURFACE 133 C TBD"
+Calculating CTFs for "SURFACE 138 C TBD"
+Calculating CTFs for "SURFACE 139 C TBD"
+Calculating CTFs for "SURFACE 140 C TBD"
+Calculating CTFs for "SURFACE 146 C TBD"
+Calculating CTFs for "SURFACE 147 C TBD"
+Calculating CTFs for "SURFACE 148 C TBD"
+Calculating CTFs for "SURFACE 149 C TBD"
+Calculating CTFs for "SURFACE 150 C TBD"
+Calculating CTFs for "SURFACE 154 C TBD"
+Calculating CTFs for "SURFACE 155 C TBD"
+Calculating CTFs for "SURFACE 156 C TBD"
+Calculating CTFs for "SURFACE 158 C TBD"
+Calculating CTFs for "SURFACE 160 C TBD"
+Calculating CTFs for "SURFACE 162 C TBD"
+Calculating CTFs for "SURFACE 165 C TBD"
+Calculating CTFs for "SURFACE 168 C TBD"
+Calculating CTFs for "SURFACE 170 C TBD"
+Calculating CTFs for "SURFACE 171 C TBD"
+Calculating CTFs for "SURFACE 174 C TBD"
+Calculating CTFs for "SURFACE 176 C TBD"
+Calculating CTFs for "SURFACE 177 C TBD"
+Calculating CTFs for "SURFACE 178 C TBD"
+Calculating CTFs for "SURFACE 18 C TBD"
+Calculating CTFs for "SURFACE 181 C TBD"
+Calculating CTFs for "SURFACE 184 C TBD"
+Calculating CTFs for "SURFACE 185 C TBD"
+Calculating CTFs for "SURFACE 186 C TBD"
+Calculating CTFs for "SURFACE 187 C TBD"
+Calculating CTFs for "SURFACE 188 C TBD"
+Calculating CTFs for "SURFACE 19 C TBD"
+Calculating CTFs for "SURFACE 190 C TBD"
+Calculating CTFs for "SURFACE 2 C TBD"
+Calculating CTFs for "SURFACE 24 C TBD"
+Calculating CTFs for "SURFACE 25 C TBD"
+Calculating CTFs for "SURFACE 26 C TBD"
+Calculating CTFs for "SURFACE 3 C TBD"
+Calculating CTFs for "SURFACE 32 C TBD"
+Calculating CTFs for "SURFACE 33 C TBD"
+Calculating CTFs for "SURFACE 34 C TBD"
+Calculating CTFs for "SURFACE 35 C TBD"
+Calculating CTFs for "SURFACE 36 C TBD"
+Calculating CTFs for "SURFACE 4 C TBD"
+Calculating CTFs for "SURFACE 40 C TBD"
+Calculating CTFs for "SURFACE 41 C TBD"
+Calculating CTFs for "SURFACE 42 C TBD"
+Calculating CTFs for "SURFACE 46 C TBD"
+Calculating CTFs for "SURFACE 48 C TBD"
+Calculating CTFs for "SURFACE 51 C TBD"
+Calculating CTFs for "SURFACE 56 C TBD"
+Calculating CTFs for "SURFACE 57 C TBD"
+Calculating CTFs for "SURFACE 62 C TBD"
+Calculating CTFs for "SURFACE 63 C TBD"
+Calculating CTFs for "SURFACE 64 C TBD"
+Calculating CTFs for "SURFACE 70 C TBD"
+Calculating CTFs for "SURFACE 71 C TBD"
+Calculating CTFs for "SURFACE 72 C TBD"
+Calculating CTFs for "SURFACE 73 C TBD"
+Calculating CTFs for "SURFACE 74 C TBD"
+Calculating CTFs for "SURFACE 78 C TBD"
+Calculating CTFs for "SURFACE 79 C TBD"
+Calculating CTFs for "SURFACE 8 C TBD"
+Calculating CTFs for "SURFACE 80 C TBD"
+Calculating CTFs for "SURFACE 84 C TBD"
+Calculating CTFs for "SURFACE 86 C TBD"
+Calculating CTFs for "SURFACE 89 C TBD"
+Calculating CTFs for "SURFACE 94 C TBD"
+Calculating CTFs for "SURFACE 95 C TBD"
+Calculating CTFs for "TYPICAL INTERIOR CEILING"
+Calculating CTFs for "TYPICAL INTERIOR PARTITION 4"
+Calculating CTFs for "TYPICAL INTERIOR WALL"
+Initializing Window Optical Properties
+Initializing Solar Calculations
+Allocate Solar Module Arrays
+Initializing Zone and Enclosure Report Variables
+Initializing Surface (Shading) Report Variables
+Computing Interior Solar Absorption Factors
+Determining Shadowing Combinations
+Computing Window Shade Absorption Factors
+Proceeding with Initializing Solar Calculations
+Initializing Surfaces
+Initializing Outdoor environment for Surfaces
+Setting up Surface Reporting Variables
+Initializing Temperature and Flux Histories
+Initializing Window Shading
+Computing Interior Absorption Factors
+Computing Interior Diffuse Solar Absorption Factors
+Computing Interior Diffuse Solar Exchange through Interzone Windows
+Initializing Solar Heat Gains
+Initializing Internal Heat Gains
+Initializing Interior Solar Distribution
+Initializing Interior Convection Coefficients
+Gathering Information for Predefined Reporting
+Completed Initializing Surface Heat Balance
+Calculate Outside Surface Heat Balance
+Calculate Inside Surface Heat Balance
+Calculate Air Heat Balance
+Initializing HVAC
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #1 MONTREAL INT'L ANN CLG .4% CONDNS DB=>MWB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #2 MONTREAL INT'L ANN CLG .4% CONDNS DP=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #3 MONTREAL INT'L ANN CLG .4% CONDNS ENTH=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #4 MONTREAL INT'L ANN CLG .4% CONDNS WB=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #5 MONTREAL INT'L ANN CLG 1% CONDNS DB=>MWB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #6 MONTREAL INT'L ANN CLG 1% CONDNS DP=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #7 MONTREAL INT'L ANN CLG 1% CONDNS ENTH=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #8 MONTREAL INT'L ANN CLG 1% CONDNS WB=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #9 MONTREAL INT'L ANN CLG 2% CONDNS DB=>MWB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #10 MONTREAL INT'L ANN CLG 2% CONDNS DP=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #11 MONTREAL INT'L ANN CLG 2% CONDNS ENTH=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #12 MONTREAL INT'L ANN CLG 2% CONDNS WB=>MDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #13 MONTREAL INT'L ANN HTG 99% CONDNS DB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #14 MONTREAL INT'L ANN HTG 99.6% CONDNS DB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #15 MONTREAL INT'L ANN HTG WIND 99% CONDNS WS=>MCDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #16 MONTREAL INT'L ANN HTG WIND 99.6% CONDNS WS=>MCDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #17 MONTREAL INT'L ANN HUM_N 99% CONDNS DP=>MCDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #18 MONTREAL INT'L ANN HUM_N 99.6% CONDNS DP=>MCDB
+Adjusting Air System Sizing
+Adjusting Standard 62.1 Ventilation Sizing
+Initializing Simulation
+Reporting Surfaces
+Beginning HVAC Sizing Simulation
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DB=>MWB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DP=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS ENTH=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS WB=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DB=>MWB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DP=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS ENTH=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS WB=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DB=>MWB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DP=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS ENTH=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS WB=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG 99% CONDNS DB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG 99.6% CONDNS DB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99% CONDNS WS=>MCDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99.6% CONDNS WS=>MCDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99% CONDNS DP=>MCDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99.6% CONDNS DP=>MCDB HVAC Sizing Pass 1
+Beginning Primary Simulation
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DB=>MWB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DP=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS ENTH=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS WB=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DB=>MWB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DP=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS ENTH=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS WB=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DB=>MWB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DP=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS ENTH=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS WB=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG 99% CONDNS DB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG 99.6% CONDNS DB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99% CONDNS WS=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99.6% CONDNS WS=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99% CONDNS DP=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99.6% CONDNS DP=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 01/01/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=01/21/2006
+Continuing Simulation at 01/21/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=02/10/2006
+Continuing Simulation at 02/10/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=03/02/2006
+Continuing Simulation at 03/02/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=03/22/2006
+Continuing Simulation at 03/22/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=04/11/2006
+Continuing Simulation at 04/11/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=05/01/2006
+Continuing Simulation at 05/01/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=05/21/2006
+Continuing Simulation at 05/21/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=06/10/2006
+Continuing Simulation at 06/10/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=06/30/2006
+Continuing Simulation at 06/30/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=07/20/2006
+Continuing Simulation at 07/20/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=08/09/2006
+Continuing Simulation at 08/09/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=08/29/2006
+Continuing Simulation at 08/29/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=09/18/2006
+Continuing Simulation at 09/18/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=10/08/2006
+Continuing Simulation at 10/08/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=10/28/2006
+Continuing Simulation at 10/28/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=11/17/2006
+Continuing Simulation at 11/17/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=12/07/2006
+Continuing Simulation at 12/07/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=12/27/2006
+Continuing Simulation at 12/27/2006 for RUN PERIOD 1
+Writing tabular output file results using HTML format.
+Computing Life Cycle Costs and Reporting
+Writing final SQL reports
+EnergyPlus Run Time=00hr 01min  4.50sec
+EnergyPlus Completed Successfully.
+[openstudio.workflow.OSWorkflow] <Info> EnergyPlus returned '0'
+RunEnergyPlus: Completed Successfully with [38;2;255;000;000m0 Fatal Errors, [0m[38;2;255;165;000m0 Severe Errors, [0m[38;2;255;255;000m165 Warnings.[0m
+[openstudio.workflow.OSWorkflow] <Info> EnergyPlus finished with 7680 warnings and 0 severe errors
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> Removing any copied EnergyPlus files
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing Current Directory back to: C:/openstudioapplication-1.10.0/bin
+[38;2;000;128;000m#########################Returned from State EnergyPlus#########################[0m
+[openstudio.workflow.OSWorkflow] <Debug> ReportingMeasures - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                        Starting State ReportingMeasures                        │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Info> Beginning to execute Reporting Measures.
+[openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ReportingMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Running step 5
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: ExportMetertoCSV
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ReportingMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 1 arguments
+[openstudio.workflow.OSWorkflow] <Info> Setting argument value 'meter_name' to 'Electricity:Facility'
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"meter_name": "Electricity:Facility", "reporting_frequency": "Hourly"}
+[openstudio.energyplus.SqlFile] <Debug> Dictionary Built
+[openstudio.energyplus.SqlFile] <Debug> Making time series for envPeriod = 'RUN PERIOD 1', reportingFrequency = 'Hourly', timeSeriesName = 'Electricity:Facility', keyValue = ''
+[openstudio.energyplus.SqlFile] <Debug> RUN PERIOD 1
+[openstudio.energyplus.SqlFile] <Debug> Electricity:Facility
+[openstudio.energyplus.SqlFile] <Debug> SQL Query:
+SELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM ReportMeterData dt INNER JOIN Time ON Time.timeIndex = dt.TimeIndex WHERE  dt.ReportMeterDataDictionaryIndex=46 AND Time.EnvironmentPeriodIndex = 19Return Code:
+100
+[openstudio.energyplus.SqlFile] <Debug> Time series found
+[openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
+[openstudio.workflow.OSWorkflow] <Info> Finished applying Reporting Measures.
+[38;2;000;128;000m#####################Returned from State ReportingMeasures######################[0m
+[openstudio.workflow.OSWorkflow] <Debug> PostProcess - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                           Starting State PostProcess                           │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Info> Gathering reports
+[openstudio.workflow.Util] <Info> Run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
+[openstudio.workflow.Util] <Info> Reports directoryC:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources
+[openstudio.workflow.Util] <Info> Saving EnergyPlus HTML report to C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/reports/eplustbl.html
+[openstudio.workflow.Util] <Info> Saving report C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV/report_ElectricityFacility_Hourly.csv to C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/reports/export_meterto_csv_report_ElectricityFacility_Hourly.csv
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/000_AssignConstructionSetToBuilding
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/001_TBDMeasure
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/002_SetNISTInfiltrationCorrelations
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/003_ReduceElectricEquipmentLoadsByPercentage
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/004_AddHourlyMeters
+[openstudio.workflow.OSWorkflow] <Info> Finished gathering reports
+[38;2;000;128;000m########################Returned from State PostProcess#########################[0m
+[openstudio.workflow.OSWorkflow] <Debug> Cleanup - selected = true
+[38;2;000;128;000m
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                             Starting State Cleanup                             │
+└────────────────────────────────────────────────────────────────────────────────┘[0m
+[openstudio.workflow.OSWorkflow] <Info> Beginning cleanup of the run directory
+[openstudio.workflow.OSWorkflow] <Info> Finished cleanup of the run directory
+[38;2;000;128;000m##########################Returned from State Cleanup###########################[0m

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.1</schema_version>
+  <name>add_hourly_meters</name>
+  <uid>2ee535a3-90cd-4f87-9bc8-bdf31b4d12b9</uid>
+  <version_id>3fb72afd-5558-4a9b-a507-b580d6f43e25</version_id>
+  <version_modified>2025-11-17T17:09:33Z</version_modified>
+  <xml_checksum>9E530B22</xml_checksum>
+  <class_name>AddHourlyMeters</class_name>
+  <display_name>Add Hourly Meters</display_name>
+  <description>This measure adds hourly meters for the most common energy use types.</description>
+  <modeler_description>This measure adds these Output:Meter electricity and gas objects: Electricity:Facility,ExteriorLights:Electricity,InteriorLights:Electricity,InteriorEquipment:Electricity,ExteriorEquipment:Electricity,Fans:Electricity,Pumps:Electricity,Heating:Electricity,Cooling:Electricity,HeatRejection:Electricity,Humidifer:Electricity,HeatRecovery:Electricity,WaterSystems:Electricity,Cogeneration:Electricity,Gas:Facility,InteriorEquipment:Gas,ExteriorEquipment:Gas,Heating:Gas,Cooling:Gas,WaterSystems:Gas,Cogeneration:Gas</modeler_description>
+  <arguments />
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Reporting.QAQC</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Function</name>
+      <value>Measure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Requires EnergyPlus Results</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E7161B14</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.4.0</identifier>
+        <min_compatible>2.4.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>EEDB58B0</checksum>
+    </file>
+    <file>
+      <filename>AddHourlyMeters_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1344C08B</checksum>
+    </file>
+  </files>
+</measure>

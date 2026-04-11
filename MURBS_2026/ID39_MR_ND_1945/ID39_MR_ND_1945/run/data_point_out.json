@@ -1,0 +1,63 @@
+{
+  "Add Hourly Meters" : 
+  {
+    "applicable" : true
+  },
+  "AssignConstructionSetToBuilding" : 
+  {
+    "applicable" : true,
+    "construction_set" : "{b36e77d3-8c54-4e5a-bdd0-fa9e4674555a}"
+  },
+  "ExportMetertoCSV" : 
+  {
+    "applicable" : true,
+    "meter_name" : "Electricity:Facility",
+    "reporting_frequency" : "Hourly"
+  },
+  "Reduce Electric Equipment Loads by Percentage" : 
+  {
+    "applicable" : true,
+    "demo_cost_initial_const" : false,
+    "demolition_cost" : 0.0,
+    "elecequip_power_reduction_percent" : 5.0,
+    "expected_life" : 15,
+    "material_and_installation_cost" : 0.0,
+    "om_cost" : 0.0,
+    "om_frequency" : 1,
+    "space_type" : "{161a51f0-9700-4aa1-8ba8-f2513d0eecae}",
+    "years_until_costs_start" : 0
+  },
+  "SetNISTInfiltrationCorrelations" : 
+  {
+    "air_barrier" : false,
+    "airtightness_area" : "5-sided",
+    "airtightness_pressure" : 75.0,
+    "airtightness_value" : 13.5,
+    "applicable" : true,
+    "building_type" : "HighriseApartment",
+    "climate_zone" : "6A",
+    "design_infiltration_4_pa" : 0.00055793093364665044,
+    "hvac_schedule" : "Lookup From Model"
+  },
+  "Thermal Bridging and Derating - TBD" : 
+  {
+    "alter_model" : true,
+    "applicable" : true,
+    "floor_option" : "NONE",
+    "floor_ut" : 0.16200000000000001,
+    "gen_UA_report" : false,
+    "gen_kiva" : false,
+    "gen_kiva_force" : false,
+    "load_tbd_json" : false,
+    "option" : "poor (BETBG)",
+    "parapet" : true,
+    "reset_kiva" : false,
+    "roof_option" : "NONE",
+    "roof_ut" : 0.13800000000000001,
+    "sub_tol" : 0.01,
+    "ua_reference" : "code (Quebec)",
+    "wall_option" : "NONE",
+    "wall_ut" : 0.20999999999999999,
+    "write_tbd_json" : false
+  }
+}

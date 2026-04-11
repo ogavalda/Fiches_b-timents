@@ -1,0 +1,507 @@
+ExpandObjects Started.
+No expanded file generated.
+ExpandObjects Finished. Time:     2.953
+EnergyPlus Starting
+EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.01.20 15:57
+Initializing Response Factors
+Calculating CTFs for "AQ_MURB_2024_MURB GROUND PRE 1950 6A 2"
+Calculating CTFs for "SURFACE 10 C TBD"
+Calculating CTFs for "SURFACE 100 C TBD"
+Calculating CTFs for "SURFACE 101 C TBD"
+Calculating CTFs for "SURFACE 102 C TBD"
+Calculating CTFs for "SURFACE 108 C TBD"
+Calculating CTFs for "SURFACE 109 C TBD"
+Calculating CTFs for "SURFACE 110 C TBD"
+Calculating CTFs for "SURFACE 111 C TBD"
+Calculating CTFs for "SURFACE 112 C TBD"
+Calculating CTFs for "SURFACE 116 C TBD"
+Calculating CTFs for "SURFACE 117 C TBD"
+Calculating CTFs for "SURFACE 118 C TBD"
+Calculating CTFs for "SURFACE 122 C TBD"
+Calculating CTFs for "SURFACE 124 C TBD"
+Calculating CTFs for "SURFACE 127 C TBD"
+Calculating CTFs for "SURFACE 13 C TBD"
+Calculating CTFs for "SURFACE 132 C TBD"
+Calculating CTFs for "SURFACE 133 C TBD"
+Calculating CTFs for "SURFACE 138 C TBD"
+Calculating CTFs for "SURFACE 139 C TBD"
+Calculating CTFs for "SURFACE 140 C TBD"
+Calculating CTFs for "SURFACE 146 C TBD"
+Calculating CTFs for "SURFACE 147 C TBD"
+Calculating CTFs for "SURFACE 148 C TBD"
+Calculating CTFs for "SURFACE 149 C TBD"
+Calculating CTFs for "SURFACE 150 C TBD"
+Calculating CTFs for "SURFACE 154 C TBD"
+Calculating CTFs for "SURFACE 155 C TBD"
+Calculating CTFs for "SURFACE 156 C TBD"
+Calculating CTFs for "SURFACE 158 C TBD"
+Calculating CTFs for "SURFACE 160 C TBD"
+Calculating CTFs for "SURFACE 162 C TBD"
+Calculating CTFs for "SURFACE 165 C TBD"
+Calculating CTFs for "SURFACE 168 C TBD"
+Calculating CTFs for "SURFACE 170 C TBD"
+Calculating CTFs for "SURFACE 171 C TBD"
+Calculating CTFs for "SURFACE 174 C TBD"
+Calculating CTFs for "SURFACE 176 C TBD"
+Calculating CTFs for "SURFACE 177 C TBD"
+Calculating CTFs for "SURFACE 178 C TBD"
+Calculating CTFs for "SURFACE 18 C TBD"
+Calculating CTFs for "SURFACE 181 C TBD"
+Calculating CTFs for "SURFACE 184 C TBD"
+Calculating CTFs for "SURFACE 185 C TBD"
+Calculating CTFs for "SURFACE 186 C TBD"
+Calculating CTFs for "SURFACE 187 C TBD"
+Calculating CTFs for "SURFACE 188 C TBD"
+Calculating CTFs for "SURFACE 19 C TBD"
+Calculating CTFs for "SURFACE 190 C TBD"
+Calculating CTFs for "SURFACE 2 C TBD"
+Calculating CTFs for "SURFACE 24 C TBD"
+Calculating CTFs for "SURFACE 25 C TBD"
+Calculating CTFs for "SURFACE 26 C TBD"
+Calculating CTFs for "SURFACE 3 C TBD"
+Calculating CTFs for "SURFACE 32 C TBD"
+Calculating CTFs for "SURFACE 33 C TBD"
+Calculating CTFs for "SURFACE 34 C TBD"
+Calculating CTFs for "SURFACE 35 C TBD"
+Calculating CTFs for "SURFACE 36 C TBD"
+Calculating CTFs for "SURFACE 4 C TBD"
+Calculating CTFs for "SURFACE 40 C TBD"
+Calculating CTFs for "SURFACE 41 C TBD"
+Calculating CTFs for "SURFACE 42 C TBD"
+Calculating CTFs for "SURFACE 46 C TBD"
+Calculating CTFs for "SURFACE 48 C TBD"
+Calculating CTFs for "SURFACE 51 C TBD"
+Calculating CTFs for "SURFACE 56 C TBD"
+Calculating CTFs for "SURFACE 57 C TBD"
+Calculating CTFs for "SURFACE 62 C TBD"
+Calculating CTFs for "SURFACE 63 C TBD"
+Calculating CTFs for "SURFACE 64 C TBD"
+Calculating CTFs for "SURFACE 70 C TBD"
+Calculating CTFs for "SURFACE 71 C TBD"
+Calculating CTFs for "SURFACE 72 C TBD"
+Calculating CTFs for "SURFACE 73 C TBD"
+Calculating CTFs for "SURFACE 74 C TBD"
+Calculating CTFs for "SURFACE 78 C TBD"
+Calculating CTFs for "SURFACE 79 C TBD"
+Calculating CTFs for "SURFACE 8 C TBD"
+Calculating CTFs for "SURFACE 80 C TBD"
+Calculating CTFs for "SURFACE 84 C TBD"
+Calculating CTFs for "SURFACE 86 C TBD"
+Calculating CTFs for "SURFACE 89 C TBD"
+Calculating CTFs for "SURFACE 94 C TBD"
+Calculating CTFs for "SURFACE 95 C TBD"
+Calculating CTFs for "TYPICAL INTERIOR CEILING"
+Calculating CTFs for "TYPICAL INTERIOR PARTITION 4"
+Calculating CTFs for "TYPICAL INTERIOR WALL"
+Initializing Window Optical Properties
+Initializing Solar Calculations
+Allocate Solar Module Arrays
+Initializing Zone and Enclosure Report Variables
+Initializing Surface (Shading) Report Variables
+Computing Interior Solar Absorption Factors
+Determining Shadowing Combinations
+Computing Window Shade Absorption Factors
+Proceeding with Initializing Solar Calculations
+Initializing Surfaces
+Initializing Outdoor environment for Surfaces
+Setting up Surface Reporting Variables
+Initializing Temperature and Flux Histories
+Initializing Window Shading
+Computing Interior Absorption Factors
+Computing Interior Diffuse Solar Absorption Factors
+Computing Interior Diffuse Solar Exchange through Interzone Windows
+Initializing Solar Heat Gains
+Initializing Internal Heat Gains
+Initializing Interior Solar Distribution
+Initializing Interior Convection Coefficients
+Gathering Information for Predefined Reporting
+Completed Initializing Surface Heat Balance
+Calculate Outside Surface Heat Balance
+Calculate Inside Surface Heat Balance
+Calculate Air Heat Balance
+Initializing HVAC
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #1 MONTREAL INT'L ANN CLG .4% CONDNS DB=>MWB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #2 MONTREAL INT'L ANN CLG .4% CONDNS DP=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #3 MONTREAL INT'L ANN CLG .4% CONDNS ENTH=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #4 MONTREAL INT'L ANN CLG .4% CONDNS WB=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #5 MONTREAL INT'L ANN CLG 1% CONDNS DB=>MWB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #6 MONTREAL INT'L ANN CLG 1% CONDNS DP=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #7 MONTREAL INT'L ANN CLG 1% CONDNS ENTH=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #8 MONTREAL INT'L ANN CLG 1% CONDNS WB=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #9 MONTREAL INT'L ANN CLG 2% CONDNS DB=>MWB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #10 MONTREAL INT'L ANN CLG 2% CONDNS DP=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #11 MONTREAL INT'L ANN CLG 2% CONDNS ENTH=>MDB
+Warming up
+Warming up
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #12 MONTREAL INT'L ANN CLG 2% CONDNS WB=>MDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #13 MONTREAL INT'L ANN HTG 99% CONDNS DB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #14 MONTREAL INT'L ANN HTG 99.6% CONDNS DB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #15 MONTREAL INT'L ANN HTG WIND 99% CONDNS WS=>MCDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #16 MONTREAL INT'L ANN HTG WIND 99.6% CONDNS WS=>MCDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #17 MONTREAL INT'L ANN HUM_N 99% CONDNS DP=>MCDB
+Warming up
+Warming up
+Warming up
+Performing Zone Sizing Simulation
+...for Sizing Period: #18 MONTREAL INT'L ANN HUM_N 99.6% CONDNS DP=>MCDB
+Adjusting Air System Sizing
+Adjusting Standard 62.1 Ventilation Sizing
+Initializing Simulation
+Reporting Surfaces
+Beginning HVAC Sizing Simulation
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DB=>MWB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DP=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS ENTH=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS WB=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DB=>MWB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DP=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS ENTH=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS WB=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DB=>MWB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DP=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS ENTH=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting HVAC Sizing Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS WB=>MDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG 99% CONDNS DB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG 99.6% CONDNS DB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99% CONDNS WS=>MCDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99.6% CONDNS WS=>MCDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99% CONDNS DP=>MCDB HVAC Sizing Pass 1
+Initializing New Environment Parameters, HVAC Sizing Simulation
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting HVAC Sizing Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99.6% CONDNS DP=>MCDB HVAC Sizing Pass 1
+Beginning Primary Simulation
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DB=>MWB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS DP=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS ENTH=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG .4% CONDNS WB=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DB=>MWB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS DP=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS ENTH=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 1% CONDNS WB=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DB=>MWB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS DP=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS ENTH=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Warming up {5}
+Starting Simulation at 07/21 for MONTREAL INT'L ANN CLG 2% CONDNS WB=>MDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG 99% CONDNS DB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG 99.6% CONDNS DB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99% CONDNS WS=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HTG WIND 99.6% CONDNS WS=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99% CONDNS DP=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Starting Simulation at 01/21 for MONTREAL INT'L ANN HUM_N 99.6% CONDNS DP=>MCDB
+Initializing New Environment Parameters
+Warming up {1}
+Warming up {2}
+Warming up {3}
+Warming up {4}
+Starting Simulation at 01/01/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=01/21/2006
+Continuing Simulation at 01/21/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=02/10/2006
+Continuing Simulation at 02/10/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=03/02/2006
+Continuing Simulation at 03/02/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=03/22/2006
+Continuing Simulation at 03/22/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=04/11/2006
+Continuing Simulation at 04/11/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=05/01/2006
+Continuing Simulation at 05/01/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=05/21/2006
+Continuing Simulation at 05/21/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=06/10/2006
+Continuing Simulation at 06/10/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=06/30/2006
+Continuing Simulation at 06/30/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=07/20/2006
+Continuing Simulation at 07/20/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=08/09/2006
+Continuing Simulation at 08/09/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=08/29/2006
+Continuing Simulation at 08/29/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=09/18/2006
+Continuing Simulation at 09/18/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=10/08/2006
+Continuing Simulation at 10/08/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=10/28/2006
+Continuing Simulation at 10/28/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=11/17/2006
+Continuing Simulation at 11/17/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=12/07/2006
+Continuing Simulation at 12/07/2006 for RUN PERIOD 1
+Updating Shadowing Calculations, Start Date=12/27/2006
+Continuing Simulation at 12/27/2006 for RUN PERIOD 1
+Writing tabular output file results using HTML format.
+Computing Life Cycle Costs and Reporting
+Writing final SQL reports
+EnergyPlus Run Time=00hr 01min  4.50sec
+EnergyPlus Completed Successfully.
