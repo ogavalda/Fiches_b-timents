@@ -1,7 +1,7 @@
 import os
 from per_folder import process_building
 
-
+#test
 
 PROJECTS_ROOT = r"MURBS_2026"
 view_folder = r"View cards"
