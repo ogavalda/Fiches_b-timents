@@ -1,3 +1,12 @@
+"""
+Application
+SPDX - License - Identifier: LGPL - 3.0 - or -later
+Copyright © 2025-2026 Université Polytechnique
+                      Next-Generation Cities Institute, Concordia University
+Code contributors: Kato Vanroy, kato.vanroy@polymtl.ca
+                   Mahmoud Awad, mahmoud.awad@mail.concordia.ca
+                   Oriol Gavalda, oriol.gavalda@concordia.ca
+"""
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
