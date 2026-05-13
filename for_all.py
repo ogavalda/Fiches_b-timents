@@ -1,8 +1,18 @@
+"""
+Application
+SPDX - License - Identifier: LGPL - 3.0 - or -later
+Copyright © 2025-2026 Université Polytechnique
+                      Next-Generation Cities Institute, Concordia University
+Code contributors: Kato Vanroy, kato.vanroy@polymtl.ca
+                   Mahmoud Awad, mahmoud.awad@mail.concordia.ca
+                   Oriol Gavalda, oriol.gavalda@concordia.ca
+"""
+
+
 import os
 from per_folder import process_building
-
-#test
-
+from datetime import datetime
+# PATHS
 PROJECTS_ROOT = r"MURBS_2026"
 TEMPLATES = r"MURBS_2026"
 

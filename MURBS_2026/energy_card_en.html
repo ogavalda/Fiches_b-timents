@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:#0f1723; --ink-mid:#3a4558; --ink-light:#6b7690;
+  --rule:#d8dde8; --rule-light:#edf0f5; --bg:#f2f4f8; --surface:#ffffff;
+  --accent:#1b4f72; --accent2:#1a7a4a; --accent-lt:#e4edf5; --accent2-lt:#e2f2ea;
+  --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  --radius:4px; --gap:5px;
+}
+@page { size: A4 portrait; margin: 0; }
+html { background: var(--bg); }
+body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:1.45; width:210mm; margin:0 auto; background:var(--bg); }
+
+.page { width:210mm; height:297mm; overflow:hidden; background:var(--bg); padding:7mm 9mm 6mm; page-break-after:always; display:flex; flex-direction:column; gap:var(--gap); }
+
+.title-bar { background:var(--accent); color:white; border-radius:var(--radius); padding:8px 13px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.title-label { font-size:7px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; opacity:.7; }
+.title-name  { font-size:14px; font-weight:600; line-height:1.2; }
+.title-sub   { font-size:8px; opacity:.65; margin-top:1px; }
+.title-meta  { display:flex; gap:14px; align-items:center; }
+.meta-item   { display:flex; flex-direction:column; align-items:flex-end; gap:1px; }
+.meta-label  { font-size:6.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; opacity:.65; }
+.meta-value  { font-family:var(--mono); font-size:10px; font-weight:500; }
+.meta-divider{ width:1px; height:26px; background:rgba(255,255,255,.25); }
+
+.section-label { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.section-label-text { font-size:7px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-light); white-space:nowrap; }
+.section-label-line { flex:1; height:1px; background:var(--rule); }
+
+.panel { background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:7px 9px; flex-shrink:0; }
+.panel.grow { flex:1; min-height:0; display:flex; flex-direction:column; }
+.panel.grow .img-frame { flex:1; min-height:0; }
+.panel-title { font-size:7.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid var(--accent-lt); padding-bottom:3px; margin-bottom:5px; flex-shrink:0; }
+.panel-title.green { color:var(--accent2); border-color:var(--accent2-lt); }
+
+table { width:100%; border-collapse:collapse; font-family:var(--mono); font-size:9.5px; }
+thead th { background:var(--accent-lt); color:var(--accent); font-size:7.5px; font-weight:500; padding:3px 5px; text-transform:uppercase; letter-spacing:.07em; text-align:left; }
+thead th.green-head { background:var(--accent2-lt); color:var(--accent2); }
+td { padding:2.5px 5px; border-bottom:1px solid var(--rule-light); vertical-align:middle; }
+tbody tr:last-child td { border-bottom:none; }
+td:first-child { color:var(--ink-mid); font-size:9px; font-family:var(--sans); width:60%; }
+td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
+
+/* image frame: fills available space, no fixed height */
+.img-frame { width:100%; border:1px solid var(--rule); border-radius:3px; background:#f7f8fa; overflow:hidden; margin-bottom:3px; display:flex; align-items:center; justify-content:center; }
+.img-frame img { width:100%; height:100%; object-fit:contain; display:block; }
+/* square: use padding-top trick so it's truly 1:1 regardless of content */
+.img-frame.square { position:relative; padding-top:100%; height:0; }
+.img-frame.square img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; }
+/* fluid: stretches inside a .grow panel */
+.img-frame.fluid { height:100%; min-height:0; }
+
+.caption { font-size:7px; color:var(--ink-light); font-style:italic; text-align:center; flex-shrink:0; }
+
+.kpi-row { display:flex; gap:var(--gap); flex-shrink:0; }
+.kpi { flex:1; background:var(--accent-lt); border-radius:3px; padding:5px 7px; display:flex; flex-direction:column; gap:1px; }
+.kpi.green { background:var(--accent2-lt); }
+.kpi-label { font-size:7px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+.kpi.green .kpi-label { color:var(--accent2); }
+.kpi-value { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--accent); line-height:1.1; }
+.kpi.green .kpi-value { color:var(--accent2); }
+.kpi-unit  { font-size:7px; color:var(--ink-light); font-family:var(--mono); }
+
+/* grid layouts */
+.two-col { display:grid; gap:var(--gap); }
+.split-5050 { grid-template-columns: 1fr 1fr; }
+.split-6040 { grid-template-columns: 6fr 4fr; }
+.split-4060 { grid-template-columns: 4fr 6fr; }
+.fill { flex:1; min-height:0; }
+.col { display:flex; flex-direction:column; gap:var(--gap); min-height:0; }
+
+.page-footer { display:flex; justify-content:space-between; align-items:center; font-size:7px; color:var(--ink-light); border-top:1px solid var(--rule); padding-top:4px; flex-shrink:0; }
+.page-num { font-family:var(--mono); background:var(--accent); color:white; padding:1px 5px; border-radius:2px; font-size:7px; }
+.description-text { font-size:9.5px; color:var(--ink-mid); line-height:1.6; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ PAGE 1 ══════════════ -->
+<div class="page">
+
+  <div class="title-bar">
+    <div>
+      <div class="title-label">Building Energy Card · Archetype-QC</div>
+      <div class="title-name">{{building_name}}</div>
+      <div class="title-sub">Multi-Unit Residential Building · {{climate_zone}}</div>
+    </div>
+    <div class="title-meta">
+      <div class="meta-item"><span class="meta-label">Vintage</span><span class="meta-value">{{vintage}}</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">{{version}}</span></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">{{report_date}}</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <span class="section-label-text">Section 2 — Model Description</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- full-width description -->
+  <div class="panel">
+    <div class="panel-title">Model Description</div>
+    <p class="description-text">{{model_description}}</p>
+  </div>
+
+  <!-- bottom two-col: LEFT=square image, RIGHT=tables — fills remaining height -->
+  <div class="two-col split-5050 fill">
+
+    <!-- LEFT: square 3D model — padding-top trick guarantees 1:1 -->
+    <div class="col">
+      <div class="panel" style="flex:1;min-height:0;display:flex;flex-direction:column;">
+        <div class="panel-title">3D Model</div>
+        <div class="img-frame square" style="flex:1;">
+          <img src="{{figure3_path}}" alt="3D Model">
+        </div>
+        <div class="caption">Geometric visualization of the model</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: tables -->
+    <div class="col">
+      <div class="panel">
+        <div class="panel-title">Building Characteristics</div>
+        <table><tbody>
+          <tr><td>Floor Area</td><td class="val">{{floor_area | round(1)}} m²</td></tr>
+          <tr><td>Stories</td><td class="val">{{stories}}</td></tr>
+          <tr><td>Climate Zone</td><td class="val">{{climate_zone}}</td></tr>
+          <tr><td>Weather</td><td class="val">{{weather_location}}</td></tr>
+        </tbody></table>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Window-to-Wall Ratio (WWR)</div>
+        <table>
+          <thead><tr><th>Façade</th><th>WWR</th></tr></thead>
+          <tbody>{% for row in wwr %}<tr><td>{{row[0]}}</td><td class="val">{{row[1]}}</td></tr>{% endfor %}</tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Envelope — Insulation &amp; Air Tightness</div>
+        <table><tbody>
+          {% for k,v in construction_data.items() %}
+          <tr><td>{{k}}</td><td class="val">{{ v | round(2) }}</td></tr>
+          {% endfor %}
+        </tbody></table>
+      </div>
+      {% if glazing_data %}<div class="panel"><div class="panel-title">Glazing Properties</div><table><tbody>{% for k,v in glazing_data.items() %}<tr><td>{{k}}</td><td class="val">{{v}}</td></tr>{% endfor %}</tbody></table></div>{% endif %}
+      {% if mechanical_systems %}<div class="panel"><div class="panel-title">Mechanical Systems</div><table><tbody>{% for k,v in mechanical_systems.items() %}<tr><td>{{k}}</td><td class="val">{{v}}</td></tr>{% endfor %}</tbody></table></div>{% endif %}
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Building Energy Card Archetype-QC · Automated Report</span>
+    <span>{{building_name}} · {{report_date}}</span>
+    <span class="page-num">1 / 2</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════════ PAGE 2 ══════════════ -->
+<div class="page">
+
+  <div class="section-label">
+    <span class="section-label-text">Section 3 — Simulation Results</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-label">Energy Use Intensity</span><span class="kpi-value">{{energy_intensity | round(1)}}</span><span class="kpi-unit">kWh/m²/yr</span></div>
+    <div class="kpi"><span class="kpi-label">Total Annual Consumption</span><span class="kpi-value">{{total_energy | round(0)}}</span><span class="kpi-unit">kWh/yr</span></div>
+    <div class="kpi green"><span class="kpi-label">Electricity</span><span class="kpi-value">{{elec_total | round(0)}}</span><span class="kpi-unit">kWh/yr</span></div>
+    <div class="kpi green"><span class="kpi-label">Natural Gas</span><span class="kpi-value">{{gas_total | round(0)}}</span><span class="kpi-unit">kWh/yr</span></div>
+  </div>
+
+  <!-- LEFT=end-uses + monthly + PRISM   RIGHT=typical days -->
+  <div class="two-col split-5050 fill">
+
+    <!-- LEFT: end-uses table + monthly chart + section 4 + PRISM -->
+    <div class="col">
+
+      <div class="panel">
+        <div class="panel-title">Annual End Uses — Electricity [kWh]</div>
+        <table>
+          <thead><tr><th>End Use</th><th>kWh/yr</th></tr></thead>
+          <tbody>{% for k,v in end_uses.items() %}<tr><td>{{k}}</td><td class="val">{{ v | round(1) }}</td></tr>{% endfor %}</tbody>
+        </table>
+      </div>
+
+      <div class="panel grow">
+        <div class="panel-title">Monthly Consumption by End Use</div>
+        <div class="img-frame fluid">
+          <img src="{{monthly_chart}}" alt="Monthly consumption">
+        </div>
+        <div class="caption">Figure — Disaggregated monthly profile by end use</div>
+      </div>
+
+      <div class="section-label">
+        <span class="section-label-text">Section 4 — Comparison with Reference Data</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">PRISM Curve</div>
+        <div class="img-frame"><img src="{{figure1_path}}" alt="PRISM Curve"></div>
+        <div class="caption">Figure — PRISM Curve · Model vs. measured data</div>
+      </div>
+
+      {% if comparison_table %}
+      <div class="panel">
+        <div class="panel-title green">Comparison Table — Key Indicators</div>
+        <table>
+          <thead><tr><th>Indicator</th><th class="green-head">Model</th><th class="green-head">Reference</th><th class="green-head">Delta</th></tr></thead>
+          <tbody>{% for row in comparison_table %}<tr><td>{{row.indicator}}</td><td class="val">{{row.model}}</td><td class="val">{{row.reference}}</td><td class="val">{{row.delta}}</td></tr>{% endfor %}</tbody>
+        </table>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- RIGHT: summer + winter typical days -->
+    <div class="col">
+
+      <div class="panel grow">
+        <div class="panel-title">Typical Day — Summer</div>
+        <div class="img-frame fluid">
+          <img src="{{figure_summer_day}}" alt="Summer day">
+        </div>
+        <div class="caption">Hourly consumption profile — summer day</div>
+      </div>
+
+      <div class="panel grow">
+        <div class="panel-title">Typical Day — Winter</div>
+        <div class="img-frame fluid">
+          <img src="{{figure_winter_day}}" alt="Winter day">
+        </div>
+        <div class="caption">Hourly consumption profile — winter day</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Building Energy Card Archetype-QC · Automated Report</span>
+    <span>{{building_name}} · {{report_date}}</span>
+    <span class="page-num">2 / 2</span>
+  </div>
+
+</div>
+
+</body>
+</html>
