@@ -1,21 +1,26 @@
 from geomeppy import IDF
-import matplotlib.pyplot as plt
-import os 
-import shutil
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from eppy.function_helpers import getcoords
 
+import plotly.graph_objects as go
+import numpy as np
+import mapbox_earcut as earcut
+import kaleido
 
-
-global IDD_initialized
-IDD_initialized = False
+import os
 
 
 # =====================================================
 # VISUALIZATION
 # =====================================================
 
-def view_geometry_plotly(idf, savepath=None):
+def view_geometry(idd_path, idf_path, savepath=None):
+    # first set idd
+    set_IDD(idd_path)
+    # create IDF object
+    idf = IDF(idf_path)
+
+
+    # generate image
     fig = go.Figure()
 
     traces = build_plotly_geometry(idf)
@@ -60,7 +65,7 @@ def view_geometry_plotly(idf, savepath=None):
             scale=2
         )
 
-    fig.show()
+    #fig.show()
 
 
 
@@ -308,9 +313,6 @@ def polygons_to_mesh(polygons):
 
         vertex_offset += len(poly)
 
-        print(poly)
-        print(verti)
-
     x = [v[0] for v in vertices]
     y = [v[1] for v in vertices]
     z = [v[2] for v in vertices]
@@ -362,15 +364,11 @@ def build_polygon_edge_trace(polygons, color="black", width=2):
 
 ### before creating any geomeppy idf object, the idd file needs to be linked to the geomeppy IDF class
 # this only needs to happen once
-def set_IDD():
-    # IDD file from E+ installation 
-    iddfile = r"C:\EnergyPlusV22-2-0\Energy+.idd"
-
-    if os.path.exists(iddfile):
-        IDF.setiddname(iddfile)
+def set_IDD(idd_file):
+    if os.path.exists(idd_file):
+        IDF.setiddname(idd_file)
     else:
         raise Exception('IDD file of E+ installation not in default location, add correct path')
-    IDD_initialized = True
 
 
 

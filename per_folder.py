@@ -12,10 +12,12 @@ from core_2 import (
 import shutil
 from Daily_profile import *
 from cons_data_full import *
+from helpers.idf_geoms import view_geometry as view_geometry_KV
 
 weather_df = load_weather(r"MURBS_2026\outdoor_temperature_no_year.csv")
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
 ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
+
 
 def process_building(building_path, template_path, idd_path, operation_folder, view_folder):
 
@@ -34,16 +36,22 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     osm = os.path.join(building_path, f"{folder_name}.osm")
     idf_path = os.path.join(run_path, "in.idf")
     html = os.path.join(run_path, "eplustbl.htm")
-
     model = load_model(osm)
 
+    # --------------------------------
+    # GEOMETRY FIGURE
+    # --------------------------------
+
+    #### modified how geometry is fetched - directly from idf path (not object) - concentrate all eppy related things in seperate file
     if os.path.exists(idd_path):
         IDF.setiddname(idd_path)
 
     idf = IDF(idf_path)
 
     geom_img = os.path.join(output_path, "geometry.png")
-    view_geometry(idf, geom_img)
+    view_geometry_KV(idd_path, idf_path, geom_img)
+    #view_geometry(idf, geom_img)
+
 
     floor_area, stories, space_count, climate_zone = building_description(model)
     energy = extract_energy(html)
@@ -113,10 +121,14 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     with open(output_html, "w", encoding="utf-8") as f:
         f.write(html_out)
 
-    operation_folder_path = os.path.join(operation_folder, f"{folder_name}.html")
+    ### html created in this folder does not have right reference to images so doesn't generate properly
+    ### adding this also adds folders to the "MURBS_2026" folder which then causes problems in the "for_all" function
+    ### alternatively we can save the html (with images) to a completely seperate folder
+    #operation_folder_path = os.path.join(operation_folder, f"{folder_name}.html")
+    #
+    #with open(operation_folder_path, "w", encoding="utf-8") as f:
+    #    f.write(html_out)
 
-    with open(operation_folder_path, "w", encoding="utf-8") as f:
-        f.write(html_out)
     html_out_fr = template_fr.render(
         energy=energy,
         logo_min="logo_min.png",
@@ -142,10 +154,12 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     with open(output_html_fr, "w", encoding="utf-8") as f:
         f.write(html_out_fr)
 
-    operation_folder_path = os.path.join(operation_folder, f"{folder_name}.html")
 
-    with open(operation_folder_path, "w", encoding="utf-8") as f:
-        f.write(html_out_fr)
+    ### html created in this folder does not have right reference to images so doesn't generate properly
+    #operation_folder_path = os.path.join(operation_folder, f"{folder_name}.html")
+    #
+    #with open(operation_folder_path, "w", encoding="utf-8") as f:
+    #    f.write(html_out_fr)
 
     #----------------------------------------------------------------------------------------------------
 
@@ -177,10 +191,11 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     with open(output_html, "w", encoding="utf-8") as f:
         f.write(html_out)
 
-    view_folder_path = os.path.join(view_folder, f"{folder_name}.html")
-
-    with open(view_folder_path, "w", encoding="utf-8") as f:
-        f.write(html_out)
+    ### html created in this folder does not have right reference to images so doesn't generate properly
+    #view_folder_path = os.path.join(view_folder, f"{folder_name}.html")
+    #
+    #with open(view_folder_path, "w", encoding="utf-8") as f:
+    #    f.write(html_out)
 
     html_out_fr = template_fr.render(
         building_name=building_name,
@@ -205,10 +220,11 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     with open(output_html_fr, "w", encoding="utf-8") as f:
         f.write(html_out_fr)
 
-    view_folder_path = os.path.join(view_folder, f"{folder_name}.html")
-
-    with open(view_folder_path, "w", encoding="utf-8") as f:
-        f.write(html_out_fr)
+    ### html created in this folder does not have right reference to images so doesn't generate properly
+    #view_folder_path = os.path.join(view_folder, f"{folder_name}.html")
+    #
+    #with open(view_folder_path, "w", encoding="utf-8") as f:
+    #    f.write(html_out_fr)
 
     return output_html_fr
 

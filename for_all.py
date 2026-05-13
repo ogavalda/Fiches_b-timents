@@ -4,10 +4,15 @@ from per_folder import process_building
 #test
 
 PROJECTS_ROOT = r"MURBS_2026"
+TEMPLATES = r"MURBS_2026"
+
+#IDD_PATH = r"C:\EnergyPlusV25-2-0\Energy+.idd"
+
+IDD_PATH = r"C:\EnergyPlusV22-2-0\Energy+.idd"
+
+### not used : 
 view_folder = r"View cards"
 operation_folder = r"Operation cards"
-TEMPLATES = r"MURBS_2026"
-IDD_PATH = r"C:\EnergyPlusV25-2-0\Energy+.idd"
 
 
 def run_all():
