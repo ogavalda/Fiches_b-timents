@@ -136,7 +136,7 @@ def build_plotly_geometry(idf):
         if not polys: # no surfaces in category
             continue
         
-        x, y, z, i, j, k = polygons_to_mesh(polys) # transform surface coordinates to 3D mesh
+        x, y, z, i, j, k = polygons_to_mesh(polys) # transform surface coordinates to 3D mesh (x,y,z are vertices, i,j,k is list of vertices to connect together in triangles)
 
         opacity = 1.0
 
@@ -157,11 +157,11 @@ def build_plotly_geometry(idf):
 
         traces.append(mesh)
 
-        # edge overlay
+        # edge overlay : visible edges 
         edge_trace = build_polygon_edge_trace(
             polys,
             color=edge_colors[category],
-            width=1 if category == "window" else 2
+            width=1 if category in ["window", "door"] else 2
         )
 
         traces.append(edge_trace)

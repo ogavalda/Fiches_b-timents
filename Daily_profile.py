@@ -104,7 +104,7 @@ def plot_daily_profiles_ope_vs_meter(df, output_path,lang):
             ax.grid(True)
 
     plt.tight_layout()
-    plt.legend()
+    #plt.legend()
     plt.savefig(output_path)
     plt.close()
 

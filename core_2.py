@@ -23,7 +23,7 @@ def load_weather(weather_csv):
     df = pd.read_csv(weather_csv)
 
     df["time_key"] = normalize_time(df["timestamp"])
-    df = df[["time_key", "T_drybulb_C"]]
+    #df = df[["time_key", "T_drybulb_C"]]  # removed this line because we need access to multiple columns, not just the one
 
     return df
 
@@ -65,6 +65,48 @@ def get_vintage_column(vintage):
 
     else:
         raise ValueError(f"Unknown vintage format: {vintage}")
+
+
+# new function to get archetype key for different model names
+def get_vintage_column_KV(folder_name):
+
+    archetypekeys_modelnames = dict()
+    archetypekeys_modelnames["Detached-1Floor-Pre1980_1946-1970"] = "detached, '[1946 , 1983]', 1"
+    archetypekeys_modelnames["Detached-1Floor-Pre1980_1971-1985"] = "detached, '[1946 , 1983]', 1"
+    archetypekeys_modelnames["Detached-1Floor-Post1980_1985-2012"] = "detached, '[1984 , 2011]', 1"
+    archetypekeys_modelnames["Detached-1Floor-Pre1980_Pre1945"] = "detached, '<1946', 1"
+    archetypekeys_modelnames["Detached-1Floor-Post1980_new-construction"] = "detached, '>2011', 1"
+    archetypekeys_modelnames["Detached-2Floor-Pre1980_1945-1970"] = "detached, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["Detached-2Floor-Pre1980_1971-1985"] = "detached, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["Detached-2Floor-Post1980_1985-2012"] = "detached, '[1984 , 2011]', 2"
+    archetypekeys_modelnames["Detached-2Floor-Pre1980_Pre1945"] = "detached, '<1946', 2"
+    archetypekeys_modelnames["Detached-2Floor-Post1980_new-construction"] = "detached, '>2011', 2"
+    archetypekeys_modelnames["SD-1Floor_1946-1970"] = "semi-detached, '[1946 , 1983]', 1"
+    archetypekeys_modelnames["SD-1Floor_1971-1985"] = "semi-detached, '[1946 , 1983]', 1"
+    archetypekeys_modelnames["SD-1Floor_1986-2012"] = "semi-detached, '[1984 , 2011]', 1"
+    archetypekeys_modelnames["SD-1Floor_Pre1945"] = "semi-detached, '<1946', 1"
+    archetypekeys_modelnames["SD-1Floor_new-construction"] = "semi-detached, '>2011', 1"
+    archetypekeys_modelnames["SD-2Floor_1946-1970"] = "semi-detached, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["SD-2Floor_1971-1985"] = "semi-detached, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["SD-2Floor_1986-2012"] = "semi-detached, '[1984 , 2011]', 2"
+    archetypekeys_modelnames["SD-2Floor_Pre1945"] = "semi-detached, '<1946', 2"
+    archetypekeys_modelnames["SD-2Floor_new-construction"] = "semi-detached, '>2011', 2"
+    archetypekeys_modelnames["Row-2Floor-end_1946-1970"] = "semi-detached, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["Row-2Floor-end_1971-1985"] = "semi-detached, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["Row-2Floor-end_1986-2012"] = "semi-detached, '[1984 , 2011]', 2"
+    archetypekeys_modelnames["Row-2Floor-end_Pre1945"] = "semi-detached, '<1946', 2"
+    archetypekeys_modelnames["Row-2Floor-end_new-construction"] = "semi-detached, '>2011', 2"
+    archetypekeys_modelnames["Row-2Floor-middle_1946-1970"] = "row, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["Row-2Floor-middle_1971-1985"] = "row, '[1946 , 1983]', 2"
+    archetypekeys_modelnames["Row-2Floor-middle_1985-2012"] = "row, '[1984 , 2011]', 2"
+    archetypekeys_modelnames["Row-2Floor-middle_Pre1945"] = "row, '<1946', 2"
+    archetypekeys_modelnames["Row-2Floor-middle_new-construction"] = "row, '>2011', 2"
+
+    if folder_name in archetypekeys_modelnames.keys():
+        return archetypekeys_modelnames[folder_name]
+    else:
+        raise Exception("archetype not found in vintages")
+       
 
 def find_meter_csv(building_path):
     for root, dirs, files in os.walk(building_path):

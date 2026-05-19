@@ -25,8 +25,18 @@ from helpers.idf_geoms import view_geometry as view_geometry_KV
 from datetime import datetime
 from playwright.sync_api import sync_playwright
 
+from helpers.create_plots import (
+    process_energy_data as process_energy_data_KV,
+    plot_banana as plot_banana_KV, 
+    create_monthly_plot as create_monthly_plot_KV, 
+    plot_loadprofile_stacked as plot_daily_profiles_sim_KV
+    )
+
+from helpers.read_simulation import ReadSimulation # class to help load simulation results (query sql)
+from helpers.extract_info import extract_construction_summary as extract_construction_summary_KV
+
 #paths
-weather_df = load_weather(r"MURBS_2026\outdoor_temperature_no_year.csv")
+weather_df = load_weather(r"MURBS_2026\OPE_temps_new.csv")
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
 ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
 
@@ -71,14 +81,23 @@ def translate_list_of_rows(rows, translations):
     """Translate first element of each [key, value] row."""
     return [[translations.get(row[0], row[0])] + row[1:] for row in rows]
 
-def process_building(building_path, template_path, idd_path, operation_folder, view_folder):
+def process_building(building_path, template_path, idd_path, operation_folder, view_folder, team_id):
 
-    folder_name = os.path.basename(building_path)
-    parts = folder_name.split("_")
-    building_id = parts[0]
-    building_type = parts[1]
-    building_name = parts[2]
-    building_vintage = parts[3]
+    if team_id == 'poly' : 
+        # TODO : add proper casting
+        folder_name = os.path.basename(building_path)
+        building_id = 'ID'
+        building_type = 'type'
+        building_name = 'name'
+        building_vintage = 'vintage'
+
+    else:
+        folder_name = os.path.basename(building_path)
+        parts = folder_name.split("_")
+        building_id = parts[0]
+        building_type = parts[1]
+        building_name = parts[2]
+        building_vintage = parts[3]
 
     run_path = os.path.join(building_path, f"{folder_name}/run")
     output_path = os.path.join(building_path, "output")
@@ -87,22 +106,31 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     osm = os.path.join(building_path, f"{folder_name}.osm")
     idf_path = os.path.join(run_path, "in.idf")
     html = os.path.join(run_path, "eplustbl.htm")
-    json_path = os.path.join(run_path, "measure_attributes.json")
 
     model = load_model(osm)
+
+    # NEW : only grab json for concordia models 
+    if team_id == 'poly':
+        pass
+    else:
+        json_path = os.path.join(run_path, "measure_attributes.json")
+
+    # NEW : added "simulation object" for easy access to data in sql file
+    sim_object = ReadSimulation(run_path) 
 
     # --------------------------------
     # GEOMETRY FIGURE
     # --------------------------------
 
-    #### modified how geometry is fetched - directly from idf path (not object) - concentrate all eppy related things in seperate file
-    if os.path.exists(idd_path):
-        IDF.setiddname(idd_path)
-    idf = IDF(idf_path)
-
-    # --- Geometry ---
+    # NEW : modified how geometry is fetched - directly from idf path (not object) - concentrate all eppy related things in seperate file
     geom_img = os.path.join(output_path, "geometry.png")
     view_geometry_KV(idd_path, idf_path, geom_img)
+
+    ### previous method : 
+    #if os.path.exists(idd_path):
+    #    IDF.setiddname(idd_path)
+    #idf = IDF(idf_path)
+    #geom_img = os.path.join(output_path, "geometry.png")
     #view_geometry(idf, geom_img)
 
     # --- Building description ---
@@ -112,7 +140,12 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     energy = extract_energy(html)
     end_uses = extract_end_uses(html)
     wwr = compute_wwr(html).values.tolist()
-    construction_data = extract_construction_summary(html, json_path)
+    # TODO : make function compatible with both model structures
+    if team_id=='poly':
+        # interior walls/infiltration cause issues with our models
+        construction_data = extract_construction_summary_KV(html)
+    else:
+        construction_data = extract_construction_summary(html, json_path)
 
     # --- Scalar KPIs ---
     total_energy = energy.get("Total Energy [kWh]", 0)
@@ -120,27 +153,50 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     gas_total = 0
     energy_intensity = energy.get("EUI Total Area [kWh/m2]", 0)
 
+    
     # --- Version + weather location ---
     version          = "2026-05"
     weather_location = os.path.splitext(
         os.path.basename(r"MURBS_2026\outdoor_temperature_no_year.csv")
     )[0]
 
+    # NEW : updated layout + add HW to breakdown
     # --- Monthly charts ---
     monthly_img    = os.path.join(output_path, "monthly.png")
     monthly_img_fr = os.path.join(output_path, "monthly_fr.png")
-    create_monthly_plot(html, monthly_img, "eng")
-    create_monthly_plot(html, monthly_img_fr, "fr")
+    create_monthly_plot_KV(sim_object, monthly_img, "eng")
+    create_monthly_plot_KV(sim_object, monthly_img_fr, "fr")
 
+    # NEW : add figure with typical day-stacked area graph of simulation 
+    # --- Daily chart : simulation only ---
+    # winter
+    Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_winter.png")
+    Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_winter_fr.png")
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path,    "eng")
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path_fr, "fr")
+    # summer
+    Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_summer.png")
+    Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_summer_fr.png")
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng")
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr")
+
+
+
+    # NEW : change process energy to use a simulation object (relying on sql) to fetch electricity profile 
+    # + added different temperature profiles for OPE 
     # --- Banana / PRISM curves ---
-    df, df_hourly = process_energy_data(
+    df, df_hourly = process_energy_data_KV(
         f"{building_path}/{folder_name}",
-        households_dict, ope_df, weather_df
+        households_dict, ope_df, weather_df, 
+        sim_object, 
+        team_id
     )
+
+    # NEW : slightly changed to take unique temperature profile for OPE (provided in the df when new process_energy_data is used)
     Prism_plot_path    = os.path.join(output_path, "banana.png")
     Prism_plot_path_fr = os.path.join(output_path, "banana_fr.png")
-    plot_banana(df, Prism_plot_path, "eng")
-    plot_banana(df, Prism_plot_path_fr, "fr")
+    plot_banana_KV(df, Prism_plot_path, "eng")
+    plot_banana_KV(df, Prism_plot_path_fr, "fr")
 
     # --- Daily profiles (combined, one image for now) ---
     Daily_P_plot_path    = os.path.join(output_path, "daily_profiles.png")
@@ -197,7 +253,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         report_date=datetime.today().strftime("%Y-%m-%d"),
         figure3_path="geometry.png",
         figure1_path="banana.png",
-        monthly_chart="monthly.png",
+        monthly_chart="monthly.png",  ## TODO : add second fig to daily 1 (seperate figs created for summer/winter under "daily_profiles1_winter(_fr)", "daily_profiles1_summer(_fr)")
         figure_summer_day="daily_profiles.png",   # using combined plot for now
         figure_winter_day="daily_profiles.png",   # using combined plot for now
     )
@@ -249,7 +305,9 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
         pdf_folder_path = os.path.join(folder_dest, f"{folder_name}.pdf")
         shutil.copy(pdf_path, pdf_folder_path)
+    
     render_and_write("energy_card_en.html", shared_en, "Energy card.html", operation_folder)
     render_and_write("fiche_energie_fr.html", shared_fr, "Fiche energie.html", operation_folder)
+    
     return os.path.join(output_path, "Fiche energie.html")
 

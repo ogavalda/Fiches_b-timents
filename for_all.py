@@ -13,7 +13,7 @@ import os
 from per_folder import process_building
 from datetime import datetime
 # PATHS
-PROJECTS_ROOT = r"MURBS_2026"
+PROJECTS_ROOT = r"SFD_2026"
 TEMPLATES = r"MURBS_2026"
 
 #IDD_PATH = r"C:\EnergyPlusV25-2-0\Energy+.idd"
@@ -23,6 +23,9 @@ IDD_PATH = r"C:\EnergyPlusV22-2-0\Energy+.idd"
 ### not used : 
 view_folder = r"View cards"
 operation_folder = r"Operation cards"
+
+### differentiate poly/concordia functions
+team_id = 'poly'
 
 
 def run_all():
@@ -35,7 +38,7 @@ def run_all():
 
         try:
             print(f"Processing {name}...")
-            out = process_building(path, TEMPLATES, IDD_PATH, operation_folder,view_folder)
+            out = process_building(path, TEMPLATES, IDD_PATH, operation_folder,view_folder, team_id)
             print(f"✔ Done: {out}")
 
         except Exception as e:
