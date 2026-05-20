@@ -14,10 +14,12 @@ from per_folder import process_building
 from datetime import datetime
 # PATHS
 PROJECTS_ROOT = r"SFD_2026"
-TEMPLATES = r"MURBS_2026"
+
+# NEW: updated template here 
+TEMPLATES = r"SFD_2026"
+#TEMPLATES = r"MURBS_2026"
 
 #IDD_PATH = r"C:\EnergyPlusV25-2-0\Energy+.idd"
-
 IDD_PATH = r"C:\EnergyPlusV22-2-0\Energy+.idd"
 
 ### not used : 

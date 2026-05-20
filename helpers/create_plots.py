@@ -89,10 +89,8 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_i
     ax.set_xlim([0, 24*3600-15*60])
 
     if lang=="eng":
-        ax.set_ylabel("Energy [kWh]")
+        ax.set_ylabel("Electric consumption [kWh]")
         ax.set_xlabel('Time of Day')
-
-        ax.set_title('Typical day : ' + period)
 
         legend_english = {'PlugLoads':'Plug Loads', "DHW":"Domestic/Service Hot Water"}
         h, l = ax.get_legend_handles_labels()
@@ -102,7 +100,6 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_i
         ax.set_xlabel('Heure de la journée')
 
         day_type_french = {'winter':'hiver', 'summer':'été'}
-        ax.set_title('Journée typique : ' + day_type_french[period])
         legend_french = {'PlugLoads':'Charges aux prises', 'Lighting':'Éclairage', 'Other (Fans,...)':'Autres (ventilateurs,...)', 'Heating':"Chauffage", 'Cooling':"Climatisation", "DHW":"Eau Chaude"}
         h, l = ax.get_legend_handles_labels()
         ax.legend(handles = h[::-1], labels = [legend_french[l_] for l_ in l ][::-1])

@@ -35,10 +35,15 @@ from helpers.create_plots import (
 from helpers.read_simulation import ReadSimulation # class to help load simulation results (query sql)
 from helpers.extract_info import extract_construction_summary as extract_construction_summary_KV
 
-#paths
-weather_df = load_weather(r"MURBS_2026\OPE_temps_new.csv")
+#paths : concordia
+#weather_df = load_weather(r"MURBS_2026\OPE_temps_new.csv")
+#households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
+#ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
+
+#paths : poly
+weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
-ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
+ope_df = load_ope(r"SFD_2026\dataOPE.csv")
 
 # --- Translation dictionaries (EN → FR) ---
 TRANSLATIONS_FR = {
@@ -86,18 +91,28 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     if team_id == 'poly' : 
         # TODO : add proper casting
         folder_name = os.path.basename(building_path)
+        building_sector = 'Residential'
         building_id = 'ID'
-        building_type = 'type'
+        building_type = 'Single Family'
+        building_subtype = 'Detached'
         building_name = 'name'
-        building_vintage = 'vintage'
+        building_vintage = '1985-2012'
+        stories = "1"
 
     else:
+        # TODO : add better casting (since now it'll be in a table)
+        # sector
+        # subtype (Multi-unit)
+        # stories/size (Mid-Rise) -- instead of getting nb of stories from osm (which doesn't work if the object isn't used)
         folder_name = os.path.basename(building_path)
         parts = folder_name.split("_")
+        building_sector = 'Residential'
         building_id = parts[0]
         building_type = parts[1]
+        building_subtype = 'subtype'
         building_name = parts[2]
         building_vintage = parts[3]
+        stories = "Mid-Rise"
 
     run_path = os.path.join(building_path, f"{folder_name}/run")
     output_path = os.path.join(building_path, "output")
@@ -134,6 +149,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     #view_geometry(idf, geom_img)
 
     # --- Building description ---
+    # TODO : remove stories here, since the osm doesn't provide a reliable way of fetching that info, 
+    # we got a "size" descriptor from the file name in earlier code 
     floor_area, stories, space_count, climate_zone = building_description(model)
 
     # --- Energy extraction ---
@@ -233,6 +250,9 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     shared_en = dict(
         model_description="Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.",
         building_name=building_name,
+        building_sector=building_sector,
+        building_type=building_type,
+        building_subtype=building_subtype,
         vintage=building_vintage,
         version=version,
         weather_location=weather_location,
@@ -253,11 +273,14 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         report_date=datetime.today().strftime("%Y-%m-%d"),
         figure3_path="geometry.png",
         figure1_path="banana.png",
-        monthly_chart="monthly.png",  ## TODO : add second fig to daily 1 (seperate figs created for summer/winter under "daily_profiles1_winter(_fr)", "daily_profiles1_summer(_fr)")
+        monthly_chart="monthly.png",  
+        daily_chart1 = "daily_profiles1_winter.png",
+        daily_chart2 = "daily_profiles1_summer.png",   ## TODO : add second fig to daily 1 (seperate figs created for summer/winter under "daily_profiles1_winter(_fr)", "daily_profiles1_summer(_fr)")
         figure_summer_day="daily_profiles.png",   # using combined plot for now
         figure_winter_day="daily_profiles.png",   # using combined plot for now
     )
 
+    # TODO : translate new table entries
     # --- Shared render kwargs (FR) ---
     shared_fr = {**shared_en,
                  # translated data
@@ -267,6 +290,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
                  # FR-specific figure paths
                  "figure1_path": "banana_fr.png",
                  "monthly_chart": "monthly_fr.png",
+                 "daily_chart1" : "daily_profiles1_winter_fr.png",
+                 "daily_chart2" : "daily_profiles1_summer_fr.png",
                  "figure_summer_day": "daily_profiles_fr.png",
                  "figure_winter_day": "daily_profiles_fr.png",
                  }
