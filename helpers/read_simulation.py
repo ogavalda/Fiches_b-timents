@@ -69,11 +69,7 @@ class ReadSimulation():
 
     def get_electricityprofile_kwh(self):
         electiricty_profile = self.get_electricityprofile()
-
-        # derrive timestep from dataframe length : 
-        timestep = self.get_timestep(electiricty_profile)
-        
-        return (electiricty_profile.iloc[:-1]).resample('1h').sum()/timestep/1000 # kWh
+        return (electiricty_profile.iloc[:-1]).resample('1h').mean()/1000 # kWh
 
 
 
