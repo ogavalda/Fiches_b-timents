@@ -164,21 +164,21 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # --- Monthly charts ---
     monthly_img    = os.path.join(output_path, "monthly.png")
     monthly_img_fr = os.path.join(output_path, "monthly_fr.png")
-    create_monthly_plot_KV(sim_object, monthly_img, "eng")
-    create_monthly_plot_KV(sim_object, monthly_img_fr, "fr")
+    create_monthly_plot_KV(sim_object, monthly_img, "eng", team_id)
+    create_monthly_plot_KV(sim_object, monthly_img_fr, "fr", team_id)
 
     # NEW : add figure with typical day-stacked area graph of simulation 
     # --- Daily chart : simulation only ---
     # winter
     Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_winter.png")
     Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_winter_fr.png")
-    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path,    "eng")
-    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path_fr, "fr")
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path,    "eng", team_id)
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path_fr, "fr", team_id)
     # summer
     Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_summer.png")
     Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_summer_fr.png")
-    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng")
-    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr")
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng", team_id)
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr", team_id)
 
 
 

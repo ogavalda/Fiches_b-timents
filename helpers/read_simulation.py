@@ -78,7 +78,7 @@ class ReadSimulation():
 
 
     # function to get timeseries of the different loads
-    def get_loadprofile(self, team_id):
+    def get_loadprofile(self, team_id, HW_key=''):
         if team_id=='poly':
             query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
@@ -95,10 +95,9 @@ class ReadSimulation():
                         OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Timestep")
                         OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep"))
                     """
-            raw_load_profile = self.query_file(query)
             
         else:
-            # TODO : change last line to include HW key concordia
+            # TODO : make sure this works
             query = f"""SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
                     FULL OUTER JOIN 
@@ -114,7 +113,9 @@ class ReadSimulation():
                         OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Hourly")
                         OR (name LIKE "{HW_key}" AND ReportingFrequency LIKE "%Hourly")) 
                     """
-            raw_load_profile = self.query_file(query.format(HW_key)) # all data in single column, need to reformat dataframe
+
+        
+        raw_load_profile = self.query_file(query) # all data in single column, need to reformat dataframe
 
         # check units : has to be Joules
         if (len(raw_load_profile['Units'].unique())!=1) | (raw_load_profile['Units'].unique()[0]!='J'):
@@ -191,22 +192,42 @@ class ReadSimulation():
         return results_
 
 
-    def get_monthly_consumption(self):
-        query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
-                FROM ReportData 
-                FULL OUTER JOIN 
-                    ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
-                WHERE ReportDataDictionary.ReportDataDictionaryIndex IN 
-                    (SELECT ReportDataDictionary.ReportDataDictionaryIndex 
-                    FROM ReportDataDictionary 
-                    WHERE (name LIKE "%Facility" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "Heating%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "Cooling%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep"))
-                """
+    def get_monthly_consumption(self, team_id, HW_key=''):
+        if team_id == 'poly':
+            query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
+                    FROM ReportData 
+                    FULL OUTER JOIN 
+                        ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
+                    WHERE ReportDataDictionary.ReportDataDictionaryIndex IN 
+                        (SELECT ReportDataDictionary.ReportDataDictionaryIndex 
+                        FROM ReportDataDictionary 
+                        WHERE (name LIKE "%Facility" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "Heating%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "Cooling%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep"))
+                    """
+        else:
+            # TODO : make sure this works
+            query = f"""SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
+                    FROM ReportData 
+                    FULL OUTER JOIN 
+                        ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
+                    WHERE ReportDataDictionary.ReportDataDictionaryIndex IN 
+                        (SELECT ReportDataDictionary.ReportDataDictionaryIndex 
+                        FROM ReportDataDictionary 
+                        WHERE (name LIKE "%Facility" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "Heating%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "Cooling%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "{HW_key}" AND ReportingFrequency LIKE "%Hourly")) 
+                    """
+
+
         raw_load_profile = self.query_file(query) # all data in single column, need to reformat dataframe
 
         # check units : has to be Joules

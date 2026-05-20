@@ -17,8 +17,12 @@ from core_2 import get_vintage_column_KV, get_vintage_column, normalize_time
 ### alternative to current version : use sql results only 
 # function relies on a class ReadSimulation which makes querying the sql easier
 # requires having the correct meters & variables specified as outputs during simulation (should be OK when running the provided workflow) 
-def create_monthly_plot(sim_results, output_path, lang):
-    df_monthly = sim_results.get_monthly_consumption()
+def create_monthly_plot(sim_results, output_path, lang, team_id):
+    if team_id=='poly':
+        df_monthly = sim_results.get_monthly_consumption(team_id)
+    else:
+        HW_key_osm = get_HW_key_SQL()
+        df_monthly = sim_results.get_monthly_consumption(team_id, HW_key=HW_key_osm)
     df_monthly = pd.concat([df_monthly.iloc[4:], df_monthly.iloc[:4]])
 
     # reorder columns for plot
@@ -57,7 +61,6 @@ def create_monthly_plot(sim_results, output_path, lang):
 # DAILY PROFILE PLOT - TYPE 1 : SIMULATION STACKED AREA
 # --------------------------------    
 
-# TODO : change to generating 2 or 3 plots for different periods and weekday vs. weekend? 
 def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_id='poly'):
     # day is number to represent day of week, picked random weekday here
     df_profile = get_load_profile_typical(period, 2, Simulation=Simulation, team_id='poly')
@@ -121,11 +124,13 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_i
 
 ### function to get typical load profile (weekday vs weekend day)
 # works on both simulation results or OPE metered data
-def get_load_profile_typical(period, day, is_simulation=True, Simulation=None, OPE_profile = None, team_id='poly'):
-    if is_simulation:
+def get_load_profile_typical(period, day, Simulation=None, OPE_profile = None, team_id='poly'):
+    if team_id != 'poly':
+        # TODO : link to actual function that gets the right variable name to get the HW key out of the SQL
+        HW_key_osm = get_HW_key_SQL()
+        df_lp = Simulation.get_loadprofile(team_id, HW_key=HW_key_osm).resample('1h').mean()
+    else:
         df_lp = Simulation.get_loadprofile(team_id).resample('1h').mean()
-    else : 
-        df_lp = OPE_profile
 
 
     # TODO : coordinate what's winter/mid/summer between the different functions
@@ -340,9 +345,6 @@ def process_energy_data(
     # --- Merge all ---
     df = df_sim_hourly.merge(ope_df.rename(columns={vintage_col:'OPE'})[["time_key", "OPE"]], on="time_key")
     df = df.merge(weather_df.rename(columns={weather_column_name:'temperature_OPE'})[["time_key", "temperature_OPE"]], on="time_key")
-
-    print(df)
-    raise SystemExit(0)
     return aggregate_daily(df),df
 
 def aggregate_daily(df):
