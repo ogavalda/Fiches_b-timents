@@ -67,26 +67,54 @@ class ReadSimulation():
         # convert Joules (sum over timestep in minutes) to Watts
         return electiricty_profile/timestep/60
 
+    def get_electricityprofile_kwh(self):
+        electiricty_profile = self.get_electricityprofile()
+
+        # derrive timestep from dataframe length : 
+        timestep = self.get_timestep(electiricty_profile)
+        
+        return (electiricty_profile.iloc[:-1]).resample('1h').sum()/timestep/1000 # kWh
+
 
 
     # function to get timeseries of the different loads
-    def get_loadprofile(self):
-        query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
-                FROM ReportData 
-                FULL OUTER JOIN 
-                    ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
-                WHERE ReportDataDictionary.ReportDataDictionaryIndex IN 
-                    (SELECT ReportDataDictionary.ReportDataDictionaryIndex 
-                    FROM ReportDataDictionary 
-                    WHERE (name LIKE "%Facility" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "Heating%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "Cooling%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Timestep")
-                    OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep"))
-                """
-        raw_load_profile = self.query_file(query) # all data in single column, need to reformat dataframe
+    def get_loadprofile(self, team_id):
+        if team_id=='poly':
+            query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
+                    FROM ReportData 
+                    FULL OUTER JOIN 
+                        ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
+                    WHERE ReportDataDictionary.ReportDataDictionaryIndex IN 
+                        (SELECT ReportDataDictionary.ReportDataDictionaryIndex 
+                        FROM ReportDataDictionary 
+                        WHERE (name LIKE "%Facility" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "Heating%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "Cooling%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep"))
+                    """
+            raw_load_profile = self.query_file(query)
+            
+        else:
+            # TODO : change last line to include HW key concordia
+            query = f"""SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
+                    FROM ReportData 
+                    FULL OUTER JOIN 
+                        ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
+                    WHERE ReportDataDictionary.ReportDataDictionaryIndex IN 
+                        (SELECT ReportDataDictionary.ReportDataDictionaryIndex 
+                        FROM ReportDataDictionary 
+                        WHERE (name LIKE "%Facility" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "Heating%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "Cooling%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Hourly")
+                        OR (name LIKE "{HW_key}" AND ReportingFrequency LIKE "%Hourly")) 
+                    """
+            raw_load_profile = self.query_file(query.format(HW_key)) # all data in single column, need to reformat dataframe
 
         # check units : has to be Joules
         if (len(raw_load_profile['Units'].unique())!=1) | (raw_load_profile['Units'].unique()[0]!='J'):
@@ -99,7 +127,7 @@ class ReadSimulation():
         column_names = {'Electricity:Facility':'Total Facility', 'ExteriorLights:Electricity':'ExtLights', 'InteriorLights:Electricity':'IntLights',
                         'InteriorEquipment:Electricity':'PlugLoads', 'Cooling:Electricity':'Cooling', 'Heating:Electricity':'Heating', 'Electric Equipment Electricity Energy':'DHW'}
         load_profile.rename(columns=column_names, inplace=True)
-        
+
         # add ext and int lighting together
         load_profile['Lighting'] = load_profile['ExtLights'] + load_profile['IntLights']
         load_profile.drop(columns=['ExtLights', 'IntLights'], inplace=True)

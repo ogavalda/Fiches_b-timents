@@ -8,7 +8,7 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 
-from core_2 import get_vintage_column_KV
+from core_2 import get_vintage_column_KV, get_vintage_column, normalize_time
 
 # --------------------------------
 # MONTHLY CONSUMPTION PLOT
@@ -58,9 +58,9 @@ def create_monthly_plot(sim_results, output_path, lang):
 # --------------------------------    
 
 # TODO : change to generating 2 or 3 plots for different periods and weekday vs. weekend? 
-def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng'):
+def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_id='poly'):
     # day is number to represent day of week, picked random weekday here
-    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation)
+    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation, team_id='poly')
 
     if period == 'winter':
         # define order of columns
@@ -121,9 +121,9 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng'):
 
 ### function to get typical load profile (weekday vs weekend day)
 # works on both simulation results or OPE metered data
-def get_load_profile_typical(period, day, is_simulation=True, Simulation=None, OPE_profile = None):
+def get_load_profile_typical(period, day, is_simulation=True, Simulation=None, OPE_profile = None, team_id='poly'):
     if is_simulation:
-        df_lp = Simulation.get_loadprofile().resample('1h').mean()
+        df_lp = Simulation.get_loadprofile(team_id).resample('1h').mean()
     else : 
         df_lp = OPE_profile
 
@@ -306,39 +306,43 @@ def process_energy_data(
     # !!!! alternative using sql (which also allows getting simulation specific temperature) using the "simulation object"
     # ideally the simulation object would be loaded in the "per_folder" function and passed on to this function as an argument
     # but for testing sake i've put it here for now
-    
-    # get simulation related data
-    df_weather_sim = sim_object.get_outdoor_temperature()
-    df_sim_hourly = sim_object.get_electricityprofile().resample('1h').sum()/4/1000 # kWh
-    df_sim_hourly = pd.merge(df_weather_sim, df_sim_hourly, left_index=True, right_index=True)
-    df_sim_hourly.rename(columns={'Value_x':'Temp', 'Value_y':'ene_kwh'}, inplace=True)
-
-    
-    # Normalize per household
-    df_sim_hourly["ene_kwh"] /= households
-    
-    # Add time key
-    df_sim_hourly["time_key"] = df_sim_hourly.index.strftime("%m-%d %H:%M")
-
-    # --- Merge all ---
-    ## !!! added extra column with simulation temperature because OPE has unique temperature for SFD 
-    ## + rename here because both OPE ene and temp are fetched through the vintage name
-    ope_df.rename(columns={vintage_col:'OPE'}, inplace=True)
 
     if team_id != 'poly':
         weather_column_name = 'T_drybulb_C'
     else:
         weather_column_name = vintage_col
+    
 
-    weather_df.rename(columns={weather_column_name:'temperature_OPE'}, inplace=True)
-    df = df_sim_hourly.merge(ope_df[["time_key", "OPE"]], on="time_key")
-    df = df.merge(weather_df[["time_key", "temperature_OPE"]], on="time_key")
+    # get simulation related data
+    df_sim_hourly = sim_object.get_electricityprofile_kwh()
 
-    df = df.rename(columns={
-        "Temp" : "temperature_sim",
-        "ene_kwh": "meter"
-    })
+    # add simulation weather
+    # !!! added extra column with simulation temperature because OPE has unique temperature for SFD     
+    if team_id == 'poly': 
+        df_weather_sim = sim_object.get_outdoor_temperature().resample('1h').mean().iloc[:-1]
+        df_sim_hourly = pd.merge(df_weather_sim, df_sim_hourly, left_index=True, right_index=True)
+        df_sim_hourly.rename(columns={'Value_x':'temperature_sim', 'Value_y':'meter'}, inplace=True)
+    else:
+        df_sim_hourly['temperature_sim'] = weather_df[weather_column_name].to_numpy()
+        df_sim_hourly.rename(columns={'Value':'meter'}, inplace=True)
+    
+    # Add time key
+    df_sim_hourly["time_key"] = df_sim_hourly.index.strftime("%m-%d %H:%M")
 
+    # TODO : check whether we should add normalize time for simulation data! 
+    # commented out for now because it raises an error
+    #df_sim_hourly["time_key"] = normalize_time(df_sim_hourly["time_key"], shift_hours=-1)
+
+    # Normalize per household
+    df_sim_hourly["meter"] /= households
+    
+
+    # --- Merge all ---
+    df = df_sim_hourly.merge(ope_df.rename(columns={vintage_col:'OPE'})[["time_key", "OPE"]], on="time_key")
+    df = df.merge(weather_df.rename(columns={weather_column_name:'temperature_OPE'})[["time_key", "temperature_OPE"]], on="time_key")
+
+    print(df)
+    raise SystemExit(0)
     return aggregate_daily(df),df
 
 def aggregate_daily(df):
