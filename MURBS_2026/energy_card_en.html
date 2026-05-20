@@ -265,7 +265,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
         <div class="panel-title green">Comparison Table — Key Indicators</div>
         <table>
           <thead><tr><th>Indicator</th><th class="green-head">Model</th><th class="green-head">Reference</th><th class="green-head">Delta</th></tr></thead>
-          <tbody>{% for row in comparison_table %}<tr><td>{{row.indicator}}</td><td class="val">{{row.model}}</td><td class="val">{{row.reference}}</td><td class="val">{{row.delta}}</td></tr>{% endfor %}</tbody>
+          <tbody>{% for row in comparison_table %}<tr><td>{{row["indicator"]}}</td><td class="val">{{row["model"]}}</td><td class="val">{{row["reference"]}}</td><td class="val">{{row["delta"]}}</td></tr>{% endfor %}</tbody>
         </table>
       </div>
       {% endif %}

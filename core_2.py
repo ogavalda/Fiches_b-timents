@@ -7,6 +7,13 @@ Code contributors: Kato Vanroy, kato.vanroy@polymtl.ca
                    Mahmoud Awad, mahmoud.awad@mail.concordia.ca
                    Oriol Gavalda, oriol.gavalda@concordia.ca
 """
+
+### This will plot the prism Curve in comparison with the OPE
+### This will also create the comparison table KPI's to the OPE
+
+# imports for kpi
+from Kpi import *
+
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -142,13 +149,73 @@ def process_energy_data(
     df = meter_df.merge(ope_df[["time_key", vintage_col]], on="time_key")
     df = df.merge(weather_df, on="time_key")
 
-    df = df.rename(columns={
-        vintage_col: "OPE",
-        "T_drybulb_C": "temperature",
-        "meter_kwh": "meter"
+    df = df.rename(columns={vintage_col: "OPE","T_drybulb_C": "temperature","meter_kwh": "meter"})
+
+    ### Now the DataFrame df has the time series for the ope and the current building In addition to weather data
+    ### Now it is ready for KPi CaLculation
+    #-----------------------------------------------------
+    # -------------- KPI Calculaiton ---------------------
+
+    ## in order for it to work, the kpi calculation algorithm has to change the column names
+    ## for the sake of confusion avoidance, the df will be copied to kpi_df
+    kpi_df = df.copy() # kpi_d is a duplicate of the df, to run the kpi calculation of the current building
+    ope_df = df.rename(columns={'time_key': 'dateinterval',"OPE": "energieactivelivree_kwh",'temperature': 'temperatureatmospherique'})
+
+    kpi_df.rename(columns={'time_key': 'dateinterval',  # as renamed above
+                            'meter': "energieactivelivree_kwh",
+                            'temperature': 'temperatureatmospherique'}, inplace=True)
+    building_kpi = AnalyseProfil()
+    Identifiant = building_name
+    building_kpi.RunAnalyse(Identifiant=Identifiant, file=kpi_df)
+
+    ope_kpi = AnalyseProfil()
+    Identifiant = vintage_col
+    ope_kpi.RunAnalyse(Identifiant=vintage_col, file=ope_df)
+
+
+
+    building_dict = building_kpi.dict_caracteristiques
+    ope_dict = ope_kpi.dict_caracteristiques
+
+    building_dict.pop("Identifiant", None)
+    ope_dict.pop("Identifiant", None)
+
+    kpi_table = pd.DataFrame({
+        building_name: building_dict,
+        vintage_col: ope_dict
     })
 
-    return aggregate_daily(df),df
+
+    print(kpi_table)
+
+    #---------------------transition layer to transform the dic to list of dic for html compatibility--------------------
+    comparison_table = kpi_table.copy()
+
+    # Rename columns
+    comparison_table.columns = ["model", "reference"]
+
+    # Move index into column
+    comparison_table = comparison_table.reset_index()
+
+    # Rename index column
+    comparison_table = comparison_table.rename(
+        columns={"index": "indicator"}
+    )
+
+    # Create percentage error / delta
+    comparison_table["delta"] = (comparison_table["model"] - comparison_table["reference"])
+
+
+    comparison_table["model"] = comparison_table["model"].round(2)
+    comparison_table["reference"] = comparison_table["reference"].round(2)
+    comparison_table["delta"] = comparison_table["delta"].round(1)
+
+    comparison_table = comparison_table.to_dict(orient="records")
+    print(comparison_table)
+
+    #----------------------End of Transition -------------------------
+
+    return aggregate_daily(df),df, comparison_table
 
 def plot_banana(df, output_path,lang):
     plt.figure(figsize=(8, 6))

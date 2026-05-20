@@ -126,7 +126,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     create_monthly_plot(html, monthly_img_fr, "fr")
 
     # --- Banana / PRISM curves ---
-    df, df_hourly = process_energy_data(
+    df, df_hourly, comparison_table = process_energy_data(
         f"{building_path}/{folder_name}",
         households_dict, ope_df, weather_df
     )
@@ -161,7 +161,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     # TODO: build comparison table when reference data is available
     # comparison_table = build_comparison_table(energy, energy_intensity, construction_data)
-    comparison_table = []
+
 
     # --- Logos ---
 
@@ -246,3 +246,16 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     render_and_write("fiche_energie_fr.html", shared_fr, "Fiche energie.html", operation_folder)
     return os.path.join(output_path, "Fiche energie.html")
 
+
+def run_single_building():
+    return process_building(
+        building_path=r"MURBS_2026/ID39_MR_ND_1945",
+        template_path=r"MURBS_2026",
+        idd_path=r"C:\EnergyPlusV25-2-0\Energy+.idd",
+        operation_folder=r"Operation cards",
+        view_folder=r"View cards"
+    )
+
+
+if __name__ == "__main__":
+    print(run_single_building())
