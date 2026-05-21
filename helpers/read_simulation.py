@@ -27,9 +27,16 @@ class ReadSimulation():
 
         ### read time index : 
         # if design periods are included in results, we have to query as follows : 
-        # this query selects the time index for only the period corresponding to the full simulation. 
+        # this query selects the time index for only the period corresponding to the full simulation (weather simulation always has EnvironmentType 3). 
         # we can then use the time index to slice variables for this period only
-        df_time = pd.read_sql('SELECT * FROM Time WHERE EnvironmentPeriodIndex LIKE 3 OR EnvironmentPeriodIndex LIKE 10', conn)
+        df_time = pd.read_sql("""SELECT * FROM Time t
+                                    JOIN EnvironmentPeriods ep 
+                                    ON t.EnvironmentPeriodIndex = ep.EnvironmentPeriodIndex
+
+                                    WHERE ep.EnvironmentType LIKE 3 
+
+                                    """, conn)
+
         d = {'TimeIndex': df_time['TimeIndex'], 'DateTime': pd.to_datetime(df_time[['Year', 'Month', 'Day', 'Hour', 'Minute']])}
         time = pd.DataFrame(data=d)
         time.set_index('TimeIndex', inplace=True)
@@ -74,7 +81,7 @@ class ReadSimulation():
 
 
     # function to get timeseries of the different loads
-    def get_loadprofile(self, team_id, HW_key=''):
+    def get_loadprofile(self, team_id, HW_keys=''):
         if team_id=='poly':
             query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
@@ -94,7 +101,12 @@ class ReadSimulation():
             
         else:
             # TODO : make sure this works
-            query = f"""SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
+
+            # for multiple keys
+            HW_keys = ['Electric Equipment 5', 'Electric Equipment 6']
+            HW_keys = [key.upper() for key in HW_keys] # keyvalue in sql is always upper case
+
+            query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
                     FULL OUTER JOIN 
                         ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
@@ -107,10 +119,14 @@ class ReadSimulation():
                         OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Hourly")
                         OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Hourly")
                         OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Hourly")
-                        OR (name LIKE "{HW_key}" AND ReportingFrequency LIKE "%Hourly")) 
                     """
 
-        
+            for HW_key in HW_keys : 
+                str_append = f"""OR (KeyValue LIKE "%{HW_key}%" AND ReportingFrequency LIKE "%Hourly") \n"""
+                query = query + str_append
+
+            query = query + ')' # add closing bracket to query
+
         raw_load_profile = self.query_file(query) # all data in single column, need to reformat dataframe
 
         # check units : has to be Joules
@@ -118,7 +134,6 @@ class ReadSimulation():
             raise Exception("Unit of parameter fetched does not correspond to expected Joules. Verify output file.")
     
         load_profile = raw_load_profile.reset_index()[['DateTime', 'KeyValue', 'Name', 'Value']].groupby(['Name', 'DateTime'])['Value'].sum().unstack(level=0)
-
 
         # rename columns
         column_names = {'Electricity:Facility':'Total Facility', 'ExteriorLights:Electricity':'ExtLights', 'InteriorLights:Electricity':'IntLights',
@@ -188,7 +203,7 @@ class ReadSimulation():
         return results_
 
 
-    def get_monthly_consumption(self, team_id, HW_key=''):
+    def get_monthly_consumption(self, team_id, HW_keys=''):
         if team_id == 'poly':
             query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
@@ -207,7 +222,12 @@ class ReadSimulation():
                     """
         else:
             # TODO : make sure this works
-            query = f"""SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
+
+            # for multiple keys
+            HW_keys = ['Electric Equipment 5', 'Electric Equipment 6']
+            HW_keys = [key.upper() for key in HW_keys] # keyvalue in sql is always upper case
+
+            query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
                     FULL OUTER JOIN 
                         ReportDataDictionary ON ReportDataDictionary.ReportDataDictionaryIndex=ReportData.ReportDataDictionaryIndex
@@ -220,9 +240,13 @@ class ReadSimulation():
                         OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Hourly")
                         OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Hourly")
                         OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Hourly")
-                        OR (name LIKE "{HW_key}" AND ReportingFrequency LIKE "%Hourly")) 
                     """
 
+            for HW_key in HW_keys : 
+                str_append = f"""OR (KeyValue LIKE "%{HW_key}%" AND ReportingFrequency LIKE "%Hourly") \n"""
+                query = query + str_append
+
+            query = query + ')' # add closing bracket to query
 
         raw_load_profile = self.query_file(query) # all data in single column, need to reformat dataframe
 
@@ -232,6 +256,7 @@ class ReadSimulation():
         
         
         load_profile = raw_load_profile.reset_index()[['DateTime', 'KeyValue', 'Name', 'Value']].groupby(['Name', 'DateTime'])['Value'].sum().unstack(level=0)
+
         # rename columns
         column_names = {'Electricity:Facility':'Total Facility', 'ExteriorLights:Electricity':'ExtLights', 'InteriorLights:Electricity':'IntLights',
                         'InteriorEquipment:Electricity':'PlugLoads', 'Cooling:Electricity':'Cooling', 'Heating:Electricity':'Heating', 'Electric Equipment Electricity Energy':'DHW'}
@@ -257,4 +282,6 @@ class ReadSimulation():
         
         # convert Joules to kWh
         monthly_consumption = load_profile.resample('ME').sum().iloc[:-1,:] # en Joules
-        return monthly_consumption/(3600*1000) # en kWh
+        monthly_consumption = monthly_consumption/(3600*1000) # en kWh
+        monthly_consumption['Month'] = monthly_consumption.index.month
+        return monthly_consumption

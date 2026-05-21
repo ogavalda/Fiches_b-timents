@@ -21,9 +21,14 @@ def create_monthly_plot(sim_results, output_path, lang, team_id):
     if team_id=='poly':
         df_monthly = sim_results.get_monthly_consumption(team_id)
     else:
-        HW_key_osm = get_HW_key_SQL()
-        df_monthly = sim_results.get_monthly_consumption(team_id, HW_key=HW_key_osm)
-    df_monthly = pd.concat([df_monthly.iloc[4:], df_monthly.iloc[:4]])
+        # TODO : connect to function that gets HW variable names from the mapping_df
+        #mapping_df = get_mappingdf()
+        #HW_key_osm = get_varaibles_from_mapping()
+        HW_key_osm = ""
+        df_monthly = sim_results.get_monthly_consumption(team_id, HW_keys=HW_key_osm)
+
+    df_monthly = df_monthly.sort_values(by=['Month'])
+
 
     # reorder columns for plot
     df_monthly = df_monthly[['PlugLoads', 'Other (Fans,...)', 'Lighting', 'DHW', 'Heating', 'Cooling']]
@@ -63,7 +68,7 @@ def create_monthly_plot(sim_results, output_path, lang, team_id):
 
 def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_id='poly'):
     # day is number to represent day of week, picked random weekday here
-    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation, team_id='poly')
+    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation, team_id=team_id)
 
     if period == 'winter':
         # define order of columns
@@ -123,9 +128,11 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_i
 # works on both simulation results or OPE metered data
 def get_load_profile_typical(period, day, Simulation=None, OPE_profile = None, team_id='poly'):
     if team_id != 'poly':
-        # TODO : link to actual function that gets the right variable name to get the HW key out of the SQL
-        HW_key_osm = get_HW_key_SQL()
-        df_lp = Simulation.get_loadprofile(team_id, HW_key=HW_key_osm).resample('1h').mean()
+        # TODO : # TODO : connect to function that gets HW variable names from the mapping_df
+        #mapping_df = get_mappingdf()
+        #HW_key_osm = get_varaibles_from_mapping()
+        HW_key_osm = ""
+        df_lp = Simulation.get_loadprofile(team_id, HW_keys=HW_key_osm).resample('1h').mean()
     else:
         df_lp = Simulation.get_loadprofile(team_id).resample('1h').mean()
 
@@ -150,7 +157,6 @@ def get_load_profile_typical(period, day, Simulation=None, OPE_profile = None, t
     df_lp_selection = df_lp.loc[(df_lp.index.month.isin(months))&(df_lp.index.dayofweek==day)].copy()
 
     df_profile = df_lp_selection.groupby(df_lp_selection.index.time).mean()
-
     df_profile.columns.name = None
     return df_profile/1000 #kwh
 
