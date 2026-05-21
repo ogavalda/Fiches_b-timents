@@ -324,6 +324,9 @@ def process_energy_data(
     # get simulation related data
     df_sim_hourly = sim_object.get_electricityprofile_kwh()
 
+    # Add time key
+    df_sim_hourly["time_key"] = df_sim_hourly.index.strftime("%m-%d %H:%M")
+
     # add simulation weather
     # !!! added extra column with simulation temperature because OPE has unique temperature for SFD     
     if team_id == 'poly': 
@@ -331,11 +334,10 @@ def process_energy_data(
         df_sim_hourly = pd.merge(df_weather_sim, df_sim_hourly, left_index=True, right_index=True)
         df_sim_hourly.rename(columns={'Value_x':'temperature_sim', 'Value_y':'meter'}, inplace=True)
     else:
-        df_sim_hourly['temperature_sim'] = weather_df[weather_column_name].to_numpy()
+        df_sim_hourly = df_sim_hourly.merge(weather_df.rename(columns={weather_column_name:'temperature_sim'})[["time_key", "temperature_sim"]], on="time_key")
         df_sim_hourly.rename(columns={'Value':'meter'}, inplace=True)
     
-    # Add time key
-    df_sim_hourly["time_key"] = df_sim_hourly.index.strftime("%m-%d %H:%M")
+
 
     # TODO : check whether we should add normalize time for simulation data! 
     # commented out for now because it raises an error
@@ -343,11 +345,11 @@ def process_energy_data(
 
     # Normalize per household
     df_sim_hourly["meter"] /= households
-    
 
     # --- Merge all ---
     df = df_sim_hourly.merge(ope_df.rename(columns={vintage_col:'OPE'})[["time_key", "OPE"]], on="time_key")
     df = df.merge(weather_df.rename(columns={weather_column_name:'temperature_OPE'})[["time_key", "temperature_OPE"]], on="time_key")
+    
     return aggregate_daily(df),df
 
 def aggregate_daily(df):

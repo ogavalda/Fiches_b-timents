@@ -36,14 +36,14 @@ from helpers.read_simulation import ReadSimulation # class to help load simulati
 from helpers.extract_info import extract_construction_summary as extract_construction_summary_KV
 
 #paths : concordia
-#weather_df = load_weather(r"MURBS_2026\OPE_temps_new.csv")
-#households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
-#ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
+weather_df = load_weather(r"MURBS_2026\outdoor_temperature_no_year.csv")
+households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
+ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
 
 #paths : poly
-weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
-households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
-ope_df = load_ope(r"SFD_2026\dataOPE.csv")
+#weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
+#households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
+#ope_df = load_ope(r"SFD_2026\dataOPE.csv")
 
 # --- Translation dictionaries (EN → FR) ---
 TRANSLATIONS_FR = {
@@ -183,7 +183,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     monthly_img_fr = os.path.join(output_path, "monthly_fr.png")
     create_monthly_plot_KV(sim_object, monthly_img, "eng", team_id)
     create_monthly_plot_KV(sim_object, monthly_img_fr, "fr", team_id)
-
+    
     # NEW : add figure with typical day-stacked area graph of simulation 
     # --- Daily chart : simulation only ---
     # winter
@@ -196,6 +196,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_summer_fr.png")
     plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng", team_id)
     plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr", team_id)
+    
 
 
 
@@ -208,6 +209,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         sim_object, 
         team_id
     )
+
 
     # NEW : slightly changed to take unique temperature profile for OPE (provided in the df when new process_energy_data is used)
     Prism_plot_path    = os.path.join(output_path, "banana.png")
