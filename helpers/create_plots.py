@@ -189,7 +189,7 @@ def get_season(month):
     else:
         return 'mild'
 
-def plot_daily_profiles_ope_vs_meter(df, output_path,lang):
+def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
 
     df = prepare_profile_data(df)
 
@@ -213,62 +213,62 @@ def plot_daily_profiles_ope_vs_meter(df, output_path,lang):
     daily_profiles = daily_profiles.join(meta)
 
     # --- Plot ---
-    fig, axes = plt.subplots(3, 2, figsize=(14,16), sharex=True, sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(14,5), sharex=True, sharey=True)
 
-    seasons = ['winter','mild','summer']
     types = ['weekday','weekend']
 
+    # changed plot to only have one row : i=0
+    i=0
+    for j, day_type in enumerate(types):
 
-    for i, season in enumerate(seasons):
-        for j, day_type in enumerate(types):
+        ax = axes[j]
 
-            ax = axes[i, j]
+        subset = daily_profiles[
+            (daily_profiles['season'] == season) &
+            (daily_profiles['day_type'] == day_type)
+        ]
 
-            subset = daily_profiles[
-                (daily_profiles['season'] == season) &
-                (daily_profiles['day_type'] == day_type)
-            ]
+        if len(subset) == 0:
+            continue
 
-            if len(subset) == 0:
-                continue
+        # --- Meter: plot ALL (noisy, transparent red) ---
+        for _, row in subset.iterrows():
 
-            # --- Meter: plot ALL (noisy, transparent red) ---
-            for _, row in subset.iterrows():
+            meter_profile = [row[f"meter_{h}"] for h in range(24)]
+            ax.plot(range(24), meter_profile,
+                    color="red", alpha=0.15)
 
-                meter_profile = [row[f"meter_{h}"] for h in range(24)]
-                ax.plot(range(24), meter_profile,
-                        color="red", alpha=0.15)
+        # --- Meter average (dashed red) ---
+        meter_mean = [
+            subset[f"meter_{h}"].mean() for h in range(24)
+        ]
 
-            # --- Meter average (dashed red) ---
-            meter_mean = [
-                subset[f"meter_{h}"].mean() for h in range(24)
-            ]
+        ax.plot(range(24), meter_mean,
+                color="red", linestyle="--", linewidth=2,
+                label="Meter Avg" if (i == 0 and j == 0) else "")
 
-            ax.plot(range(24), meter_mean,
-                    color="red", linestyle="--", linewidth=2,
-                    label="Meter Avg" if (i == 0 and j == 0) else "")
+        # --- OPE: ONLY average (bold blue) ---
+        ope_mean = [
+            subset[f"OPE_{h}"].mean() for h in range(24)
+        ]
 
-            # --- OPE: ONLY average (bold blue) ---
-            ope_mean = [
-                subset[f"OPE_{h}"].mean() for h in range(24)
-            ]
+        ax.plot(range(24), ope_mean,
+                color="blue", linewidth=3,
+                label="OPE Avg" if (i == 0 and j == 0) else "")
 
-            ax.plot(range(24), ope_mean,
-                    color="blue", linewidth=3,
-                    label="OPE Avg" if (i == 0 and j == 0) else "")
-
-            ax.set_title(f"{season} - {day_type}")
-            if lang=="eng":
-                ax.set_xlabel("Hour of Day")
-                ax.set_ylabel("Consumption (kWh)")
-            else:
-                ax.set_xlabel("Heure du jour")
-                ax.set_ylabel("Consommation (kWh)")
-            ax.set_xlim(0, 23)
-            ax.grid(True)
+        # remove title, html already has title
+        #ax.set_title(f"{season} - {day_type}")
+        if lang=="eng":
+            ax.set_xlabel("Hour of Day")
+            ax.set_ylabel("Consumption (kWh)")
+        else:
+            ax.set_xlabel("Heure du jour")
+            ax.set_ylabel("Consommation (kWh)")
+        ax.set_xlim(0, 23)
+        ax.grid(True)
 
     plt.tight_layout()
-    plt.legend()
+    #plt.legend()
     plt.savefig(output_path)
     plt.close()
 
@@ -379,14 +379,17 @@ def plot_banana(df, output_path,lang):
     if lang=="eng":
         plt.xlabel("Outdoor Temperature (°C)")
         plt.ylabel("Consumption (kWh)")
-        plt.title("PRISM Curve")
+        #plt.title("PRISM Curve")
     else:
         plt.xlabel("Température Extérieure (°C)")
         plt.ylabel("Consommation (kWh)")
-        plt.title("Curve PRISM")
+        #plt.title("Curve PRISM")
     plt.legend()
 
     plt.grid(True)
 
     plt.savefig(output_path)
     plt.close()
+
+
+

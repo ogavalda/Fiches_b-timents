@@ -149,7 +149,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
       <div class="panel">
         <div class="panel-title">Window-to-Wall Ratio (WWR)</div>
         <table>
-          <thead><tr><th>Façade</th><th>WWR</th></tr></thead>
+          <thead><tr><th>Façade</th><th>WWR [%]</th></tr></thead>
           <tbody>{% for row in wwr %}<tr><td>{{row[0]}}</td><td class="val">{{row[1]}}</td></tr>{% endfor %}</tbody>
         </table>
       </div>
@@ -187,7 +187,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
       <div class="panel grow">
         <div class="panel-title">Typical daily consumption - winter</div>
         <div class="img-frame fluid">
-          <img src="{{daily_chart1}}" alt="Typical daily consumption - winter">
+          <img src="{{daily_chart1_winter}}" alt="Typical daily consumption - winter">
         </div>
         <div class="caption">Figure — Typical daily consumption - winter</div>
       </div>
@@ -195,7 +195,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
             <div class="panel grow">
         <div class="panel-title">Typical daily consumption - winter</div>
         <div class="img-frame fluid">
-          <img src="{{daily_chart2}}" alt="Typical daily consumption - summer">
+          <img src="{{daily_chart1_summer}}" alt="Typical daily consumption - summer">
         </div>
         <div class="caption">Figure — Typical daily consumption - winter</div>
       </div>
@@ -282,18 +282,18 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
     <!-- RIGHT: typical days -->
     <div class="col">
       <div class="panel">
-        <div class="panel-title">Typical Day — Summer</div>
-        <div class="img-frame">
-          <img src="{{figure_summer_day}}" alt="Summer day">
-        </div>
-        <div class="caption">Hourly consumption profile — summer day</div>
-      </div>
-      <div class="panel">
         <div class="panel-title">Typical Day — Winter</div>
         <div class="img-frame">
-          <img src="{{figure_winter_day}}" alt="Winter day">
+          <img src="{{daily_chart2_winter}}" alt="Winter day">
         </div>
         <div class="caption">Hourly consumption profile — winter day</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Typical Day — Summer</div>
+        <div class="img-frame">
+          <img src="{{daily_chart2_summer}}" alt="Summer day">
+        </div>
+        <div class="caption">Hourly consumption profile — summer day</div>
       </div>
     </div>
 

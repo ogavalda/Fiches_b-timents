@@ -29,7 +29,8 @@ from helpers.create_plots import (
     process_energy_data as process_energy_data_KV,
     plot_banana as plot_banana_KV, 
     create_monthly_plot as create_monthly_plot_KV, 
-    plot_loadprofile_stacked as plot_daily_profiles_sim_KV
+    plot_loadprofile_stacked as plot_daily_profiles_sim_KV, 
+    plot_daily_profiles_ope_vs_meter as plot_daily_profiles_ope_vs_meter_KV
     )
 
 from helpers.read_simulation import ReadSimulation # class to help load simulation results (query sql)
@@ -156,7 +157,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # --- Energy extraction ---
     energy = extract_energy(html)
     end_uses = extract_end_uses(html)
-    wwr = compute_wwr(html).values.tolist()
+    wwr = compute_wwr_new(html).values.tolist()
     # TODO : make function compatible with both model structures
     if team_id=='poly':
         # interior walls/infiltration cause issues with our models
@@ -217,11 +218,19 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     plot_banana_KV(df, Prism_plot_path, "eng")
     plot_banana_KV(df, Prism_plot_path_fr, "fr")
 
+
+    # NEW : create summer/winter plots seperately
     # --- Daily profiles (combined, one image for now) ---
-    Daily_P_plot_path    = os.path.join(output_path, "daily_profiles.png")
-    Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles_fr.png")
-    plot_daily_profiles_ope_vs_meter(df_hourly, Daily_P_plot_path,    "eng")
-    plot_daily_profiles_ope_vs_meter(df_hourly, Daily_P_plot_path_fr, "fr")
+    # summer
+    Daily_P_plot_path    = os.path.join(output_path, "daily_profiles_summer.png")
+    Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles_summer_fr.png")
+    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "summer", Daily_P_plot_path,    "eng")
+    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "summer", Daily_P_plot_path_fr, "fr")
+    # winter
+    Daily_P_plot_path    = os.path.join(output_path, "daily_profiles_winter.png")
+    Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles_winter_fr.png")
+    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path,    "eng")
+    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path_fr, "fr")
 
     # TODO: split into separate summer/winter images when the function supports it
     # summer_day_path    = os.path.join(output_path, "daily_summer.png")
@@ -276,10 +285,12 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         figure3_path="geometry.png",
         figure1_path="banana.png",
         monthly_chart="monthly.png",  
-        daily_chart1 = "daily_profiles1_winter.png",
-        daily_chart2 = "daily_profiles1_summer.png",   ## TODO : add second fig to daily 1 (seperate figs created for summer/winter under "daily_profiles1_winter(_fr)", "daily_profiles1_summer(_fr)")
+        daily_chart1_winter = "daily_profiles1_winter.png",
+        daily_chart1_summer = "daily_profiles1_summer.png",   ## TODO : add second fig to daily 1 (seperate figs created for summer/winter under "daily_profiles1_winter(_fr)", "daily_profiles1_summer(_fr)")
         figure_summer_day="daily_profiles.png",   # using combined plot for now
         figure_winter_day="daily_profiles.png",   # using combined plot for now
+        daily_chart2_winter = "daily_profiles_winter.png", 
+        daily_chart2_summer = "daily_profiles_summer.png"
     )
 
     # TODO : translate new table entries
@@ -292,10 +303,12 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
                  # FR-specific figure paths
                  "figure1_path": "banana_fr.png",
                  "monthly_chart": "monthly_fr.png",
-                 "daily_chart1" : "daily_profiles1_winter_fr.png",
-                 "daily_chart2" : "daily_profiles1_summer_fr.png",
+                 "daily_chart1_winter" : "daily_profiles1_winter_fr.png",
+                 "daily_chart1_summer" : "daily_profiles1_summer_fr.png",
                  "figure_summer_day": "daily_profiles_fr.png",
                  "figure_winter_day": "daily_profiles_fr.png",
+                 "daily_chart2_winter": "daily_profiles_winter_fr.png",
+                 "daily_chart2_summer": "daily_profiles_summer_fr.png"
                  }
   # --- Ensure output folders exist ---
     os.makedirs(operation_folder, exist_ok=True)

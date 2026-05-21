@@ -206,6 +206,19 @@ def compute_wwr(eplustbl_file):
 
     return pd.DataFrame(list(zip(facades, values)), columns=["Facade", "WWR"])
 
+def compute_wwr_new(eplustbl_file):
+    with open(eplustbl_file, "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f, "lxml")
+
+    row_tag = soup.find("td", string=lambda x: x and "Above Ground Window-Wall Ratio" in x).parent
+    cells = [td.get_text(strip=True) for td in row_tag.find_all("td")]
+
+    facades = ["Average"]
+    values = [float(cells[1])]
+
+    return pd.DataFrame(list(zip(facades, values)), columns=["Facade", "WWR"])
+
+
 
 def extract_energy(eplustbl_file):
     with open(eplustbl_file, "r", encoding="utf-8") as f:
