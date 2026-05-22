@@ -265,7 +265,10 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # mechanical_systems = extract_mechanical_systems(html, json_path)
     # mapping csv path --currently it is in the SD_2026 folder undr name "hvac_mapping.csv"
     hvac_system_path = r"SFD_2026\hvac_mapping.csv"
-    hvac_system = get_hvac_system(parts[1],hvac_system_path)
+    if team_id != "poly":
+        hvac_system = get_hvac_system(parts[1],hvac_system_path)
+    else:
+        hvac_system = get_hvac_system(building_subtype, hvac_system_path)
 
     # TODO: build comparison table when reference data is available
     # The comparison table was embedded in the process_energy_data() function,
