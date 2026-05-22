@@ -228,7 +228,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # NEW : change process energy to use a simulation object (relying on sql) to fetch electricity profile 
     # + added different temperature profiles for OPE 
     # --- Banana / PRISM curves ---
-    df, df_hourly, comparison_table = process_energy_data_KV(
+    df, df_hourly, comparison_table,comparison_table_en = process_energy_data_KV(
         f"{building_path}/{folder_name}",
         households_dict, ope_df, weather_df, 
         sim_object, 
@@ -300,7 +300,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         total_energy=total_energy,
         elec_total=elec_total,
         gas_total=gas_total,
-        comparison_table=comparison_table,
+        comparison_table=comparison_table_en,
         report_date=datetime.today().strftime("%Y-%m-%d"),
         figure3_path="geometry.png",
         figure1_path="banana.png",
@@ -317,6 +317,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # TODO : translate new table entries
     # --- Shared render kwargs (FR) ---
     shared_fr = {**shared_en,
+                 "comparison_table":comparison_table,
                  # translated data
                  "construction_data": translate_dict(construction_data, TRANSLATIONS_FR),
                  "end_uses": translate_dict(end_uses, TRANSLATIONS_FR),

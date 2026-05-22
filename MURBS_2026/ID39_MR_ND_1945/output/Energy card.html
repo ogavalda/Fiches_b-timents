@@ -89,7 +89,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 .two-col { display:grid; gap:var(--gap); }
 .split-5050 { grid-template-columns: 1fr 1fr; }
 .split-4060 { grid-template-columns: 4fr 6fr; }
-.split-page2 { grid-template-columns: 57% 43%; }
+.split-page2 { grid-template-columns: 53% 47%; }
 .fill { flex:1; min-height:0; }
 .col { display:flex; flex-direction:column; gap:var(--gap); min-height:0; }
 
@@ -284,7 +284,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 <div class="page">
 
   <div class="section-label">
-    <span class="section-label-text">Section 3 — Simulation Results &amp; Comparison</span>
+    <span class="section-label-text">Section 2 — Simulation Results &amp; Comparison</span>
     <div class="section-label-line"></div>
   </div>
 
@@ -314,10 +314,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
     <!-- LEFT: PRISM curve -->
     <div class="col">
-      <div class="section-label">
-        <span class="section-label-text">Section 3 — Comparison with Reference Data</span>
-        <div class="section-label-line"></div>
-      </div>
+      
       <div class="panel">
         <div class="panel-title">PRISM Curve</div>
         <div class="img-frame">
@@ -332,6 +329,13 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="panel">
       <div class="panel-title green">Comparison Table — Key Indicators</div>
       <table>
+          <table style="table-layout: fixed; width: 100%;">
+          <colgroup>
+            <col style="width: 30%">
+            <col style="width: 23%">
+            <col style="width: 23%">
+            <col style="width: 24%">
+          </colgroup>
         <thead>
           <tr>
             <th>Indicator</th>
@@ -342,58 +346,59 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
         </thead>
 
         <tbody>
+
           
           <tr>
-            <td>Conso_annuelle_electricite_kWh</td>
+            <td>Consommation annuelle électricité (kWh)</td>
             <td class="val">16086.08</td>
             <td class="val">16587.18</td>
             <td class="val">-501.1</td>
           </tr>
           
           <tr>
-            <td>Conso_base_electricite_kWhParJour</td>
+            <td>Consommation de base électricité (kWh/jour)</td>
             <td class="val">19.74</td>
             <td class="val">20.36</td>
             <td class="val">-0.6</td>
           </tr>
           
           <tr>
-            <td>Pente_chauffage_electricite_WparK</td>
+            <td>Pente chauffage électricité (W/K)</td>
             <td class="val">-133.33</td>
             <td class="val">-127.08</td>
             <td class="val">-6.2</td>
           </tr>
           
           <tr>
-            <td>Pente_climatisation_electricite_WparK</td>
+            <td>Pente climatisation électricité (W/K)</td>
             <td class="val">41.31</td>
             <td class="val">43.18</td>
             <td class="val">-1.9</td>
           </tr>
           
           <tr>
-            <td>Pointe_hiver_am_kW</td>
+            <td>Pointe hiver AM (kW)</td>
             <td class="val">7.34</td>
             <td class="val">6.77</td>
             <td class="val">0.6</td>
           </tr>
           
           <tr>
-            <td>Pointe_h_hiver_am</td>
+            <td>Heure pointe hiver AM</td>
             <td class="val">7.0</td>
             <td class="val">6.0</td>
             <td class="val">1.0</td>
           </tr>
           
           <tr>
-            <td>Pointe_hiver_pm_kW</td>
+            <td>Pointe hiver PM (kW)</td>
             <td class="val">6.42</td>
             <td class="val">6.55</td>
             <td class="val">-0.1</td>
           </tr>
           
           <tr>
-            <td>Pointe_h_hiver_pm</td>
+            <td>Heure pointe hiver PM</td>
             <td class="val">17.0</td>
             <td class="val">20.0</td>
             <td class="val">-3.0</td>

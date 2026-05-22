@@ -319,6 +319,13 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="panel">
       <div class="panel-title green">Comparison Table — Key Indicators</div>
       <table>
+          <table style="table-layout: fixed; width: 100%;">
+          <colgroup>
+            <col style="width: 30%">
+            <col style="width: 23%">
+            <col style="width: 23%">
+            <col style="width: 24%">
+          </colgroup>
         <thead>
           <tr>
             <th>Indicator</th>
@@ -329,6 +336,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
         </thead>
 
         <tbody>
+
           {% for row in comparison_table %}
           <tr>
             <td>{{row.indicator}}</td>

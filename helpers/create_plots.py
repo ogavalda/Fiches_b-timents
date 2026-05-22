@@ -353,8 +353,8 @@ def process_energy_data(
 
     # since every field needed for kpi calculation is ready, kpi function is embedded here
 
-    comparison_table =  calculate_kpi_from_df(df, building_name, vintage_col)
-    return aggregate_daily(df),df,comparison_table
+    comparison_table,comparison_table_en =  calculate_kpi_from_df(df, building_name, vintage_col)
+    return aggregate_daily(df),df,comparison_table,comparison_table_en
 
 def aggregate_daily(df):
     # Convert back to datetime (we need it for grouping)
@@ -488,11 +488,33 @@ def calculate_kpi_from_df(
     comparison_table["model"] = (comparison_table["model"].round(2))
     comparison_table["reference"] = (comparison_table["reference"].round(2))
     comparison_table["delta"] = (comparison_table["delta"].round(1))
-
+    comparison_table_en=comparison_table.copy()
+    rename_map = {
+        "Conso_annuelle_electricite_kWh": "Consommation annuelle électricité (kWh)",
+        "Conso_base_electricite_kWhParJour": "Consommation de base électricité (kWh/jour)",
+        "Pente_chauffage_electricite_WparK": "Pente chauffage électricité (W/K)",
+        "Pente_climatisation_electricite_WparK": "Pente climatisation électricité (W/K)",
+        "Pointe_hiver_am_kW": "Pointe hiver AM (kW)",
+        "Pointe_h_hiver_am": "Heure pointe hiver AM",
+        "Pointe_hiver_pm_kW": "Pointe hiver PM (kW)",
+        "Pointe_h_hiver_pm": "Heure pointe hiver PM",
+    }
+    rename_map_en = {
+        "Conso_annuelle_electricite_kWh": "Yearly electricity consumption (kWh)",
+        "Conso_base_electricite_kWhParJour": "Yearly baseload consumption (kWh/jour)",
+        "Pente_chauffage_electricite_WparK": "Slope electricity heating (W/K)",
+        "Pente_climatisation_electricite_WparK": "Slope climatisation cooling (W/K)",
+        "Pointe_hiver_am_kW": "Peak winter AM (kW)",
+        "Pointe_h_hiver_am": "Hour peak winter AM",
+        "Pointe_hiver_pm_kW": "Peak winter PM (kW)",
+        "Pointe_h_hiver_pm": "Hour peak winter PM",
+    }
+    comparison_table["indicator"] = comparison_table["indicator"].replace(rename_map)
+    comparison_table_en["indicator"] = comparison_table["indicator"].replace(rename_map_en)
     # convert to dictionary --> it prepares the return for a ready to pass to html output
     comparison_table = (comparison_table.to_dict(orient="records"))
-
+    comparison_table_en = (comparison_table_en.to_dict(orient="records"))
     # RETURN
-    return comparison_table
+    return comparison_table,comparison_table_en
 
 

@@ -13,7 +13,7 @@ import os
 from per_folder import process_building
 from datetime import datetime
 # PATHS
-PROJECTS_ROOT = r"SFD_2026"
+PROJECTS_ROOT = r"MURBS_2026"
 
 # NEW: updated template here 
 TEMPLATES = r"SFD_2026"
