@@ -3,6 +3,12 @@
   {
     "applicable" : true
   },
+  "Add Meter" : 
+  {
+    "applicable" : true,
+    "meter_name" : "Electricity:Facility",
+    "reporting_frequency" : "hourly"
+  },
   "AssignConstructionSetToBuilding" : 
   {
     "applicable" : true,

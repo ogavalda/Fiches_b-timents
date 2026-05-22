@@ -1,6 +1,6 @@
 {
    "created_at" : "20240927T141637Z",
-   "seed_file" : "../MR_ND_1945.osm",
+   "seed_file" : "../ID39_MR_ND_1945.osm",
    "steps" : 
    [
       {
@@ -44,6 +44,13 @@
       },
       {
          "arguments" : {},
+         "description" : "This measure adds an meter at the requested reporting frequency.",
+         "measure_dir_name" : "AddMeter",
+         "modeler_description" : "The measure just passes in the string and does not validate that it is a proper meter name. It is up to the user to know this or to look at the .mdd file from a previous simulation run.",
+         "name" : "Add Meter"
+      },
+      {
+         "arguments" : {},
          "description" : "This measure adds hourly meters for the most common energy use types.",
          "measure_dir_name" : "AddHourlyMeters",
          "modeler_description" : "This measure adds these Output:Meter electricity and gas objects: Electricity:Facility,ExteriorLights:Electricity,InteriorLights:Electricity,InteriorEquipment:Electricity,ExteriorEquipment:Electricity,Fans:Electricity,Pumps:Electricity,Heating:Electricity,Cooling:Electricity,HeatRejection:Electricity,Humidifer:Electricity,HeatRecovery:Electricity,WaterSystems:Electricity,Cogeneration:Electricity,Gas:Facility,InteriorEquipment:Gas,ExteriorEquipment:Gas,Heating:Gas,Cooling:Gas,WaterSystems:Gas,Cogeneration:Gas",
@@ -60,6 +67,6 @@
          "name" : "ExportMetertoCSV"
       }
    ],
-   "updated_at" : "20251209T030518Z",
+   "updated_at" : "20260521T124621Z",
    "weather_file" : "2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw"
 }

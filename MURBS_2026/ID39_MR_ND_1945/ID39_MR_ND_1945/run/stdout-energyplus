@@ -1,8 +1,8 @@
 ExpandObjects Started.
 No expanded file generated.
-ExpandObjects Finished. Time:     2.953
+ExpandObjects Finished. Time:     4.875
 EnergyPlus Starting
-EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.01.20 15:57
+EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.05.22 06:09
 Initializing Response Factors
 Calculating CTFs for "AQ_MURB_2024_MURB GROUND PRE 1950 6A 2"
 Calculating CTFs for "SURFACE 10 C TBD"
@@ -503,5 +503,5 @@ Continuing Simulation at 12/27/2006 for RUN PERIOD 1
 Writing tabular output file results using HTML format.
 Computing Life Cycle Costs and Reporting
 Writing final SQL reports
-EnergyPlus Run Time=00hr 01min  4.50sec
+EnergyPlus Run Time=00hr 01min 15.04sec
 EnergyPlus Completed Successfully.

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_hourly_meters</name>
   <uid>2ee535a3-90cd-4f87-9bc8-bdf31b4d12b9</uid>
-  <version_id>3fb72afd-5558-4a9b-a507-b580d6f43e25</version_id>
-  <version_modified>2025-11-17T17:09:33Z</version_modified>
+  <version_id>89d87769-9097-480e-981c-ce9c69089006</version_id>
+  <version_modified>2026-05-15T03:33:06Z</version_modified>
   <xml_checksum>9E530B22</xml_checksum>
   <class_name>AddHourlyMeters</class_name>
   <display_name>Add Hourly Meters</display_name>

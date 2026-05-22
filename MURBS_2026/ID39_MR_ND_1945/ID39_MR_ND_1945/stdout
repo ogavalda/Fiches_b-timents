@@ -1,15 +1,15 @@
 [openstudio.CLI] <-2> Setting Log Level to Debug (-2)
-[openstudio.workflow.OSWorkflow] <Debug> Removing existing run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing run directory: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run
 [openstudio.workflow.OSWorkflow] <Debug> Registering that the workflow has started with the adapter
 [openstudio.workflow.OSWorkflow] <Debug> Initialization - selected = true
 [38;2;000;128;000m
 ┌────────────────────────────────────────────────────────────────────────────────┐
 │                         Starting State Initialization                          │
 └────────────────────────────────────────────────────────────────────────────────┘[0m
-[openstudio.workflow.OSWorkflow] <Debug> The root_dir for the datapoint is C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources
-[openstudio.workflow.OSWorkflow] <Debug> Removing existing generated files directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/generated_files
-[openstudio.workflow.OSWorkflow] <Debug> Creating generated files directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/generated_files
-[openstudio.workflow.OSWorkflow] <Debug> Removing existing reports directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/reports
+[openstudio.workflow.OSWorkflow] <Debug> The root_dir for the datapoint is C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing generated files directory: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/generated_files
+[openstudio.workflow.OSWorkflow] <Debug> Creating generated files directory: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/generated_files
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing reports directory: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/reports
 [openstudio.workflow.OSWorkflow] <Info> Attempting to validate the measure workflow
 [openstudio.WorkflowJSON] <Debug> Validating step 0
 [openstudio.WorkflowJSON] <Debug> Validating step 1
@@ -17,20 +17,21 @@
 [openstudio.WorkflowJSON] <Debug> Validating step 3
 [openstudio.WorkflowJSON] <Debug> Validating step 4
 [openstudio.WorkflowJSON] <Debug> Validating step 5
+[openstudio.WorkflowJSON] <Debug> Validating step 6
 [openstudio.workflow.OSWorkflow] <Info> Validated the measure workflow
 [openstudio.workflow.OSWorkflow] <Debug> Finding and loading the seed file
 [openstudio.worklow.Util] <Info> Loading OSM model
-[openstudio.worklow.Util] <Info> Reading in OSM model C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/MR_ND_1945.osm
+[openstudio.worklow.Util] <Info> Reading in OSM model C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/ID39_MR_ND_1945.osm
 [openstudio.osversion.VersionTranslator] <Debug> Starting translation from Version 3.10.0.
-[openstudio.osversion.VersionTranslator] <Debug> Initial model has 1791 objects.
-[openstudio.osversion.VersionTranslator] <Debug> Final model has 1791 objects in IDF form.
+[openstudio.osversion.VersionTranslator] <Debug> Initial model has 1792 objects.
+[openstudio.osversion.VersionTranslator] <Debug> Final model has 1792 objects in IDF form.
 [utilities.idf.Workspace] <Debug> Workspace::isValid called.
-[openstudio.osversion.VersionTranslator] <Debug> Final model has 1791 objects in Model form.
+[openstudio.osversion.VersionTranslator] <Debug> Final model has 1792 objects in Model form.
 [openstudio.workflow.OSWorkflow] <Debug> Initialize the weather file from osw
 [openstudio.workflow.OSWorkflow] <Debug> Search for weather file defined by osw 2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.EpwFile] <Info> Found 3 ground temperature depths in the EPW file 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw'
+[openstudio.EpwFile] <Info> Found 3 ground temperature depths in the EPW file 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw'
 [openstudio.EpwFile] <Debug> No Daylightings Saving start Date
-[openstudio.EpwFile] <Info> Header start day of the week and actual start day of the week do not match in EPW file 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw'. Data will be treated as typical (TMY)
+[openstudio.EpwFile] <Info> Header start day of the week and actual start day of the week do not match in EPW file 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw'. Data will be treated as typical (TMY)
 [38;2;000;128;000m#######################Returned from State Initialization#######################[0m
 [openstudio.workflow.OSWorkflow] <Debug> OpenStudioMeasures - selected = true
 [38;2;000;128;000m
@@ -41,16 +42,16 @@
 [openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ModelMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Running step 0
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/000_AssignConstructionSetToBuilding'
-[openstudio.workflow.OSWorkflow] <Debug> Found AssignConstructionSetToBuilding at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AssignConstructionSetToBuilding/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/000_AssignConstructionSetToBuilding'
+[openstudio.workflow.OSWorkflow] <Debug> Found AssignConstructionSetToBuilding at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/AssignConstructionSetToBuilding/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: AssignConstructionSetToBuilding
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AssignConstructionSetToBuilding/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/AssignConstructionSetToBuilding/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
-[ApplicationPathHelpers] <Debug> getOpenStudioModule, szPath = 'C:\openstudioapplication-1.10.0\bin\openstudiolib.dll'
-[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/bin/openstudiolib.dll
-[ApplicationPathHelpers] <Debug> getOpenStudioModule, found 'C:/openstudioapplication-1.10.0/bin/openstudiolib.dll'
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, szPath = 'E:\programs 1 extension\Construction Engineering\openstudio\bin\openstudiolib.dll'
+[PathHelpers] <Debug> completeAndNormalize: result = E:/programs 1 extension/Construction Engineering/openstudio/bin/openstudiolib.dll
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, found 'E:/programs 1 extension/Construction Engineering/openstudio/bin/openstudiolib.dll'
 [ruby] <Debug> Found system gem abbrev 0.1.1, overrides embedded gem
 [ruby] <Debug> Found system gem base64 0.1.1, overrides embedded gem
 [ruby] <Debug> Found system gem benchmark 0.2.1, overrides embedded gem
@@ -414,14 +415,14 @@
 [openstudio.measure.OSRunner] <Info> The final default construction set for the building is Zone Pre1950 6A.
 [openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
 [openstudio.workflow.OSWorkflow] <Debug> Running step 1
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/001_TBDMeasure'
-[openstudio.workflow.OSWorkflow] <Debug> Found TBDMeasure at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/TBDMeasure/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/001_TBDMeasure'
+[openstudio.workflow.OSWorkflow] <Debug> Found TBDMeasure at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/TBDMeasure/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: TBDMeasure
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/TBDMeasure/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/TBDMeasure/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
 [openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'Thermal Bridging and Derating - TBD'
@@ -685,14 +686,14 @@
 [openstudio.measure.OSRunner] <Info> Success! No errors, no warnings - see 'tbd.out.json'
 [openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
 [openstudio.workflow.OSWorkflow] <Debug> Running step 2
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/002_SetNISTInfiltrationCorrelations'
-[openstudio.workflow.OSWorkflow] <Debug> Found SetNISTInfiltrationCorrelations at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/SetNISTInfiltrationCorrelations/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/002_SetNISTInfiltrationCorrelations'
+[openstudio.workflow.OSWorkflow] <Debug> Found SetNISTInfiltrationCorrelations at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/SetNISTInfiltrationCorrelations/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: SetNISTInfiltrationCorrelations
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/SetNISTInfiltrationCorrelations/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/SetNISTInfiltrationCorrelations/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
 [openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'SetNISTInfiltrationCorrelations'
@@ -713,14 +714,14 @@
 [openstudio.measure.OSRunner] <Info> The modeled finished with 50 infiltration objects.
 [openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
 [openstudio.workflow.OSWorkflow] <Debug> Running step 3
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/003_ReduceElectricEquipmentLoadsByPercentage'
-[openstudio.workflow.OSWorkflow] <Debug> Found ReduceElectricEquipmentLoadsByPercentage at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ReduceElectricEquipmentLoadsByPercentage/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/003_ReduceElectricEquipmentLoadsByPercentage'
+[openstudio.workflow.OSWorkflow] <Debug> Found ReduceElectricEquipmentLoadsByPercentage at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ReduceElectricEquipmentLoadsByPercentage/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: ReduceElectricEquipmentLoadsByPercentage
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ReduceElectricEquipmentLoadsByPercentage/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ReduceElectricEquipmentLoadsByPercentage/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
 [openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'Reduce Electric Equipment Loads by Percentage'
@@ -729,24 +730,42 @@
 [openstudio.workflow.OSWorkflow] <Debug> argumentMap={"demo_cost_initial_const": "false", "demolition_cost": "0", "elecequip_power_reduction_percent": "5", "expected_life": "15", "material_and_installation_cost": "0", "om_cost": "0", "om_frequency": "1", "space_type": "{161a51f0-9700-4aa1-8ba8-f2513d0eecae}", "years_until_costs_start": "0"}
 [openstudio.measure.OSRunner] <Info> The model's initial building electric equipment power was  49,278 watts, an electric equipment power density of 3.46 w/ft^2.
 [utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Chauffeau' to 'Chauffeau 1' to avoid a name conflict upon WorkspaceObject addition.
-[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Secheuse' to 'Secheuse 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Fourcuisiniere' to 'Fourcuisiniere 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Refrigerateur' to 'Refrigerateur 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Autres' to 'Autres 1' to avoid a name conflict upon WorkspaceObject addition.
 [utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Laveuse' to 'Laveuse 1' to avoid a name conflict upon WorkspaceObject addition.
 [utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Congelateur' to 'Congelateur 1' to avoid a name conflict upon WorkspaceObject addition.
 [utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Lavevaisselle' to 'Lavevaisselle 1' to avoid a name conflict upon WorkspaceObject addition.
-[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Autres' to 'Autres 1' to avoid a name conflict upon WorkspaceObject addition.
-[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Fourcuisiniere' to 'Fourcuisiniere 1' to avoid a name conflict upon WorkspaceObject addition.
-[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Refrigerateur' to 'Refrigerateur 1' to avoid a name conflict upon WorkspaceObject addition.
+[utilities.idf.Workspace] <Info> Renamed Object of type 'OS:ElectricEquipment:Definition' and named 'Secheuse' to 'Secheuse 1' to avoid a name conflict upon WorkspaceObject addition.
 [openstudio.measure.OSRunner] <Info> The model's final building electric equipment power was  46,814 watts, an electric equipment power density of 3.28 w/ft^2. Initial capital costs associated with the improvements are $0.
 [openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
 [openstudio.workflow.OSWorkflow] <Debug> Running step 4
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/004_AddHourlyMeters'
-[openstudio.workflow.OSWorkflow] <Debug> Found AddHourlyMeters at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AddHourlyMeters/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/004_AddMeter'
+[openstudio.workflow.OSWorkflow] <Debug> Found AddMeter at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/AddMeter/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Class Name: AddMeter
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/AddMeter/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
+[openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
+[openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'Add Meter'
+[openstudio.workflow.OSWorkflow] <Debug> Current step has 0 arguments
+[openstudio.workflow.OSWorkflow] <Debug> argumentMap={"meter_name": "Electricity:Facility", "reporting_frequency": "hourly"}
+[openstudio.measure.OSRunner] <Info> The model started with 0 meter objects.
+[openstudio.measure.OSRunner] <Info> Adding meter for Electricity:Facility reporting hourly
+[openstudio.measure.OSRunner] <Info> The model finished with 1 meter objects.
+[openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Running step 5
+[openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/005_AddHourlyMeters'
+[openstudio.workflow.OSWorkflow] <Debug> Found AddHourlyMeters at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/AddHourlyMeters/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: AddHourlyMeters
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/AddHourlyMeters/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/AddHourlyMeters/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ModelMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
 [OpenStudio.Measure] <Warn> ModelUserScript is deprecated, use OpenStudio::Measure::ModelMeasure instead.
@@ -756,21 +775,22 @@
 [OpenStudio.Measure] <Warn> OSArgumentVector is deprecated, use OpenStudio::Measure::OSArgumentVector instead.
 [openstudio.workflow.OSWorkflow] <Debug> argumentMap={}
 [OpenStudio.Measure] <Warn> OSArgumentVector is deprecated, use OpenStudio::Measure::OSArgumentVector instead.
-[openstudio.measure.OSRunner] <Info> The model started with 0 meter objects.
+[openstudio.measure.OSRunner] <Info> The model started with 1 meter objects.
+[openstudio.measure.OSRunner] <Warn> A meter named Electricity:Facility already exists with reporting frequency hourly. Changing frequency to hourly.
 [openstudio.measure.OSRunner] <Info> The model finished with 23 meter objects.
 [openstudio.workflow.OSWorkflow] <Debug> Step Result: Success
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
 [openstudio.workflow.OSWorkflow] <Info> Finished applying OpenStudio Measures.
 [openstudio.workflow.OSWorkflow] <Info> Beginning to execute Reporting Measures's Model Output Requests
 [openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ReportingMeasure
-[openstudio.workflow.OSWorkflow] <Debug> Running step 5
+[openstudio.workflow.OSWorkflow] <Debug> Running step 6
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV'
-[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/006_ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ExportMetertoCSV/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: ExportMetertoCSV
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ExportMetertoCSV/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ReportingMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
 [openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'ExportMetertoCSV'
@@ -806,13 +826,13 @@
 └────────────────────────────────────────────────────────────────────────────────┘[0m
 [openstudio.workflow.OSWorkflow] <Info> Beginning to collect EnergyPlus output requests from Reporting measures.
 [openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ReportingMeasure
-[openstudio.workflow.OSWorkflow] <Debug> Running step 5
+[openstudio.workflow.OSWorkflow] <Debug> Running step 6
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV'
-[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/006_ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ExportMetertoCSV/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: ExportMetertoCSV
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ExportMetertoCSV/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ReportingMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
 [openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'ExportMetertoCSV'
@@ -824,32 +844,32 @@
 [openstudio.workflow.OSWorkflow] <Info> Finished collecting EnergyPlus output requests from Reporting measures.
 [openstudio.workflow.OSWorkflow] <Info> Running EnergyPlus Preprocess
 [openstudio.workflow.OSWorkflow] <Info> Finished preprocess job for EnergyPlus simulation
-[openstudio.workflow.OSWorkflow] <Debug> Saved final IDF as C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/in.idf
+[openstudio.workflow.OSWorkflow] <Debug> Saved final IDF as C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/in.idf
 [38;2;000;128;000m#########################Returned from State PreProcess#########################[0m
 [openstudio.workflow.OSWorkflow] <Debug> EnergyPlus - selected = true
 [38;2;000;128;000m
 ┌────────────────────────────────────────────────────────────────────────────────┐
 │                           Starting State EnergyPlus                            │
 └────────────────────────────────────────────────────────────────────────────────┘[0m
-[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Original Directory: C:/openstudioapplication-1.10.0/bin
-[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing To run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
-[ApplicationPathHelpers] <Debug> getOpenStudioModule, szPath = 'C:\openstudioapplication-1.10.0\bin\openstudiolib.dll'
-[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/bin/openstudiolib.dll
-[ApplicationPathHelpers] <Debug> getOpenStudioModule, found 'C:/openstudioapplication-1.10.0/bin/openstudiolib.dll'
-[ApplicationPathHelpers] <Debug> Searching for EnergyPlus in 'C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe'
-[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe
-[ApplicationPathHelpers] <Debug> Found EnergyPlus at 'C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe'
-[PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe
-[openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> EnergyPlus executable path is C:/openstudioapplication-1.10.0/EnergyPlus/energyplus.exe
-[openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> ExpandObjects executable path is C:/openstudioapplication-1.10.0/EnergyPlus/ExpandObjects.exe
-[openstudio.workflow.OSWorkflow] <Info> Starting simulation in run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
-[openstudio.workflow.OSWorkflow] <Info> Running command '"C:/openstudioapplication-1.10.0\EnergyPlus\ExpandObjects.exe"'
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Original Directory: E:/programs 1 extension/Construction Engineering/openstudio/bin
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing To run directory: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, szPath = 'E:\programs 1 extension\Construction Engineering\openstudio\bin\openstudiolib.dll'
+[PathHelpers] <Debug> completeAndNormalize: result = E:/programs 1 extension/Construction Engineering/openstudio/bin/openstudiolib.dll
+[ApplicationPathHelpers] <Debug> getOpenStudioModule, found 'E:/programs 1 extension/Construction Engineering/openstudio/bin/openstudiolib.dll'
+[ApplicationPathHelpers] <Debug> Searching for EnergyPlus in 'E:/programs 1 extension/Construction Engineering/openstudio/EnergyPlus/energyplus.exe'
+[PathHelpers] <Debug> completeAndNormalize: result = E:/programs 1 extension/Construction Engineering/openstudio/EnergyPlus/energyplus.exe
+[ApplicationPathHelpers] <Debug> Found EnergyPlus at 'E:/programs 1 extension/Construction Engineering/openstudio/EnergyPlus/energyplus.exe'
+[PathHelpers] <Debug> completeAndNormalize: result = E:/programs 1 extension/Construction Engineering/openstudio/EnergyPlus/energyplus.exe
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> EnergyPlus executable path is E:/programs 1 extension/Construction Engineering/openstudio/EnergyPlus/energyplus.exe
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> ExpandObjects executable path is E:/programs 1 extension/Construction Engineering/openstudio/EnergyPlus/ExpandObjects.exe
+[openstudio.workflow.OSWorkflow] <Info> Starting simulation in run directory: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run
+[openstudio.workflow.OSWorkflow] <Info> Running command '"E:/programs 1 extension\Construction Engineering\openstudio\EnergyPlus\ExpandObjects.exe"'
 ExpandObjects Started.
 No expanded file generated.
-ExpandObjects Finished. Time:     2.953
-[openstudio.workflow.OSWorkflow] <Info> Running command '"C:/openstudioapplication-1.10.0\EnergyPlus\energyplus.exe" in.idf'
+ExpandObjects Finished. Time:     4.875
+[openstudio.workflow.OSWorkflow] <Info> Running command '"E:/programs 1 extension\Construction Engineering\openstudio\EnergyPlus\energyplus.exe" in.idf'
 EnergyPlus Starting
-EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.01.20 15:57
+EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.05.22 06:09
 Initializing Response Factors
 Calculating CTFs for "AQ_MURB_2024_MURB GROUND PRE 1950 6A 2"
 Calculating CTFs for "SURFACE 10 C TBD"
@@ -1350,13 +1370,13 @@ Continuing Simulation at 12/27/2006 for RUN PERIOD 1
 Writing tabular output file results using HTML format.
 Computing Life Cycle Costs and Reporting
 Writing final SQL reports
-EnergyPlus Run Time=00hr 01min  4.50sec
+EnergyPlus Run Time=00hr 01min 15.04sec
 EnergyPlus Completed Successfully.
 [openstudio.workflow.OSWorkflow] <Info> EnergyPlus returned '0'
 RunEnergyPlus: Completed Successfully with [38;2;255;000;000m0 Fatal Errors, [0m[38;2;255;165;000m0 Severe Errors, [0m[38;2;255;255;000m165 Warnings.[0m
 [openstudio.workflow.OSWorkflow] <Info> EnergyPlus finished with 7680 warnings and 0 severe errors
 [openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> Removing any copied EnergyPlus files
-[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing Current Directory back to: C:/openstudioapplication-1.10.0/bin
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing Current Directory back to: E:/programs 1 extension/Construction Engineering/openstudio/bin
 [38;2;000;128;000m#########################Returned from State EnergyPlus#########################[0m
 [openstudio.workflow.OSWorkflow] <Debug> ReportingMeasures - selected = true
 [38;2;000;128;000m
@@ -1365,13 +1385,13 @@ RunEnergyPlus: Completed Successfully with [38;2;255;000;000m0 Fatal Errors, [
 └────────────────────────────────────────────────────────────────────────────────┘[0m
 [openstudio.workflow.OSWorkflow] <Info> Beginning to execute Reporting Measures.
 [openstudio.workflow.OSWorkflow] <Debug> Finding measures of type ReportingMeasure
-[openstudio.workflow.OSWorkflow] <Debug> Running step 5
+[openstudio.workflow.OSWorkflow] <Debug> Running step 6
 [openstudio.workflow.OSWorkflow] <Debug> Find model's weather file and update LastEpwFilePath
-[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
-[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV'
-[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb'
+[openstudio.workflow.OSWorkflow] <Debug> Search for weather file C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/files/2020s_CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016_modified.epw
+[openstudio.workflow.OSWorkflow] <Debug> Creating run directory for measure in 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/006_ExportMetertoCSV'
+[openstudio.workflow.OSWorkflow] <Debug> Found ExportMetertoCSV at primaryScriptPath: 'C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ExportMetertoCSV/measure.rb'
 [openstudio.workflow.OSWorkflow] <Debug> Class Name: ExportMetertoCSV
-[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/measures/ExportMetertoCSV/measure.rb
+[openstudio.workflow.OSWorkflow] <Debug> Measure Script Path: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/measures/ExportMetertoCSV/measure.rb
 [openstudio.workflow.OSWorkflow] <Debug> Measure Type: ReportingMeasure
 [openstudio.workflow.OSWorkflow] <Debug> Measure Language: Ruby
 [openstudio.workflow.OSWorkflow] <Debug> measure->name()= 'ExportMetertoCSV'
@@ -1395,15 +1415,16 @@ SELECT dt.VariableValue, Time.Year, Time.Month, Time.Day, Time.Interval FROM Rep
 │                           Starting State PostProcess                           │
 └────────────────────────────────────────────────────────────────────────────────┘[0m
 [openstudio.workflow.OSWorkflow] <Info> Gathering reports
-[openstudio.workflow.Util] <Info> Run directory: C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run
-[openstudio.workflow.Util] <Info> Reports directoryC:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources
-[openstudio.workflow.Util] <Info> Saving EnergyPlus HTML report to C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/reports/eplustbl.html
-[openstudio.workflow.Util] <Info> Saving report C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/005_ExportMetertoCSV/report_ElectricityFacility_Hourly.csv to C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/reports/export_meterto_csv_report_ElectricityFacility_Hourly.csv
-[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/000_AssignConstructionSetToBuilding
-[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/001_TBDMeasure
-[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/002_SetNISTInfiltrationCorrelations
-[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/003_ReduceElectricEquipmentLoadsByPercentage
-[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/m_hozaye/AppData/Local/Temp/osmodel-17ec-9786-e84a-a601-1768939011-0/resources/run/004_AddHourlyMeters
+[openstudio.workflow.Util] <Info> Run directory: C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run
+[openstudio.workflow.Util] <Info> Reports directoryC:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources
+[openstudio.workflow.Util] <Info> Saving EnergyPlus HTML report to C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/reports/eplustbl.html
+[openstudio.workflow.Util] <Info> Saving report C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/006_ExportMetertoCSV/report_ElectricityFacility_Hourly.csv to C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/reports/export_meterto_csv_report_ElectricityFacility_Hourly.csv
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/000_AssignConstructionSetToBuilding
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/001_TBDMeasure
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/002_SetNISTInfiltrationCorrelations
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/003_ReduceElectricEquipmentLoadsByPercentage
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/004_AddMeter
+[openstudio.workflow.Util] <Info> Removing empty directory C:/Users/Mahmoud/AppData/Local/Temp/osmodel-7e2e-b66f-d5cc-ae72-1779419322-0/resources/run/005_AddHourlyMeters
 [openstudio.workflow.OSWorkflow] <Info> Finished gathering reports
 [38;2;000;128;000m########################Returned from State PostProcess#########################[0m
 [openstudio.workflow.OSWorkflow] <Debug> Cleanup - selected = true

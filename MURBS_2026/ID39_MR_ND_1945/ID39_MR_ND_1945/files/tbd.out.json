@@ -1,8 +1,8 @@
 {
   "schema": "https://github.com/rd2/tbd/blob/master/tbd.schema.json",
-  "description": "MR_ND_1945.osm",
+  "description": "ID39_MR_ND_1945.osm",
   "log": {
-    "date": "2026-01-20 15:57:10 -0500",
+    "date": "2026-05-22 06:09:35 +0300",
     "status": "Success! No errors, no warnings",
     "results": [
       "RSi derated by -23.8% : Surface 10",

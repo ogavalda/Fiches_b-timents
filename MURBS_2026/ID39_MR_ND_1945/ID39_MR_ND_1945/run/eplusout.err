@@ -1,4 +1,4 @@
-Program Version,EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.01.20 15:57,
+Program Version,EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.05.22 06:09,
    ** Warning ** ProcessScheduleInput: Schedule:Day:Interval = FRACTION LATENT DEFAULTDAY - 0.05
    **   ~~~   ** Schedule Type Limits Name is empty.
    **   ~~~   ** Schedule will not be validated.
@@ -553,4 +553,4 @@ Program Version,EnergyPlus, Version 25.1.0-1c11a3d85f, YMD=2026.01.20 15:57,
    *************
    ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
    ************* EnergyPlus Sizing Error Summary. During Sizing: 28 Warning; 0 Severe Errors.
-   ************* EnergyPlus Completed Successfully-- 7680 Warning; 0 Severe Errors; Elapsed Time=00hr 01min  4.50sec
+   ************* EnergyPlus Completed Successfully-- 7680 Warning; 0 Severe Errors; Elapsed Time=00hr 01min 15.04sec

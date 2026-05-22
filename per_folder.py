@@ -8,6 +8,8 @@ Code contributors: Kato Vanroy, kato.vanroy@polymtl.ca
                    Oriol Gavalda, oriol.gavalda@concordia.ca
 """
 import os
+
+from config import team_id
 from core import *
 from jinja2 import Environment, FileSystemLoader
 from geomeppy import IDF
@@ -16,7 +18,7 @@ from core_2 import (
     load_households,
     load_ope,
     process_energy_data,
-    plot_banana
+    plot_banana, get_hvac_system, size
 )
 import shutil
 from Daily_profile import *
@@ -36,15 +38,17 @@ from helpers.create_plots import (
 from helpers.read_simulation import ReadSimulation # class to help load simulation results (query sql)
 from helpers.extract_info import extract_construction_summary as extract_construction_summary_KV
 
-#paths : concordia
-weather_df = load_weather(r"MURBS_2026\outdoor_temperature_no_year.csv")
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
-ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
 
-#paths : poly
-#weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
-#households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
-#ope_df = load_ope(r"SFD_2026\dataOPE.csv")
+if team_id != 'poly':
+
+    #paths : concordia
+    weather_df = load_weather(r"MURBS_2026\outdoor_temperature_no_year.csv")
+    ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
+else:
+    #paths : poly
+    weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
+    ope_df = load_ope(r"SFD_2026\dataOPE.csv")
 
 # --- Translation dictionaries (EN → FR) ---
 TRANSLATIONS_FR = {
@@ -101,6 +105,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         stories = "1"
 
     else:
+
+
         # TODO : add better casting (since now it'll be in a table)
         # sector
         # subtype (Multi-unit)
@@ -109,11 +115,11 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         parts = folder_name.split("_")
         building_sector = 'Residential'
         building_id = parts[0]
-        building_type = parts[1]
-        building_subtype = 'subtype'
+        building_type = "Multi-Unit"
+        building_subtype = size(parts[1])
         building_name = parts[2]
         building_vintage = parts[3]
-        stories = "Mid-Rise"
+
 
     run_path = os.path.join(building_path, f"{folder_name}/run")
     output_path = os.path.join(building_path, "output")
@@ -159,11 +165,29 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     end_uses = extract_end_uses(html)
     wwr = compute_wwr_new(html).values.tolist()
     # TODO : make function compatible with both model structures
+    construction_data_filter = [
+        'Walls Ext [W/m2-K]',
+        'Walls Int [W/m2-K]',
+        'Roof [W/m2-K]',
+        'Slabs [W/m2-K]',
+        'Infiltration [m^3/h-m^2]'
+    ]
+    glazing_data_filter = [
+        'SHGC',
+        'Glazing [W/m2-K]'
+    ]
+
+
+
     if team_id=='poly':
         # interior walls/infiltration cause issues with our models
-        construction_data = extract_construction_summary_KV(html)
+        construction_data_unfiltered = extract_construction_summary_KV(html)
+        construction_data = {k: v for k, v in construction_data_unfiltered.items() if k in construction_data_filter}
+        glazing_data = {k: v for k, v in construction_data_unfiltered.items() if k in glazing_data_filter}
     else:
-        construction_data = extract_construction_summary(html, json_path)
+        construction_data_unfiltered = extract_construction_summary(html, json_path)
+        construction_data = {k: v for k, v in construction_data_unfiltered.items() if k in construction_data_filter}
+        glazing_data = {k: v for k, v in construction_data_unfiltered.items() if k in glazing_data_filter}
 
     # --- Scalar KPIs ---
     total_energy = energy.get("Total Energy [kWh]", 0)
@@ -204,7 +228,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # NEW : change process energy to use a simulation object (relying on sql) to fetch electricity profile 
     # + added different temperature profiles for OPE 
     # --- Banana / PRISM curves ---
-    df, df_hourly = process_energy_data_KV(
+    df, df_hourly, comparison_table = process_energy_data_KV(
         f"{building_path}/{folder_name}",
         households_dict, ope_df, weather_df, 
         sim_object, 
@@ -232,27 +256,20 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path,    "eng")
     plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path_fr, "fr")
 
-    # TODO: split into separate summer/winter images when the function supports it
-    # summer_day_path    = os.path.join(output_path, "daily_summer.png")
-    # summer_day_path_fr = os.path.join(output_path, "daily_summer_fr.png")
-    # winter_day_path    = os.path.join(output_path, "daily_winter.png")
-    # winter_day_path_fr = os.path.join(output_path, "daily_winter_fr.png")
-    # plot_daily_profiles_ope_vs_meter(df_hourly, summer_day_path,    "eng", season="summer")
-    # plot_daily_profiles_ope_vs_meter(df_hourly, summer_day_path_fr, "fr",  season="summer")
-    # plot_daily_profiles_ope_vs_meter(df_hourly, winter_day_path,    "eng", season="winter")
-    # plot_daily_profiles_ope_vs_meter(df_hourly, winter_day_path_fr, "fr",  season="winter")
 
     # TODO: extract glazing properties when function is implemented
     # glazing_data = extract_glazing_data(html, json_path)
-    glazing_data = {}
+
 
     # TODO: extract mechanical systems when function is implemented
     # mechanical_systems = extract_mechanical_systems(html, json_path)
-    mechanical_systems = {}
+    # mapping csv path --currently it is in the SD_2026 folder undr name "hvac_mapping.csv"
+    hvac_system_path = r"SFD_2026\hvac_mapping.csv"
+    hvac_system = get_hvac_system(parts[1],hvac_system_path)
 
     # TODO: build comparison table when reference data is available
-    # comparison_table = build_comparison_table(energy, energy_intensity, construction_data)
-    comparison_table = []
+    # The comparison table was embedded in the process_energy_data() function,
+    # and it returns the comparison table as dictionary
 
     # --- Logos ---
 
@@ -273,7 +290,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         wwr=wwr,
         construction_data=construction_data,
         glazing_data=glazing_data,
-        mechanical_systems=mechanical_systems,
+        hvac_system=hvac_system,
         energy=energy,
         end_uses=end_uses,
         energy_intensity=energy_intensity,
@@ -291,6 +308,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         figure_winter_day="daily_profiles.png",   # using combined plot for now
         daily_chart2_winter = "daily_profiles_winter.png", 
         daily_chart2_summer = "daily_profiles_summer.png"
+
     )
 
     # TODO : translate new table entries
@@ -351,3 +369,30 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     
     return os.path.join(output_path, "Fiche energie.html")
 
+
+
+def run_single_building():
+    if team_id != "poly":
+
+        return process_building(
+        building_path=r"MURBS_2026/ID39_MR_ND_1945",
+        template_path=r"SFD_2026",
+        idd_path=r"C:\EnergyPlusV25-2-0\Energy+.idd",
+        operation_folder=r"Operation cards",
+        view_folder=r"View cards",
+        team_id=team_id
+                )
+
+    else:
+        return process_building(
+        building_path=r"SFD_2026/Detached-1Floor-Post1980_1985-2012",
+        template_path=r"SFD_2026",
+        idd_path=r"C:\EnergyPlusV25-2-0\Energy+.idd",
+        operation_folder=r"Operation cards",
+        view_folder=r"View cards",
+        team_id=team_id
+                )
+
+
+if __name__ == "__main__":
+    print(run_single_building())

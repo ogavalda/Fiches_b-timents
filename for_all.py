@@ -27,7 +27,8 @@ view_folder = r"View cards"
 operation_folder = r"Operation cards"
 
 ### differentiate poly/concordia functions
-team_id = 'poly'
+from config import team_id
+
 
 
 def run_all():

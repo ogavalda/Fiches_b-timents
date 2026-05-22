@@ -18,11 +18,24 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
 
 .page { width:210mm; height:297mm; overflow:hidden; background:var(--bg); padding:7mm 9mm 6mm; page-break-after:always; display:flex; flex-direction:column; gap:var(--gap); }
 
+
+.table-subtitle td {
+  
+  color:var(--accent);
+  font-size:7px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  padding:4px 5px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+
+
 /* TITLE */
 .title-bar { background:var(--accent); color:white; border-radius:var(--radius); padding:8px 13px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
 .title-label { font-size:7px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; opacity:.7; }
 .title-name  { font-size:14px; font-weight:600; line-height:1.2; }
-.title-sub   { font-size:8px; opacity:.65; margin-top:1px; }
 .title-meta  { display:flex; gap:14px; align-items:center; }
 .meta-item   { display:flex; flex-direction:column; align-items:flex-end; gap:1px; }
 .meta-label  { font-size:6.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; opacity:.65; }
@@ -42,13 +55,14 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
 .panel-title.green { color:var(--accent2); border-color:var(--accent2-lt); }
 
 /* TABLE */
-table { width:100%; border-collapse:collapse; font-family:var(--mono); font-size:9.5px; }
+table { width:100%; border-collapse:collapse; table-layout:fixed; font-family:var(--mono); font-size:9.5px; }
 thead th { background:var(--accent-lt); color:var(--accent); font-size:7.5px; font-weight:500; padding:3px 5px; text-transform:uppercase; letter-spacing:.07em; text-align:left; }
 thead th.green-head { background:var(--accent2-lt); color:var(--accent2); }
-td { padding:2.5px 5px; border-bottom:1px solid var(--rule-light); vertical-align:middle; }
+td, th { padding:2.5px 5px; border-bottom:1px solid var(--rule-light); vertical-align:middle; word-wrap:break-word; overflow-wrap:break-word; word-break:break-word; }
 tbody tr:last-child td { border-bottom:none; }
-td:first-child { color:var(--ink-mid); font-size:9px; font-family:var(--sans); width:60%; }
-td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
+th:first-child, td:first-child { width:55%; color:var(--ink-mid); font-size:9px; font-family:var(--sans); }
+th:not(:first-child), td:not(:first-child) { width: 14px; }
+td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
 /* IMAGE FRAMES */
 .img-frame { width:100%; border:1px solid var(--rule); border-radius:3px; background:#f7f8fa; overflow:hidden; margin-bottom:3px; display:flex; align-items:center; justify-content:center; }
@@ -59,7 +73,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
 /* fluid: fills flex parent */
 .img-frame.fluid { height:100%; min-height:0; }
 
-.caption { font-size:7px; color:var(--ink-light); font-style:italic; text-align:center; flex-shrink:0; }
+.caption { font-size:8px; color:var(--ink-light); font-style:regular; text-align:left; flex-shrink:0; }
 
 /* KPI STRIP */
 .kpi-row { display:flex; gap:var(--gap); flex-shrink:0; }
@@ -75,6 +89,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
 .two-col { display:grid; gap:var(--gap); }
 .split-5050 { grid-template-columns: 1fr 1fr; }
 .split-4060 { grid-template-columns: 4fr 6fr; }
+.split-page2 { grid-template-columns: 57% 43%; }
 .fill { flex:1; min-height:0; }
 .col { display:flex; flex-direction:column; gap:var(--gap); min-height:0; }
 
@@ -100,63 +115,62 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
     <div>
       <div class="title-label">Building Energy Card · Archetype-QC</div>
       <div class="title-name">ND</div>
-      <div class="title-sub">Multi-Unit Residential Building · 6A</div>
     </div>
     <div class="title-meta">
-      <div class="meta-item"><span class="meta-label">Vintage</span><span class="meta-value">1945</span></div>
-      <div class="meta-divider"></div>
       <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">2026-05</span></div>
       <div class="meta-divider"></div>
-      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-05-14</span></div>
+      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-05-22</span></div>
     </div>
   </div>
 
   <div class="section-label">
-    <span class="section-label-text">Section 2 — Model Description</span>
+    <span class="section-label-text">Section 1 — Model Description</span>
     <div class="section-label-line"></div>
   </div>
 
-  <!-- FULL-WIDTH: model description -->
-  <div class="panel">
-    <div class="panel-title">Model Description</div>
-    <p class="description-text">Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.</p>
-  </div>
-
-  <!-- TWO-COL: left=3D+characteristics, right=end-uses table+monthly chart -->
+  <!-- TWO-COL: left=Building description+3D+characteristics, right=end-uses table+monthly chart+daily plot sim-->
   <div class="two-col split-4060 fill">
 
-    <!-- LEFT: square 3D model + building characteristics -->
+    <!-- LEFT: Building description + square 3D model + building characteristics -->
     <div class="col">
+
+      <div class="panel">
+        <div class="panel-title">Building Description</div>
+        <table><tbody>
+          <tr><td>Sector</td><td class="val">Residential </td></tr>
+          <tr><td>Building Type</td><td class="val">Multi-Unit</td></tr>
+          <tr><td>Building Sub Type</td><td class="val">MID Rise</td></tr>
+          <tr><td>Vintage</td><td class="val">1945</td></tr>
+        </tbody></table>
+      </div>
 
       <div class="panel" style="flex-shrink:0;">
         <div class="panel-title">3D Model</div>
         <div class="img-frame square">
           <img src="geometry.png" alt="3D Model">
         </div>
-        <div class="caption">Geometric visualization of the model</div>
+        <div class="caption">Three-dimensional geometric representation of the building model used for energy simulation and performance analysis.</div>
       </div>
 
       <div class="panel">
         <div class="panel-title">Building Characteristics</div>
         <table><tbody>
           <tr><td>Floor Area</td><td class="val">1325.0 m²</td></tr>
-          <tr><td>Stories</td><td class="val">5</td></tr>
           <tr><td>Climate Zone</td><td class="val">6A</td></tr>
           <tr><td>Weather</td><td class="val">outdoor_temperature_no_year</td></tr>
+          <tr><td>HVAC System</td><td class="val">Central Electric Heat Pump System</td></tr>
         </tbody></table>
       </div>
 
-      <div class="panel">
-        <div class="panel-title">Window-to-Wall Ratio (WWR)</div>
-        <table>
-          <thead><tr><th>Façade</th><th>WWR</th></tr></thead>
-          <tbody><tr><td>North</td><td class="val">0.3</td></tr><tr><td>South</td><td class="val">0.3</td></tr><tr><td>East</td><td class="val">0.3</td></tr><tr><td>West</td><td class="val">0.3</td></tr></tbody>
-        </table>
-      </div>
+      
 
       <div class="panel">
-        <div class="panel-title">Envelope — Insulation &amp; Air Tightness</div>
+        <div class="panel-title">Envelope</div>
         <table><tbody>
+          <tr class="table-subtitle">
+            <td colspan="2">Insulation & Air Tightness</td>
+          </tr>
+
           
           <tr><td>Walls Ext [W/m2-K]</td><td class="val">1.13</td></tr>
           
@@ -166,15 +180,33 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
           
           <tr><td>Slabs [W/m2-K]</td><td class="val">1.14</td></tr>
           
+          <tr><td>Infiltration [m^3/h-m^2]</td><td class="val">13.5</td></tr>
+          
+
+          <tr class="table-subtitle">
+            <td colspan="2">Glazing</td>
+          </tr>
+
+          
           <tr><td>Glazing [W/m2-K]</td><td class="val">3.32</td></tr>
           
           <tr><td>SHGC</td><td class="val">0.66</td></tr>
           
-          <tr><td>Infiltration [m^3/h-m^2]</td><td class="val">13.5</td></tr>
           
+          <tr class="table-subtitle">
+            <td colspan="2">WWR</td>
+          </tr>
+
+          <tbody><tr><td>Average</td><td class="val">30.0</td></tr></tbody>
+
+
+
+
+
         </tbody></table>
       </div>
 
+      
     </div>
 
     <!-- RIGHT: annual end-uses + monthly chart (grows) + KPI summary -->
@@ -193,15 +225,23 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
         <div class="img-frame fluid">
           <img src="monthly.png" alt="Monthly consumption">
         </div>
-        <div class="caption">Figure — Disaggregated monthly profile by end use</div>
+        <div class="caption">Monthly energy consumption breakdown by end use, showing the contribution of heating, cooling, lighting, domestic hot water, plug loads, and auxiliary systems throughout the year.</div>
       </div>
 
       <div class="panel grow">
-        <div class="panel-title">Monthly Consumption by End Use (OPE)</div>
+        <div class="panel-title">Typical daily consumption - Winter</div>
         <div class="img-frame fluid">
-          <img src="monthly.png" alt="Monthly consumption OPE">
+          <img src="daily_profiles1_winter.png" alt="Typical daily consumption - winter">
         </div>
-        <div class="caption">Figure — Disaggregated monthly profile by end use (OPE)</div>
+        <div class="caption">Stacked daily winter energy consumption profile showing the contribution of heating, lighting, domestic hot water, plug loads, and auxiliary systems throughout a typical winter day.</div>
+      </div>
+
+            <div class="panel grow">
+        <div class="panel-title">Typical daily consumption - Summer</div>
+        <div class="img-frame fluid">
+          <img src="daily_profiles1_summer.png" alt="Typical daily consumption - summer">
+        </div>
+        <div class="caption">Stacked daily summer energy consumption profile showing the contribution of cooling, lighting, domestic hot water, plug loads, and auxiliary systems throughout a typical summer day.</div>
       </div>
 
     </div>
@@ -233,7 +273,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
 
   <div class="page-footer">
     <span>Building Energy Card Archetype-QC · Automated Report</span>
-    <span>ND · 2026-05-14</span>
+    <span>ND · 2026-05-22</span>
     <span class="page-num">1 / 2</span>
   </div>
 
@@ -248,21 +288,34 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
     <div class="section-label-line"></div>
   </div>
 
-  <!-- FULL-WIDTH PLACEHOLDER TABLE -->
-  <div class="panel">
-    <div class="panel-title">Summary Table — [To be defined]</div>
-    <div class="placeholder" style="min-height:60px;">
-      <p class="placeholder-text">Placeholder — table content to be defined.<br>Add columns and rows as needed.</p>
+  <!-- top middle: typical days -->
+  <div class="col">
+      <div class="panel">
+        <div class="panel-title">Typical Day — Winter</div>
+        <div class="img-frame">
+          <img src="daily_profiles_winter.png" alt="Winter day">
+        </div>
+        <div class="caption">Winter daily consumption profile comparing simulated and measured hourly energy use. Red lines represent individual winter days from the model, the red dashed line indicates the average simulated profile, and the blue line shows measured data for comparison. The left plot represents weekdays, while the right plot represents weekends.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Typical Day — Summer</div>
+        <div class="img-frame">
+          <img src="daily_profiles_summer.png" alt="Summer day">
+        </div>
+        <div class="caption">Summer daily consumption profile comparing simulated and measured hourly energy use. Red lines represent individual winter days from the model, the red dashed line indicates the average simulated profile, and the blue line shows measured data for comparison. The left plot represents weekdays, while the right plot represents weekends.</div>
+      </div>
     </div>
-  </div>
 
-  <!-- TWO-COL: left=PRISM, right=typical days -->
-  <div class="two-col split-5050" style="gap:var(--gap); margin-top:0;">
+
+  <!-- TWO-COL: left=PRISM, right=kpi table -->
+  <div class="two-col split-page2" style="gap:var(--gap); margin-top:0;">
+    
+    
 
     <!-- LEFT: PRISM curve -->
     <div class="col">
       <div class="section-label">
-        <span class="section-label-text">Section 4 — Comparison with Reference Data</span>
+        <span class="section-label-text">Section 3 — Comparison with Reference Data</span>
         <div class="section-label-line"></div>
       </div>
       <div class="panel">
@@ -270,34 +323,94 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
         <div class="img-frame">
           <img src="banana.png" alt="PRISM Curve">
         </div>
-        <div class="caption">Figure — PRISM Curve · Model vs. measured data</div>
+        <div class="caption">PRISM curve comparing simulated (OPE) and measured energy consumption as a function of outdoor temperature, illustrating the relationship between weather conditions and building energy demand across the year.</div>
       </div>
-      
     </div>
 
-    <!-- RIGHT: typical days -->
-    <div class="col">
-      <div class="panel">
-        <div class="panel-title">Typical Day — Summer</div>
-        <div class="img-frame">
-          <img src="daily_profiles.png" alt="Summer day">
-        </div>
-        <div class="caption">Hourly consumption profile — summer day</div>
-      </div>
-      <div class="panel">
-        <div class="panel-title">Typical Day — Winter</div>
-        <div class="img-frame">
-          <img src="daily_profiles.png" alt="Winter day">
-        </div>
-        <div class="caption">Hourly consumption profile — winter day</div>
-      </div>
+    <div class="panel">
+    
+    <div class="panel">
+      <div class="panel-title green">Comparison Table — Key Indicators</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th class="green-head">Model</th>
+            <th class="green-head">Reference</th>
+            <th class="green-head">Delta</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+          <tr>
+            <td>Conso_annuelle_electricite_kWh</td>
+            <td class="val">16086.08</td>
+            <td class="val">16587.18</td>
+            <td class="val">-501.1</td>
+          </tr>
+          
+          <tr>
+            <td>Conso_base_electricite_kWhParJour</td>
+            <td class="val">19.74</td>
+            <td class="val">20.36</td>
+            <td class="val">-0.6</td>
+          </tr>
+          
+          <tr>
+            <td>Pente_chauffage_electricite_WparK</td>
+            <td class="val">-133.33</td>
+            <td class="val">-127.08</td>
+            <td class="val">-6.2</td>
+          </tr>
+          
+          <tr>
+            <td>Pente_climatisation_electricite_WparK</td>
+            <td class="val">41.31</td>
+            <td class="val">43.18</td>
+            <td class="val">-1.9</td>
+          </tr>
+          
+          <tr>
+            <td>Pointe_hiver_am_kW</td>
+            <td class="val">7.34</td>
+            <td class="val">6.77</td>
+            <td class="val">0.6</td>
+          </tr>
+          
+          <tr>
+            <td>Pointe_h_hiver_am</td>
+            <td class="val">7.0</td>
+            <td class="val">6.0</td>
+            <td class="val">1.0</td>
+          </tr>
+          
+          <tr>
+            <td>Pointe_hiver_pm_kW</td>
+            <td class="val">6.42</td>
+            <td class="val">6.55</td>
+            <td class="val">-0.1</td>
+          </tr>
+          
+          <tr>
+            <td>Pointe_h_hiver_pm</td>
+            <td class="val">17.0</td>
+            <td class="val">20.0</td>
+            <td class="val">-3.0</td>
+          </tr>
+          
+        </tbody>
+      </table>
     </div>
+    
+
+    
 
   </div>
 
   <div class="page-footer">
     <span>Building Energy Card Archetype-QC · Automated Report</span>
-    <span>ND · 2026-05-14</span>
+    <span>ND · 2026-05-22</span>
     <span class="page-num">2 / 2</span>
   </div>
 

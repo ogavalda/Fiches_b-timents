@@ -22,7 +22,6 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
 .title-bar { background:var(--accent); color:white; border-radius:var(--radius); padding:8px 13px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
 .title-label { font-size:7px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; opacity:.7; }
 .title-name  { font-size:14px; font-weight:600; line-height:1.2; }
-.title-sub   { font-size:8px; opacity:.65; margin-top:1px; }
 .title-meta  { display:flex; gap:14px; align-items:center; }
 .meta-item   { display:flex; flex-direction:column; align-items:flex-end; gap:1px; }
 .meta-label  { font-size:6.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; opacity:.65; }
@@ -100,33 +99,35 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
     <div>
       <div class="title-label">Building Energy Card · Archetype-QC</div>
       <div class="title-name">name</div>
-      <div class="title-sub">Multi-Unit Residential Building · 6A</div>
     </div>
     <div class="title-meta">
-      <div class="meta-item"><span class="meta-label">Vintage</span><span class="meta-value">vintage</span></div>
-      <div class="meta-divider"></div>
       <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">2026-05</span></div>
       <div class="meta-divider"></div>
-      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-05-19</span></div>
+      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-05-22</span></div>
     </div>
   </div>
 
   <div class="section-label">
-    <span class="section-label-text">Section 2 — Model Description</span>
+    <span class="section-label-text">Section 1 — Model Description</span>
     <div class="section-label-line"></div>
   </div>
 
-  <!-- FULL-WIDTH: model description -->
-  <div class="panel">
-    <div class="panel-title">Model Description</div>
-    <p class="description-text">Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.</p>
-  </div>
-
-  <!-- TWO-COL: left=3D+characteristics, right=end-uses table+monthly chart -->
+  <!-- TWO-COL: left=Building description+3D+characteristics, right=end-uses table+monthly chart+daily plot sim-->
   <div class="two-col split-4060 fill">
 
-    <!-- LEFT: square 3D model + building characteristics -->
+    <!-- LEFT: Building description + square 3D model + building characteristics -->
     <div class="col">
+
+      <div class="panel">
+        <div class="panel-title">Building Description</div>
+        <table><tbody>
+          <tr><td>Sector</td><td class="val">Residential </td></tr>
+          <tr><td>Building Type</td><td class="val">Single Family</td></tr>
+          <tr><td>Building Sub Type</td><td class="val">Detached</td></tr>
+          <tr><td>Size/Nb. Floors</td><td class="val">0</td></tr>
+          <tr><td>Vintage</td><td class="val">1985-2012</td></tr>
+        </tbody></table>
+      </div>
 
       <div class="panel" style="flex-shrink:0;">
         <div class="panel-title">3D Model</div>
@@ -140,7 +141,6 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
         <div class="panel-title">Building Characteristics</div>
         <table><tbody>
           <tr><td>Floor Area</td><td class="val">270.0 m²</td></tr>
-          <tr><td>Stories</td><td class="val">0</td></tr>
           <tr><td>Climate Zone</td><td class="val">6A</td></tr>
           <tr><td>Weather</td><td class="val">outdoor_temperature_no_year</td></tr>
         </tbody></table>
@@ -149,8 +149,8 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
       <div class="panel">
         <div class="panel-title">Window-to-Wall Ratio (WWR)</div>
         <table>
-          <thead><tr><th>Façade</th><th>WWR</th></tr></thead>
-          <tbody><tr><td>North</td><td class="val">0.13019999999999998</td></tr><tr><td>South</td><td class="val">0.15130000000000002</td></tr><tr><td>East</td><td class="val">0.1018</td></tr><tr><td>West</td><td class="val">0.15130000000000002</td></tr></tbody>
+          <thead><tr><th>Façade</th><th>WWR [%]</th></tr></thead>
+          <tbody><tr><td>Average</td><td class="val">13.02</td></tr></tbody>
         </table>
       </div>
 
@@ -197,11 +197,19 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
       </div>
 
       <div class="panel grow">
-        <div class="panel-title">Monthly Consumption by End Use (OPE)</div>
+        <div class="panel-title">Typical daily consumption - winter</div>
         <div class="img-frame fluid">
-          <img src="monthly.png" alt="Monthly consumption OPE">
+          <img src="daily_profiles1_winter.png" alt="Typical daily consumption - winter">
         </div>
-        <div class="caption">Figure — Disaggregated monthly profile by end use (OPE)</div>
+        <div class="caption">Figure — Typical daily consumption - winter</div>
+      </div>
+
+            <div class="panel grow">
+        <div class="panel-title">Typical daily consumption - winter</div>
+        <div class="img-frame fluid">
+          <img src="daily_profiles1_summer.png" alt="Typical daily consumption - summer">
+        </div>
+        <div class="caption">Figure — Typical daily consumption - winter</div>
       </div>
 
     </div>
@@ -233,7 +241,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
 
   <div class="page-footer">
     <span>Building Energy Card Archetype-QC · Automated Report</span>
-    <span>name · 2026-05-19</span>
+    <span>name · 2026-05-22</span>
     <span class="page-num">1 / 2</span>
   </div>
 
@@ -273,23 +281,31 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
         <div class="caption">Figure — PRISM Curve · Model vs. measured data</div>
       </div>
       
+      <div class="panel">
+        <div class="panel-title green">Comparison Table — Key Indicators</div>
+        <table>
+          <thead><tr><th>Indicator</th><th class="green-head">Model</th><th class="green-head">Reference</th><th class="green-head">Delta</th></tr></thead>
+          <tbody><tr><td>Conso_annuelle_electricite_kWh</td><td class="val">21785.52</td><td class="val">20983.84</td><td class="val">801.7</td></tr><tr><td>Conso_annuelle_gaz_kWh</td><td class="val">nan</td><td class="val">nan</td><td class="val">nan</td></tr><tr><td>Conso_annuelle_mazout_kWh</td><td class="val">nan</td><td class="val">nan</td><td class="val">nan</td></tr><tr><td>Conso_annuelle_bois_granules_kWh</td><td class="val">nan</td><td class="val">nan</td><td class="val">nan</td></tr><tr><td>Conso_base_electricite_kWhParJour</td><td class="val">27.86</td><td class="val">26.63</td><td class="val">1.2</td></tr><tr><td>Pente_chauffage_electricite_WparK</td><td class="val">-147.33</td><td class="val">-136.0</td><td class="val">-11.3</td></tr><tr><td>Pente_climatisation_electricite_WparK</td><td class="val">74.92</td><td class="val">52.56</td><td class="val">22.4</td></tr><tr><td>Pente_chauffage_gaz_WparK</td><td class="val">nan</td><td class="val">nan</td><td class="val">nan</td></tr><tr><td>Pointe_hiver_am_kW</td><td class="val">10.5</td><td class="val">7.06</td><td class="val">3.4</td></tr><tr><td>Pointe_h_hiver_am</td><td class="val">8.0</td><td class="val">7.0</td><td class="val">1.0</td></tr><tr><td>Pointe_hiver_pm_kW</td><td class="val">7.61</td><td class="val">6.51</td><td class="val">1.1</td></tr><tr><td>Pointe_h_hiver_pm</td><td class="val">12.0</td><td class="val">17.0</td><td class="val">-5.0</td></tr><tr><td>Pointe_ete_am_kW</td><td class="val">2.76</td><td class="val">1.78</td><td class="val">1.0</td></tr><tr><td>Pointe_h_ete_am</td><td class="val">11.0</td><td class="val">11.0</td><td class="val">0.0</td></tr><tr><td>Pointe_ete_pm_kW</td><td class="val">2.73</td><td class="val">1.97</td><td class="val">0.8</td></tr><tr><td>Pointe_h_ete_pm</td><td class="val">12.0</td><td class="val">18.0</td><td class="val">-6.0</td></tr><tr><td>EcartType_Quotidien_hiver</td><td class="val">1.73</td><td class="val">0.47</td><td class="val">1.3</td></tr><tr><td>EcartType_Quotidien_ete</td><td class="val">0.35</td><td class="val">0.29</td><td class="val">0.1</td></tr><tr><td>EcartType_Quotidien_misaison</td><td class="val">0.55</td><td class="val">0.28</td><td class="val">0.3</td></tr><tr><td>FU_Quotidien_hiver_%</td><td class="val">53.41</td><td class="val">82.0</td><td class="val">-28.6</td></tr><tr><td>FU_Quotidien_ete_%</td><td class="val">70.81</td><td class="val">72.16</td><td class="val">-1.3</td></tr><tr><td>FU_Quotidien_misaison_%</td><td class="val">62.56</td><td class="val">74.64</td><td class="val">-12.1</td></tr><tr><td>RatioJN_Quotidien_hiver</td><td class="val">2.19</td><td class="val">1.1</td><td class="val">1.1</td></tr><tr><td>RatioJN_Quotidien_ete</td><td class="val">1.69</td><td class="val">1.56</td><td class="val">0.1</td></tr><tr><td>RatioJN_Quotidien_misaison</td><td class="val">2.01</td><td class="val">1.4</td><td class="val">0.6</td></tr></tbody>
+        </table>
+      </div>
+      
     </div>
 
     <!-- RIGHT: typical days -->
     <div class="col">
       <div class="panel">
-        <div class="panel-title">Typical Day — Summer</div>
-        <div class="img-frame">
-          <img src="daily_profiles.png" alt="Summer day">
-        </div>
-        <div class="caption">Hourly consumption profile — summer day</div>
-      </div>
-      <div class="panel">
         <div class="panel-title">Typical Day — Winter</div>
         <div class="img-frame">
-          <img src="daily_profiles.png" alt="Winter day">
+          <img src="daily_profiles_winter.png" alt="Winter day">
         </div>
         <div class="caption">Hourly consumption profile — winter day</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Typical Day — Summer</div>
+        <div class="img-frame">
+          <img src="daily_profiles_summer.png" alt="Summer day">
+        </div>
+        <div class="caption">Hourly consumption profile — summer day</div>
       </div>
     </div>
 
@@ -297,7 +313,7 @@ td.val { font-family:var(--mono); font-size:9.5px; color:var(--ink); }
 
   <div class="page-footer">
     <span>Building Energy Card Archetype-QC · Automated Report</span>
-    <span>name · 2026-05-19</span>
+    <span>name · 2026-05-22</span>
     <span class="page-num">2 / 2</span>
   </div>
 

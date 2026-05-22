@@ -11,13 +11,37 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def normalize_time(series, shift_hours=0):
-    dt = pd.to_datetime(series)
+import pandas as pd
 
+def normalize_time(series, shift_hours=0):
+    # CHECK IF ALREADY DATETIME
+    if not pd.api.types.is_datetime64_any_dtype(series):
+        dt = pd.to_datetime(series,errors="coerce")
+    else:
+        dt = series.copy()
+    # SHIFT
+    # ----------------------------------------------------
     if shift_hours != 0:
         dt = dt + pd.Timedelta(hours=shift_hours)
 
-    return dt.dt.strftime("%m-%d %H:%M")
+    # FORMAT
+    return (
+
+        dt.dt.month.astype(str).str.zfill(2)
+
+        + "-"
+
+        + dt.dt.day.astype(str).str.zfill(2)
+
+        + " "
+
+        + dt.dt.hour.astype(str).str.zfill(2)
+
+        + ":"
+
+        + dt.dt.minute.astype(str).str.zfill(2)
+
+    )
 
 def load_weather(weather_csv):
     df = pd.read_csv(weather_csv)
@@ -216,3 +240,32 @@ def plot_banana(df, output_path,lang):
     plt.savefig(output_path)
     plt.close()
 
+def get_hvac_system(building_type, csv_path):
+
+    df = pd.read_csv(csv_path)
+
+
+    type_map = [ 'LR', 'MR','HR']
+    if building_type in type_map:
+        building_type = "Multi-Residential Building"
+
+
+    # Find matching row
+    match = df[df["Typology"] == building_type]
+
+    if not match.empty:
+        return match.iloc[0]["Suggested HVAC System"]
+
+    return "Unknown HVAC System"
+
+
+def size(type):
+
+    if type == "LR":
+        return "Low Rise"
+    if type == "MR":
+        return "MID Rise"
+    if type == "HR":
+        return "Hight Rise"
+
+    return "Subtype undefined"

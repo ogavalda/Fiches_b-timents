@@ -32,7 +32,7 @@
  MaxVerticesPerSurface=           6
  ClippingAlgorithm=SutherlandHodgman
  MonthlyFieldSetInputCount=          96
- NumConsideredOutputVariables=          96
+ NumConsideredOutputVariables=          97
  MaxConsideredOutputVariables=       10000
  numActuatorsUsed=           0
  numEMSActuatorsAvailable=           0

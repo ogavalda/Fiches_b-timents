@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from core_2 import get_vintage_column_KV, get_vintage_column, normalize_time
-
+from Kpi import *
 # --------------------------------
 # MONTHLY CONSUMPTION PLOT
 # --------------------------------
@@ -292,6 +292,7 @@ def process_energy_data(
     if team_id=='poly' : 
         households = 1 
         vintage_col = get_vintage_column_KV(folder_name)
+        building_name = folder_name
     else:
         parts = folder_name.split("_")
 
@@ -341,7 +342,7 @@ def process_energy_data(
 
     # TODO : check whether we should add normalize time for simulation data! 
     # commented out for now because it raises an error
-    #df_sim_hourly["time_key"] = normalize_time(df_sim_hourly["time_key"], shift_hours=-1)
+    df_sim_hourly["time_key"] = normalize_time(df_sim_hourly["time_key"], shift_hours=-1)
 
     # Normalize per household
     df_sim_hourly["meter"] /= households
@@ -349,8 +350,11 @@ def process_energy_data(
     # --- Merge all ---
     df = df_sim_hourly.merge(ope_df.rename(columns={vintage_col:'OPE'})[["time_key", "OPE"]], on="time_key")
     df = df.merge(weather_df.rename(columns={weather_column_name:'temperature_OPE'})[["time_key", "temperature_OPE"]], on="time_key")
-    
-    return aggregate_daily(df),df
+
+    # since every field needed for kpi calculation is ready, kpi function is embedded here
+
+    comparison_table =  calculate_kpi_from_df(df, building_name, vintage_col)
+    return aggregate_daily(df),df,comparison_table
 
 def aggregate_daily(df):
     # Convert back to datetime (we need it for grouping)
@@ -391,5 +395,104 @@ def plot_banana(df, output_path,lang):
     plt.savefig(output_path)
     plt.close()
 
+
+## Function to calculate the KPI's
+## it takes df as an argument --> the one returned by the function process_energy_data(),
+## because it already processes the required fields.
+
+def calculate_kpi_from_df(
+        df,
+        building_name,
+        vintage_col
+):
+    # COPY DATAFRAMES
+    kpi_df = df.copy()
+    ope_df = df.copy()
+
+    # PREPARE BUILDING DATAFRAME
+
+    kpi_df.rename(columns={
+            'time_key': 'dateinterval',
+            'meter': 'energieactivelivree_kwh',
+            'temperature_sim': 'temperatureatmospherique'
+        },
+        inplace=True)
+
+    # PREPARE OPE DATAFRAME
+    ope_df.rename(columns={
+            'time_key': 'dateinterval',
+            'OPE': 'energieactivelivree_kwh',
+            'temperature_OPE': 'temperatureatmospherique'
+        },
+        inplace=True)
+
+    # KEEP ONLY REQUIRED COLUMNS
+    kpi_df = kpi_df[[
+            'dateinterval',
+            'energieactivelivree_kwh',
+            'temperatureatmospherique'
+        ]]
+
+    ope_df = ope_df[[
+            'dateinterval',
+            'energieactivelivree_kwh',
+            'temperatureatmospherique'
+        ]]
+
+    # RUN KPI ANALYSIS - BUILDING
+    building_kpi = AnalyseProfil()
+
+    building_kpi.RunAnalyse(Identifiant=building_name,file=kpi_df)
+
+    # RUN KPI ANALYSIS - OPE
+    ope_kpi = AnalyseProfil()
+
+    ope_kpi.RunAnalyse(Identifiant=vintage_col,file=ope_df)
+
+    # to filter the kpi's, a list of needed kpi's
+    wanted_kpis = [
+        "Conso_annuelle_electricite_kWh",
+        "Conso_base_electricite_kWhParJour",
+        "Pente_chauffage_electricite_WparK",
+        "Pente_climatisation_electricite_WparK",
+        "Pointe_hiver_am_kW",
+        "Pointe_h_hiver_am",
+        "Pointe_hiver_pm_kW",
+        "Pointe_h_hiver_pm",
+    ]
+
+    # create the dictionary for the values
+    building_dict = (building_kpi.dict_caracteristiques)
+    building_dict = {k: v        for k, v in building_dict.items()        if k in wanted_kpis    }
+
+    ope_dict = (ope_kpi.dict_caracteristiques)
+    ope_dict = {k: v        for k, v in ope_dict.items()        if k in wanted_kpis    }
+
+    # Remove IDENTIFIANT because as a first row, it gives an error in reading
+    building_dict.pop("Identifiant",None)
+    ope_dict.pop("Identifiant",None)
+
+    # CREATE KPI TABLE
+    kpi_table = pd.DataFrame({building_name: building_dict,     vintage_col: ope_dict})
+
+    # create comparison table
+    comparison_table = kpi_table.copy() # copies cause it will delete some columns
+    comparison_table.columns = ["model","reference"] # keep only these columns
+    comparison_table = (comparison_table.reset_index())
+    comparison_table = (comparison_table.rename(columns={"index": "indicator"})) # because the column name will show the name of parameter
+
+    # Delta --> calculates the difference between model and reference (error)
+    comparison_table["delta"] = (comparison_table["model"]- comparison_table["reference"])
+
+    # ROUNDING
+    comparison_table["model"] = (comparison_table["model"].round(2))
+    comparison_table["reference"] = (comparison_table["reference"].round(2))
+    comparison_table["delta"] = (comparison_table["delta"].round(1))
+
+    # convert to dictionary --> it prepares the return for a ready to pass to html output
+    comparison_table = (comparison_table.to_dict(orient="records"))
+
+    # RETURN
+    return comparison_table
 
 
