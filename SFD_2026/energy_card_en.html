@@ -49,6 +49,8 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
 
 /* PANEL */
 .panel { background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:7px 9px; flex-shrink:0; }
+.panel-smaller { background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:4px 6px; flex-shrink:0; }
+
 .panel.grow { flex:1; min-height:0; display:flex; flex-direction:column; }
 .panel.grow .img-frame { flex:1; min-height:0; }
 .panel-title { font-size:7.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid var(--accent-lt); padding-bottom:3px; margin-bottom:5px; flex-shrink:0; }
@@ -68,7 +70,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 .img-frame { width:100%; border:1px solid var(--rule); border-radius:3px; background:#f7f8fa; overflow:hidden; margin-bottom:3px; display:flex; align-items:center; justify-content:center; }
 .img-frame img { width:100%; height:100%; object-fit:contain; display:block; }
 /* true square via padding-top trick */
-.img-frame.square { position:relative; width:100%; padding-top:100%; height:0; }
+.img-frame.square { position:relative; width:100%; padding-top:90%; height:0; }
 .img-frame.square img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; }
 /* fluid: fills flex parent */
 .img-frame.fluid { height:100%; min-height:0; }
@@ -140,7 +142,9 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           <tr><td>Sector</td><td class="val">{{building_sector}} </td></tr>
           <tr><td>Building Type</td><td class="val">{{building_type}}</td></tr>
           <tr><td>Building Sub Type</td><td class="val">{{building_subtype}}</td></tr>
+          <tr><td>size_of_build</td><td class="val">{{size_of_build}}</td></tr>
           <tr><td>Vintage</td><td class="val">{{vintage}}</td></tr>
+          
         </tbody></table>
       </div>
 
@@ -157,8 +161,14 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
         <table><tbody>
           <tr><td>Floor Area</td><td class="val">{{floor_area | round(1)}} m²</td></tr>
           <tr><td>Climate Zone</td><td class="val">{{climate_zone}}</td></tr>
-          <tr><td>Weather</td><td class="val">{{weather_location}}</td></tr>
-          <tr><td>HVAC System</td><td class="val">{{hvac_system}}</td></tr>
+
+          <tr class="table-subtitle">
+            <td colspan="2">HVAC system</td>
+          </tr>
+
+          {% for k,v in hvac_system.items() %}
+          <tr><td>{{k}}</td><td class="val">{{ v }}</td></tr>
+          {% endfor %}
         </tbody></table>
       </div>
 
@@ -202,7 +212,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <!-- RIGHT: annual end-uses + monthly chart (grows) + KPI summary -->
     <div class="col">
 
-      <div class="panel">
+      <div class="panel-smaller">
         <div class="panel-title">Annual End Uses — Electricity [kWh]</div>
         <table>
           <thead><tr><th>End Use</th><th>kWh/yr</th></tr></thead>

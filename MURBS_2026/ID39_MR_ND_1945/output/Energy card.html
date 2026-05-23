@@ -49,6 +49,8 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
 
 /* PANEL */
 .panel { background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:7px 9px; flex-shrink:0; }
+.panel-smaller { background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:4px 6px; flex-shrink:0; }
+
 .panel.grow { flex:1; min-height:0; display:flex; flex-direction:column; }
 .panel.grow .img-frame { flex:1; min-height:0; }
 .panel-title { font-size:7.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid var(--accent-lt); padding-bottom:3px; margin-bottom:5px; flex-shrink:0; }
@@ -68,7 +70,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 .img-frame { width:100%; border:1px solid var(--rule); border-radius:3px; background:#f7f8fa; overflow:hidden; margin-bottom:3px; display:flex; align-items:center; justify-content:center; }
 .img-frame img { width:100%; height:100%; object-fit:contain; display:block; }
 /* true square via padding-top trick */
-.img-frame.square { position:relative; width:100%; padding-top:100%; height:0; }
+.img-frame.square { position:relative; width:100%; padding-top:90%; height:0; }
 .img-frame.square img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; }
 /* fluid: fills flex parent */
 .img-frame.fluid { height:100%; min-height:0; }
@@ -119,7 +121,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="title-meta">
       <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">2026-05</span></div>
       <div class="meta-divider"></div>
-      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-05-22</span></div>
+      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-05-23</span></div>
     </div>
   </div>
 
@@ -139,8 +141,10 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
         <table><tbody>
           <tr><td>Sector</td><td class="val">Residential </td></tr>
           <tr><td>Building Type</td><td class="val">Multi-Unit</td></tr>
-          <tr><td>Building Sub Type</td><td class="val">MID Rise</td></tr>
+          <tr><td>Building Sub Type</td><td class="val">Apartment</td></tr>
+          <tr><td>size_of_build</td><td class="val">MID Rise</td></tr>
           <tr><td>Vintage</td><td class="val">1945</td></tr>
+          
         </tbody></table>
       </div>
 
@@ -157,8 +161,20 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
         <table><tbody>
           <tr><td>Floor Area</td><td class="val">1325.0 m²</td></tr>
           <tr><td>Climate Zone</td><td class="val">6A</td></tr>
-          <tr><td>Weather</td><td class="val">outdoor_temperature_no_year</td></tr>
-          <tr><td>HVAC System</td><td class="val">Central Electric Heat Pump System</td></tr>
+
+          <tr class="table-subtitle">
+            <td colspan="2">HVAC system</td>
+          </tr>
+
+          
+          <tr><td>cooling system</td><td class="val">Central Electric Heat Pump System</td></tr>
+          
+          <tr><td>Heating system</td><td class="val">Central Heat Pump / Boiler</td></tr>
+          
+          <tr><td>Ventilation system</td><td class="val">Corridor Exhaust + Fresh Air Make-Up</td></tr>
+          
+          <tr><td>Typical COP cooling</td><td class="val">3.5 – 5.0</td></tr>
+          
         </tbody></table>
       </div>
 
@@ -212,7 +228,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <!-- RIGHT: annual end-uses + monthly chart (grows) + KPI summary -->
     <div class="col">
 
-      <div class="panel">
+      <div class="panel-smaller">
         <div class="panel-title">Annual End Uses — Electricity [kWh]</div>
         <table>
           <thead><tr><th>End Use</th><th>kWh/yr</th></tr></thead>
@@ -273,7 +289,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
   <div class="page-footer">
     <span>Building Energy Card Archetype-QC · Automated Report</span>
-    <span>ND · 2026-05-22</span>
+    <span>ND · 2026-05-23</span>
     <span class="page-num">1 / 2</span>
   </div>
 
@@ -349,56 +365,56 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
           
           <tr>
-            <td>Consommation annuelle électricité (kWh)</td>
+            <td>Yearly electricity consumption (kWh)</td>
             <td class="val">16086.08</td>
             <td class="val">16587.18</td>
             <td class="val">-501.1</td>
           </tr>
           
           <tr>
-            <td>Consommation de base électricité (kWh/jour)</td>
+            <td>Yearly baseload consumption (kWh/jour)</td>
             <td class="val">19.74</td>
             <td class="val">20.36</td>
             <td class="val">-0.6</td>
           </tr>
           
           <tr>
-            <td>Pente chauffage électricité (W/K)</td>
+            <td>Slope electricity heating (W/K)</td>
             <td class="val">-133.33</td>
             <td class="val">-127.08</td>
             <td class="val">-6.2</td>
           </tr>
           
           <tr>
-            <td>Pente climatisation électricité (W/K)</td>
+            <td>Slope climatisation cooling (W/K)</td>
             <td class="val">41.31</td>
             <td class="val">43.18</td>
             <td class="val">-1.9</td>
           </tr>
           
           <tr>
-            <td>Pointe hiver AM (kW)</td>
+            <td>Peak winter AM (kW)</td>
             <td class="val">7.34</td>
             <td class="val">6.77</td>
             <td class="val">0.6</td>
           </tr>
           
           <tr>
-            <td>Heure pointe hiver AM</td>
+            <td>Hour peak winter AM</td>
             <td class="val">7.0</td>
             <td class="val">6.0</td>
             <td class="val">1.0</td>
           </tr>
           
           <tr>
-            <td>Pointe hiver PM (kW)</td>
+            <td>Peak winter PM (kW)</td>
             <td class="val">6.42</td>
             <td class="val">6.55</td>
             <td class="val">-0.1</td>
           </tr>
           
           <tr>
-            <td>Heure pointe hiver PM</td>
+            <td>Hour peak winter PM</td>
             <td class="val">17.0</td>
             <td class="val">20.0</td>
             <td class="val">-3.0</td>
@@ -415,7 +431,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
   <div class="page-footer">
     <span>Building Energy Card Archetype-QC · Automated Report</span>
-    <span>ND · 2026-05-22</span>
+    <span>ND · 2026-05-23</span>
     <span class="page-num">2 / 2</span>
   </div>
 

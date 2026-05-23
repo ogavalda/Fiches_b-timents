@@ -247,14 +247,14 @@ def get_hvac_system(building_type, csv_path):
 
     type_map = [ 'LR', 'MR','HR']
     if building_type in type_map:
-        building_type = "Multi-Residential Building"
+        building_type = "Multi-Residential"
 
 
     # Find matching row
     match = df[df["Typology"] == building_type]
 
     if not match.empty:
-        return match.iloc[0]["Suggested HVAC System"]
+        return match.iloc[0].to_dict()
 
     return "Unknown HVAC System"
 

@@ -375,7 +375,7 @@ def plot_banana(df, output_path,lang):
     plt.figure(figsize=(8, 6))
 
     plt.scatter(df["temperature_OPE"], df["OPE"],
-                color="blue", alpha=0.5, label="OPE")
+                color="blue", alpha=0.5, label="Data")
 
     plt.scatter(df["temperature_sim"], df["meter"],
                 color="red", alpha=0.5, label="Meter")
@@ -510,7 +510,7 @@ def calculate_kpi_from_df(
         "Pointe_h_hiver_pm": "Hour peak winter PM",
     }
     comparison_table["indicator"] = comparison_table["indicator"].replace(rename_map)
-    comparison_table_en["indicator"] = comparison_table["indicator"].replace(rename_map_en)
+    comparison_table_en["indicator"] = comparison_table_en["indicator"].replace(rename_map_en)
     # convert to dictionary --> it prepares the return for a ready to pass to html output
     comparison_table = (comparison_table.to_dict(orient="records"))
     comparison_table_en = (comparison_table_en.to_dict(orient="records"))

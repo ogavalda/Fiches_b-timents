@@ -102,7 +102,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         building_subtype = 'Detached'
         building_name = 'name'
         building_vintage = '1985-2012'
-        stories = "1"
+        size_of_build = "1"
 
     else:
 
@@ -116,7 +116,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         building_sector = 'Residential'
         building_id = parts[0]
         building_type = "Multi-Unit"
-        building_subtype = size(parts[1])
+        building_subtype = "Apartment"
+        size_of_build = size(parts[1])
         building_name = parts[2]
         building_vintage = parts[3]
 
@@ -267,8 +268,11 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     hvac_system_path = r"SFD_2026\hvac_mapping.csv"
     if team_id != "poly":
         hvac_system = get_hvac_system(parts[1],hvac_system_path)
+        hvac_system = dict(list(hvac_system.items())[1:])
     else:
-        hvac_system = get_hvac_system(building_subtype, hvac_system_path)
+        hvac_system = get_hvac_system(building_type, hvac_system_path)
+        hvac_system = dict(list(hvac_system.items())[1:])
+
 
     # TODO: build comparison table when reference data is available
     # The comparison table was embedded in the process_energy_data() function,
@@ -291,6 +295,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         stories=stories,
         climate_zone=climate_zone,
         wwr=wwr,
+        size_of_build=size_of_build,
         construction_data=construction_data,
         glazing_data=glazing_data,
         hvac_system=hvac_system,
