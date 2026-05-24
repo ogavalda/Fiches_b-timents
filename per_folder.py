@@ -296,6 +296,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         climate_zone=climate_zone,
         wwr=wwr,
         size_of_build=size_of_build,
+
         construction_data=construction_data,
         glazing_data=glazing_data,
         hvac_system=hvac_system,

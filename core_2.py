@@ -269,3 +269,4 @@ def size(type):
         return "Hight Rise"
 
     return "Subtype undefined"
+

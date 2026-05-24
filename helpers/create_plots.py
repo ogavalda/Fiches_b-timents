@@ -518,3 +518,4 @@ def calculate_kpi_from_df(
     return comparison_table,comparison_table_en
 
 
+
