@@ -27,6 +27,30 @@ def extract_construction_summary(html_input: str) -> dict:
     }
 
     # -------------------------
+    # Floor area 
+    # -------------------------
+    for b in soup.find_all("b"):
+        if "Building Area" in b.get_text():
+
+            table = b.find_next("table")
+            rows = table.find_all("tr")
+
+            headers = [td.get_text(strip=True) for td in rows[0].find_all("td")]
+
+            area_index = headers.index("Area [m2]")
+
+            for row in rows[1:]:
+                cols = [td.get_text(strip=True) for td in row.find_all("td")]
+                row_name = cols[0].upper()
+                area = float(cols[area_index])
+
+                
+                if "NET CONDITIONED BUILDING AREA" == row_name:
+                    floor_area = area
+
+
+
+    # -------------------------
     # 1. OPAQUE EXTERIOR
     # -------------------------
     for b in soup.find_all("b"):
@@ -144,5 +168,5 @@ def extract_construction_summary(html_input: str) -> dict:
         "Slabs [W/m2-K]": 0, ## slabs to be recoded 
         "Glazing [W/m2-K]": avg(data["Glazing"]),
         "SHGC": avg(data["SHGC"]),
-        "Infiltration [m^3/h-m^2]": Infiltration ## infiltration to be recoded
-    }
+        "Infiltration [m^3/h-m^2]": Infiltration, ## infiltration to be recoded
+    }, floor_area

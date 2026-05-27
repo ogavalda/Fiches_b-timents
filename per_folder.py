@@ -57,6 +57,7 @@ TRANSLATIONS_FR = {
     "South": "Sud",
     "East": "Est",
     "West": "Ouest",
+    "Average":"Moyenne",
     # End uses
     "Heating": "Chauffage",
     "Cooling": "Refroidissement",
@@ -81,11 +82,21 @@ TRANSLATIONS_FR = {
     "Glazing [W/m2-K]": "Vitrage [W/m²·K]",
     "SHGC": "FCS",
     "Infiltration [m^3/h-m^2]": "Infiltration [m³/h·m²]",
+    # HVAC systems
+    "Air-Source Heat Pump (Mini-Split)":"Thermopompe à Air (mini-split)", 
+    "Electric Baseboards":"Plinthes Électriques", 
+    "No central ventilation":"Aucun système de ventilation centrale", 
+    "Central Electric Heat Pump System":"Système centrale avec thermopompe", 
+    "Central Heat Pump / Boiler":"Système centrale avec thermopompe et chaurière"
 }
 
 def translate_dict(d, translations):
     """Return a new dict with keys translated, falling back to original key if not found."""
     return {translations.get(k, k): v for k, v in d.items()}
+
+def translate_dict_values(d, translations):
+    """Return a new dict with keys translated, falling back to original key if not found."""
+    return {k:translations.get(v, v)for k, v in d.items()}
 
 def translate_list_of_rows(rows, translations):
     """Translate first element of each [key, value] row."""
@@ -182,7 +193,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     if team_id=='poly':
         # interior walls/infiltration cause issues with our models
-        construction_data_unfiltered = extract_construction_summary_KV(html)
+        construction_data_unfiltered, floor_area = extract_construction_summary_KV(html)
         construction_data = {k: v for k, v in construction_data_unfiltered.items() if k in construction_data_filter}
         glazing_data = {k: v for k, v in construction_data_unfiltered.items() if k in glazing_data_filter}
     else:
@@ -326,6 +337,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
                  "comparison_table":comparison_table,
                  # translated data
                  "construction_data": translate_dict(construction_data, TRANSLATIONS_FR),
+                 "hvac_system":translate_dict_values(hvac_system, TRANSLATIONS_FR),
                  "end_uses": translate_dict(end_uses, TRANSLATIONS_FR),
                  "wwr": translate_list_of_rows(wwr, TRANSLATIONS_FR),
                  # FR-specific figure paths

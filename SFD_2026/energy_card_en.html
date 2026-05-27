@@ -142,9 +142,8 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           <tr><td>Sector</td><td class="val">{{building_sector}} </td></tr>
           <tr><td>Building Type</td><td class="val">{{building_type}}</td></tr>
           <tr><td>Building Sub Type</td><td class="val">{{building_subtype}}</td></tr>
-          <tr><td>size_of_build</td><td class="val">{{size_of_build}}</td></tr>
+          <tr><td>Building Size</td><td class="val">{{size_of_build}}</td></tr>
           <tr><td>Vintage</td><td class="val">{{vintage}}</td></tr>
-          
         </tbody></table>
       </div>
 
@@ -194,7 +193,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           {% endfor %}
           
           <tr class="table-subtitle">
-            <td colspan="2">WWR</td>
+            <td colspan="2">WWR (Window-to-Wall ratio)</td>
           </tr>
 
           <tbody>{% for row in wwr %}<tr><td>{{row[0]}}</td><td class="val">{{row[1]}}</td></tr>{% endfor %}</tbody>
