@@ -36,7 +36,10 @@ from helpers.create_plots import (
     )
 
 from helpers.read_simulation import ReadSimulation # class to help load simulation results (query sql)
-from helpers.extract_info import extract_construction_summary as extract_construction_summary_KV
+from helpers.extract_info import (
+    extract_construction_summary as extract_construction_summary_KV, 
+    get_infiltration
+)
 
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
 
@@ -104,6 +107,8 @@ def translate_list_of_rows(rows, translations):
 
 def process_building(building_path, template_path, idd_path, operation_folder, view_folder, team_id):
 
+
+    # TODO : put into dict the terms that will be in the first table so we can translate easily 
     if team_id == 'poly' : 
         # TODO : add proper casting
         folder_name = os.path.basename(building_path)
@@ -177,26 +182,42 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     end_uses = extract_end_uses(html)
     wwr = compute_wwr_new(html).values.tolist()
     # TODO : make function compatible with both model structures
-    construction_data_filter = [
-        'Walls Ext [W/m2-K]',
-        'Walls Int [W/m2-K]',
-        'Roof [W/m2-K]',
-        'Slabs [W/m2-K]',
-        'Infiltration [m^3/h-m^2]'
-    ]
-    glazing_data_filter = [
-        'SHGC',
-        'Glazing [W/m2-K]'
-    ]
-
-
-
     if team_id=='poly':
-        # interior walls/infiltration cause issues with our models
+        # NEW : added different infiltration identifier for SFD since it uses a different approach
+        construction_data_filter = [
+            'Walls Ext [W/m2-K]',
+            'Walls Int [W/m2-K]',
+            'Roof [W/m2-K]',
+            'Slabs [W/m2-K]',
+            'Infiltration (ELA @4Pa) [cm²]'
+        ]
+        glazing_data_filter = [
+            'SHGC',
+            'Glazing [W/m2-K]'
+        ]
+    else:
+        construction_data_filter = [
+            'Walls Ext [W/m2-K]',
+            'Walls Int [W/m2-K]',
+            'Roof [W/m2-K]',
+            'Slabs [W/m2-K]',
+            'Infiltration [m^3/h-m^2]'
+        ]
+        glazing_data_filter = [
+            'SHGC',
+            'Glazing [W/m2-K]'
+        ]
+
+
+    # TODO : remove interior walls from table?
+    if team_id=='poly':
+        # interior walls/infiltration cause issues with our models so seperate function
         construction_data_unfiltered, floor_area = extract_construction_summary_KV(html)
         construction_data = {k: v for k, v in construction_data_unfiltered.items() if k in construction_data_filter}
         glazing_data = {k: v for k, v in construction_data_unfiltered.items() if k in glazing_data_filter}
+        infiltration = get_infiltration(osm)
     else:
+        # TODO : fix envelope function : tilt for floors = 180, tilt for roof=0 
         construction_data_unfiltered = extract_construction_summary(html, json_path)
         construction_data = {k: v for k, v in construction_data_unfiltered.items() if k in construction_data_filter}
         glazing_data = {k: v for k, v in construction_data_unfiltered.items() if k in glazing_data_filter}

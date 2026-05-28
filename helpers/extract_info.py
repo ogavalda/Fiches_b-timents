@@ -77,10 +77,10 @@ def extract_construction_summary(html_input: str) -> dict:
                     if tilt == 90:
                         data["Walls Ext"].add(u)
 
-                    elif tilt == 180:
+                    elif tilt < 90:
                         data["Roof"].add(u)
 
-                    elif tilt == 0:
+                    elif tilt == 180:
                         data["Slabs"].add(u)
 
                 except:
@@ -170,3 +170,11 @@ def extract_construction_summary(html_input: str) -> dict:
         "SHGC": avg(data["SHGC"]),
         "Infiltration [m^3/h-m^2]": Infiltration, ## infiltration to be recoded
     }, floor_area
+
+
+
+    def get_infiltration(osm):
+        ELAs = [ELA for ELA in osm.getSpaceInfiltrationEffectiveLeakageAreas()]
+        ELA = ELAs[0].effectiveAirLeakageArea()
+
+        return ELA
