@@ -261,13 +261,17 @@ def get_building_characteristics(folder_name, team_id):
     return {"building_name":building_name, "sector":sector, "building_type":building_type, "building_subtype":building_subtype, "vintage":vintage, "size":building_size}
 
 
-def abbreviate_name(sector, building_type, building_subtype, building_size, vintage):
+def get_abbreviation_dicts():
     # TODO : add abbreviations for MURBS, schools and offices
     sectors = {"Commercial-Institutional":'CI', "Residential":'R'}
     building_types = {"Single-Family":'SF', "Multi-Unit":'MU', "Education":'EDU'}
     building_subtypes = {"Attached":'Att', "Detached":'Det', "Semi-Detached":'SD', "Row":'Row'}
     building_sizes = {"Duplex":'Dup', "Triplex":'Trip', "1 Floor":'1fl', "2 Floors":'2fl'}
     vintages = {"After 2012":'post2012', "Before 1945":'pre1945'}
+    return sectors, building_types, building_subtypes, building_sizes, vintages
+
+def abbreviate_name(sector, building_type, building_subtype, building_size, vintage):
+    sectors, building_types, building_subtypes, building_sizes, vintages = get_abbreviation_dicts()
     
     abbr_name = (sectors.get(sector, sector) + "_" + 
                     building_types.get(building_type, building_type) + "_" + 
@@ -276,3 +280,16 @@ def abbreviate_name(sector, building_type, building_subtype, building_size, vint
                     vintages.get(vintage, vintage)
     )
     return abbr_name
+
+def get_folder_structure(sector, building_type, building_subtype, building_size, building_name):
+    sectors, building_types, building_subtypes, building_sizes, vintages = get_abbreviation_dicts()
+
+    folders = [sectors.get(sector, sector),
+                    building_types.get(building_type, building_type),
+                    building_subtypes.get(building_subtype, building_subtype),
+                    building_sizes.get(building_size, building_size), 
+                    building_name
+    ]
+
+    return folders
+

@@ -38,8 +38,10 @@ from helpers.create_plots import (
 from helpers.read_simulation import ReadSimulation # class to help load simulation results (query sql)
 from helpers.extract_info import (
     extract_construction_summary as extract_construction_summary_KV, 
-    get_infiltration
-)
+    get_infiltration, 
+    get_building_characteristics, 
+    get_folder_structure
+    )
 
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
 
@@ -107,35 +109,19 @@ def translate_list_of_rows(rows, translations):
 
 def process_building(building_path, template_path, idd_path, operation_folder, view_folder, team_id):
 
+    
+    folder_name = os.path.basename(building_path)
+    building_characteristics = get_building_characteristics(folder_name, team_id)
 
-    # TODO : put into dict the terms that will be in the first table so we can translate easily 
-    if team_id == 'poly' : 
-        # TODO : add proper casting
-        folder_name = os.path.basename(building_path)
-        building_sector = 'Residential'
-        building_id = 'ID'
-        building_type = 'Single Family'
-        building_subtype = 'Detached'
-        building_name = 'name'
-        building_vintage = '1985-2012'
-        size_of_build = "1"
+    building_sector = building_characteristics["sector"]
+    building_type = building_characteristics["building_type"]
+    building_subtype = building_characteristics["building_subtype"]
+    building_name = building_characteristics["building_name"]
+    building_vintage = building_characteristics["vintage"]
+    size_of_build = building_characteristics["size"]
+    print("building characteristics : done")
 
-    else:
-
-
-        # TODO : add better casting (since now it'll be in a table)
-        # sector
-        # subtype (Multi-unit)
-        # stories/size (Mid-Rise) -- instead of getting nb of stories from osm (which doesn't work if the object isn't used)
-        folder_name = os.path.basename(building_path)
-        parts = folder_name.split("_")
-        building_sector = 'Residential'
-        building_id = parts[0]
-        building_type = "Multi-Unit"
-        building_subtype = "Apartment"
-        size_of_build = size(parts[1])
-        building_name = parts[2]
-        building_vintage = parts[3]
+    
 
 
     run_path = os.path.join(building_path, f"{folder_name}/run")
@@ -176,6 +162,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # TODO : remove stories here, since the osm doesn't provide a reliable way of fetching that info, 
     # we got a "size" descriptor from the file name in earlier code 
     floor_area, stories, space_count, climate_zone = building_description(model)
+    print("building description : done")
 
     # --- Energy extraction ---
     energy = extract_energy(html)
@@ -215,7 +202,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         construction_data_unfiltered, floor_area = extract_construction_summary_KV(html)
         construction_data = {k: v for k, v in construction_data_unfiltered.items() if k in construction_data_filter}
         glazing_data = {k: v for k, v in construction_data_unfiltered.items() if k in glazing_data_filter}
-        infiltration = get_infiltration(osm)
+        infiltration = get_infiltration(model)
+        print("building construction : done")
     else:
         # TODO : fix envelope function : tilt for floors = 180, tilt for roof=0 
         construction_data_unfiltered = extract_construction_summary(html, json_path)
@@ -301,6 +289,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     if team_id != "poly":
         hvac_system = get_hvac_system(parts[1],hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
+        print("building hvac : done")
     else:
         hvac_system = get_hvac_system(building_type, hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
@@ -410,7 +399,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     render_and_write("energy_card_en.html", shared_en, "Energy card.html", operation_folder)
     render_and_write("fiche_energie_fr.html", shared_fr, "Fiche energie.html", operation_folder)
     
-    return os.path.join(output_path, "Fiche energie.html")
+    return get_folder_structure(building_sector, building_type, building_subtype, size_of_build, building_name)
 
 
 

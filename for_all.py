@@ -10,10 +10,14 @@ Code contributors: Kato Vanroy, kato.vanroy@polymtl.ca
 
 
 import os
-from per_folder import process_building
 from datetime import datetime
+
+from per_folder import process_building
+from save_results import save_files
+
 # PATHS
-PROJECTS_ROOT = r"MURBS_2026"
+PROJECTS_ROOT = r"SFD_2026"
+GIT_ROOT = r"git_root"
 
 # NEW: updated template here 
 TEMPLATES = r"SFD_2026"
@@ -39,10 +43,15 @@ def run_all():
         if not os.path.isdir(path):
             continue
 
-        try:
+        try:            
+            # FIRST : create outputs (reports) 
             print(f"Processing {name}...")
-            out = process_building(path, TEMPLATES, IDD_PATH, operation_folder,view_folder, team_id)
-            print(f"✔ Done: {out}")
+            out = process_building(path, TEMPLATES, IDD_PATH, operation_folder,view_folder, team_id) # returns folder structure for git
+            print(f"✔ Done: {name}")
+            # THEN : save all into proper file structure            
+            print(f"Saving {name}...")
+            out = save_files(path, GIT_ROOT, out)
+            print(f"✔ Done: {name}")
 
         except Exception as e:
             print(f"❌ Error in {name}: {e}")
