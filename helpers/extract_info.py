@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import os
 import json
+import re
 
 def extract_construction_summary(html_input: str) -> dict:
     # -------------------------
@@ -173,8 +174,105 @@ def extract_construction_summary(html_input: str) -> dict:
 
 
 
-    def get_infiltration(osm):
-        ELAs = [ELA for ELA in osm.getSpaceInfiltrationEffectiveLeakageAreas()]
-        ELA = ELAs[0].effectiveAirLeakageArea()
+def get_infiltration(osm):
+    ELAs = [ELA for ELA in osm.getSpaceInfiltrationEffectiveLeakageAreas()]
+    ELA = ELAs[0].effectiveAirLeakageArea()
 
-        return ELA
+    return ELA
+
+
+def get_building_characteristics(folder_name, team_id):
+    if team_id == 'poly' : 
+        parts = re.split(r"[-_]", folder_name)
+        # french dict - TODO : move to general translation dict
+        category_dict_fr = {'Detached':'Détaché', "Row":"Rangé", "SD":'Semi-Détaché', 'Duplex':'Duplex', 'Triplex':'Triplex'}
+        floors_dict_fr = {'2Floor':'2 étages', '1Floor':'1 étage'}
+
+        # english dict
+        category_dict = {"SD":'Semi-Detached'}
+        floors_dict = {'2Floor':'2 Floors', '1Floor':'1 Floor'}
+
+
+        if "Ecole" in parts:
+            # do casting for schools
+            sector = "Commercial-Institutional"
+            building_type = "Education"
+            building_subtype = "Primary and Secondary school" #TODO
+            building_size = "Small"  #TODO
+            vintage = ""
+        elif ('Duplex' in parts) or ('Triplex' in parts):
+            sector = "Residential"
+            building_type = "Multi-Unit"
+            if ('Duplex' in parts):
+                building_size = "Duplex"
+            else:
+                building_size = "Triplex"
+
+            if 'attached' in parts:
+                building_subtype = 'Attached'
+            elif 'detached' in parts:
+                building_subtype = 'Detached'
+
+            if 'new' in parts:
+                vintage = "After 2012"
+            elif ('Pre1945' in parts):
+                vintage = 'Before 1945'
+            else:
+                vintage = parts[1]+'-'+parts[2]
+        else:
+            sector = "Residential"
+            building_type = "Single-Family"
+            
+            category = category_dict.get(parts[0], parts[0]) 
+            building_size = floors_dict[parts[1]]
+
+            if 'Row' in category:
+                if 'middle' in parts:
+                    building_subtype = category + ' - middle of row'
+                elif 'end' in parts:
+                    building_subtype = category + ' - end of row'
+                else:
+                    raise Exception('building type not recognized')
+            else:
+                building_subtype = category
+
+            if 'new' in parts:
+                vintage = "After 2012"
+            elif ('Pre1945' in parts):
+                vintage = 'Before 1945'
+            else:
+                vintage = parts[-2]+'-'+parts[-1]
+
+
+    else:
+        # TODO : expand
+        parts = folder_name.split("_")
+        sector = 'Residential'
+        building_type = "Multi-Unit"
+        building_subtype = "Apartment"
+        building_size = size(parts[1])
+        #building_name = parts[2] : TODO : building name will be the abbreviations of all other characteristics collected here, the function below will cast the full names to their abbreviations
+        vintage = parts[3]
+
+    
+    building_name = abbreviate_name(sector, building_type, building_subtype, building_size, vintage)
+    print(building_name)
+
+    return {"building_name":building_name, "sector":sector, "building_type":building_type, "building_subtype":building_subtype, "vintage":vintage, "size":building_size}
+
+
+def abbreviate_name(sector, building_type, building_subtype, building_size, vintage):
+    # TODO : add abbreviations for MURBS, schools and offices
+    sectors = {"Commercial-Institutional":'CI', "Residential":'R'}
+    building_types = {"Single-Family":'SF', "Multi-Unit":'MU', "Education":'EDU'}
+    building_subtypes = {"Attached":'Att', "Detached":'Det', "Semi-Detached":'SD', "Row":'Row'}
+    building_sizes = {"Duplex":'Dup', "Triplex":'Trip', "1 Floor":'1fl', "2 Floors":'2fl'}
+    vintages = {"After 2012":'post2012', "Before 1945":'pre1945'}
+    
+    abbr_name = (sectors.get(sector, sector) + "_" + 
+                    building_types.get(building_type, building_type) + "_" + 
+                    building_subtypes.get(building_subtype, building_subtype) + "_" + 
+                    building_sizes.get(building_size, building_size) + "_" + 
+                    vintages.get(vintage, vintage)
+    )
+    return abbr_name
