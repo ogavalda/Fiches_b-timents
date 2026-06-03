@@ -111,7 +111,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     
     folder_name = os.path.basename(building_path)
-    building_characteristics = get_building_characteristics(folder_name, team_id)
+    building_characteristics = get_building_characteristics(folder_name)
 
     building_sector = building_characteristics["sector"]
     building_type = building_characteristics["building_type"]
@@ -287,7 +287,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # mapping csv path --currently it is in the SD_2026 folder undr name "hvac_mapping.csv"
     hvac_system_path = r"SFD_2026\hvac_mapping.csv"
     if team_id != "poly":
-        hvac_system = get_hvac_system(parts[1],hvac_system_path)
+        hvac_system = get_hvac_system(building_type,hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
         print("building hvac : done")
     else:

@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 import os
 import json
 import re
+from core_2 import size, get_vintage_column
+from config import team_id
 
 def extract_construction_summary(html_input: str) -> dict:
     # -------------------------
@@ -181,7 +183,7 @@ def get_infiltration(osm):
     return ELA
 
 
-def get_building_characteristics(folder_name, team_id):
+def get_building_characteristics(folder_name):
     if team_id == 'poly' : 
         parts = re.split(r"[-_]", folder_name)
         # french dict - TODO : move to general translation dict
@@ -252,7 +254,7 @@ def get_building_characteristics(folder_name, team_id):
         building_subtype = "Apartment"
         building_size = size(parts[1])
         #building_name = parts[2] : TODO : building name will be the abbreviations of all other characteristics collected here, the function below will cast the full names to their abbreviations
-        vintage = parts[3]
+        vintage = get_vintage_column(parts[3])
 
     
     building_name = abbreviate_name(sector, building_type, building_subtype, building_size, vintage)
@@ -265,9 +267,9 @@ def get_abbreviation_dicts():
     # TODO : add abbreviations for MURBS, schools and offices
     sectors = {"Commercial-Institutional":'CI', "Residential":'R'}
     building_types = {"Single-Family":'SF', "Multi-Unit":'MU', "Education":'EDU'}
-    building_subtypes = {"Attached":'Att', "Detached":'Det', "Semi-Detached":'SD', "Row":'Row'}
-    building_sizes = {"Duplex":'Dup', "Triplex":'Trip', "1 Floor":'1fl', "2 Floors":'2fl'}
-    vintages = {"After 2012":'post2012', "Before 1945":'pre1945'}
+    building_subtypes = {"Attached":'Att', "Detached":'Det', "Semi-Detached":'SD', "Row":'Row',"Apartment":"Apt"}
+    building_sizes = {"Duplex":'Dup', "Triplex":'Trip', "1 Floor":'1fl', "2 Floors":'2fl',"LR":"LR","MR":"MR","HR":"HR"}
+    vintages = {"After 2012":'post2012', "Before 1945":'pre1945',"A_Pre1945":"pre1945","B_19461983":"1946-1983","C_19842010":"1984-2010","D_Post2011":"post2011"}
     return sectors, building_types, building_subtypes, building_sizes, vintages
 
 def abbreviate_name(sector, building_type, building_subtype, building_size, vintage):

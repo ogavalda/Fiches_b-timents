@@ -1,1 +1,1 @@
-team_id = 'poly'
+team_id = ''

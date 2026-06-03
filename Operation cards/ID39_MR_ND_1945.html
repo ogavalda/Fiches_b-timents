@@ -68,7 +68,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 .img-frame { width:100%; border:1px solid var(--rule); border-radius:3px; background:#f7f8fa; overflow:hidden; margin-bottom:3px; display:flex; align-items:center; justify-content:center; }
 .img-frame img { width:100%; height:100%; object-fit:contain; display:block; }
 /* true square via padding-top trick */
-.img-frame.square { position:relative; width:100%; padding-top:100%; height:0; }
+.img-frame.square { position:relative; width:100%; padding-top:90%; height:0; }
 .img-frame.square img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; }
 /* fluid: fills flex parent */
 .img-frame.fluid { height:100%; min-height:0; }
@@ -114,12 +114,12 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
   <div class="title-bar">
     <div>
       <div class="title-label">Fiche Énergétique du Bâtiment · Archetype-QC</div>
-      <div class="title-name">ND</div>
+      <div class="title-name">R_MU_Apt_MID Rise_pre1945</div>
     </div>
     <div class="title-meta">
       <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">2026-05</span></div>
       <div class="meta-divider"></div>
-      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-05-23</span></div>
+      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-06-02</span></div>
     </div>
   </div>
 
@@ -140,7 +140,8 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           <tr><td>Secteur</td><td class="val">Residential </td></tr>
           <tr><td>Type de Bâtiment</td><td class="val">Multi-Unit</td></tr>
           <tr><td>Sous-type de Bâtiment</td><td class="val">Apartment</td></tr>
-          <tr><td>Époque de Construction</td><td class="val">1945</td></tr>
+          <tr><td>Taille du bâtiment</td><td class="val">MID Rise</td></tr>
+          <tr><td>Periode de Construction</td><td class="val">A_Pre1945</td></tr>
         </tbody></table>
       </div>
 
@@ -157,8 +158,20 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
         <table><tbody>
           <tr><td>Superficie de Plancher</td><td class="val">1325.0 m²</td></tr>
           <tr><td>Zone Climatique</td><td class="val">6A</td></tr>
-          <tr><td>Météo</td><td class="val">outdoor_temperature_no_year</td></tr>
-          <tr><td>Système CVC</td><td class="val">{'cooling system': 'Central Electric Heat Pump System', 'Heating system': 'Central Heat Pump / Boiler', 'Ventilation system': 'Corridor Exhaust + Fresh Air Make-Up', 'Typical COP cooling': '3.5 – 5.0'}</td></tr>
+
+          <tr class="table-subtitle">
+            <td colspan="2">Système CVCA</td>
+          </tr>
+
+          
+          <tr><td>cooling system</td><td class="val">Système centrale avec thermopompe</td></tr>
+          
+          <tr><td>Heating system</td><td class="val">Système centrale avec thermopompe et chaurière</td></tr>
+          
+          <tr><td>Ventilation system</td><td class="val">Corridor Exhaust + Fresh Air Make-Up</td></tr>
+          
+          <tr><td>Typical COP cooling</td><td class="val">3.5 – 5.0</td></tr>
+          
         </tbody></table>
       </div>
 
@@ -197,7 +210,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
             <td colspan="2">RTF (Ratio Fenêtres/Façade)</td>
           </tr>
 
-          <tbody><tr><td>Average</td><td class="val">30.0</td></tr></tbody>
+          <tbody><tr><td>Moyenne</td><td class="val">30.0</td></tr></tbody>
 
 
 
@@ -273,7 +286,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
   <div class="page-footer">
     <span>Fiche Énergétique du Bâtiment Archetype-QC · Rapport Automatisé</span>
-    <span>ND · 2026-05-23</span>
+    <span>R_MU_Apt_MID Rise_pre1945 · 2026-06-02</span>
     <span class="page-num">1 / 2</span>
   </div>
 
@@ -415,7 +428,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
   <div class="page-footer">
     <span>Fiche Énergétique du Bâtiment Archetype-QC · Rapport Automatisé</span>
-    <span>ND · 2026-05-23</span>
+    <span>R_MU_Apt_MID Rise_pre1945 · 2026-06-02</span>
     <span class="page-num">2 / 2</span>
   </div>
 
