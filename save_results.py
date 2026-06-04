@@ -13,8 +13,8 @@ def save_files(building_path, root, dest_folders):
 
     # reports generated from "per_folder" 
     output_path = os.path.join(building_path, "output")
-    report_fr = os.path.join(output_path, "Energy card.pdf")
-    report_en = os.path.join(output_path, "Fiche energie.pdf")
+    report_fr = os.path.join(output_path, "Fiche energie.pdf")
+    report_en = os.path.join(output_path, "Energy card.pdf")
 
 
 

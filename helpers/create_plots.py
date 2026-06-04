@@ -293,6 +293,15 @@ def process_energy_data(
         households = 1 
         vintage_col = get_vintage_column_KV(folder_name)
         building_name = folder_name
+
+        parts = folder_name.split("_")
+        if parts[0] in ['Duplex', 'Triplex']:
+            if parts[-1] in ['empty-basement', 'main-with-basement']:
+                households = 2
+            else:
+                households = 3
+
+        
     else:
         parts = folder_name.split("_")
 

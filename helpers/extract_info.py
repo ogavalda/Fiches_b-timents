@@ -5,7 +5,15 @@ import re
 from core_2 import size, get_vintage_column
 from config import team_id
 
-def extract_construction_summary(html_input: str) -> dict:
+def extract_construction_summary(html_input: str, osm) -> dict:
+
+    # -------------------------
+    # FINAL AGGREGATION
+    # -------------------------
+    def avg(values):
+        return sum(values) / len(values) if values else None
+
+
     # -------------------------
     # Load HTML (file or string)
     # -------------------------
@@ -103,6 +111,8 @@ def extract_construction_summary(html_input: str) -> dict:
             u_index = headers.index("U-Factor with Film [W/m2-K]")
             construction_index = headers.index("Construction")
 
+            roof_done=False
+
             for row in rows[1:]:
                 cols = [td.get_text(strip=True) for td in row.find_all("td")]
 
@@ -115,6 +125,13 @@ def extract_construction_summary(html_input: str) -> dict:
 
                     if "WALL" in construction:
                         data["Walls Int"].add(u)
+
+                    if "TBD" in construction: # only way to identify internal roof insulation is that it's the only surface undergoing Thermal bridging corrections
+                        if not roof_done:
+                            Roof_u = avg(data["Roof"])
+                            data["Roof"].remove(Roof_u) # remove previous values from set
+                            data["Roof"].add(1/(1/Roof_u+1/u))
+                            roof_done=True
 
                 except:
                     continue
@@ -156,22 +173,17 @@ def extract_construction_summary(html_input: str) -> dict:
 
             break  # only one fenestration table needed
 
-    # -------------------------
-    # FINAL AGGREGATION
-    # -------------------------
-    def avg(values):
-        return sum(values) / len(values) if values else None
 
-    Infiltration = 0   ## infiltration to be recoded
+
 
     return {
         "Walls Ext [W/m2-K]": avg(data["Walls Ext"]),
         "Walls Int [W/m2-K]": 0, ## no int walls
-        "Roof [W/m2-K]": avg(data["Roof"]), ## roof to be recoded
-        "Slabs [W/m2-K]": 0, ## slabs to be recoded 
+        "Roof [W/m2-K]": avg(data["Roof"]), 
+        "Slabs [W/m2-K]": avg(data["Slabs"]), 
         "Glazing [W/m2-K]": avg(data["Glazing"]),
         "SHGC": avg(data["SHGC"]),
-        "Infiltration [m^3/h-m^2]": Infiltration, ## infiltration to be recoded
+        "Infiltration (ELA @4Pa) [cm²]": get_infiltration(osm), 
     }, floor_area
 
 
@@ -205,10 +217,7 @@ def get_building_characteristics(folder_name):
         elif ('Duplex' in parts) or ('Triplex' in parts):
             sector = "Residential"
             building_type = "Multi-Unit"
-            if ('Duplex' in parts):
-                building_size = "Duplex"
-            else:
-                building_size = "Triplex"
+            building_size = parts[0]
 
             if 'attached' in parts:
                 building_subtype = 'Attached'

@@ -52,8 +52,13 @@ if team_id != 'poly':
     ope_df = load_ope(r"MURBS_2026\dataOPE.csv")
 else:
     #paths : poly
-    weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
-    ope_df = load_ope(r"SFD_2026\dataOPE.csv")
+    # SFD
+    #weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
+    #ope_df = load_ope(r"SFD_2026\dataOPE.csv")
+
+    # Dup/Trip
+    weather_df = load_weather(r"DupTrip_2026\OPE_DupTrip_temps.csv")
+    ope_df = load_ope(r"DupTrip_2026\OPE_DupTrip.csv")
 
 # --- Translation dictionaries (EN → FR) ---
 TRANSLATIONS_FR = {
@@ -88,8 +93,12 @@ TRANSLATIONS_FR = {
     "SHGC": "FCS",
     "Infiltration [m^3/h-m^2]": "Infiltration [m³/h·m²]",
     # HVAC systems
-    "Air-Source Heat Pump (Mini-Split)":"Thermopompe à Air (mini-split)", 
-    "Electric Baseboards":"Plinthes Électriques", 
+    "Cooling system":"Système de climatisation",
+    "Heating system":"Système de chauffage", 
+    "Ventilation system":"Système de ventilation",
+    "Typical COP cooling":"COP typique en climatisation",
+    "Air-Source Heat Pump (Mini-Split)":"Thermopompe à air (mini-split)", 
+    "Electric Baseboards":"Plinthes électriques", 
     "No central ventilation":"Aucun système de ventilation centrale", 
     "Central Electric Heat Pump System":"Système centrale avec thermopompe", 
     "Central Heat Pump / Boiler":"Système centrale avec thermopompe et chaurière"
@@ -199,10 +208,9 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # TODO : remove interior walls from table?
     if team_id=='poly':
         # interior walls/infiltration cause issues with our models so seperate function
-        construction_data_unfiltered, floor_area = extract_construction_summary_KV(html)
+        construction_data_unfiltered, floor_area = extract_construction_summary_KV(html, model)
         construction_data = {k: v for k, v in construction_data_unfiltered.items() if k in construction_data_filter}
         glazing_data = {k: v for k, v in construction_data_unfiltered.items() if k in glazing_data_filter}
-        infiltration = get_infiltration(model)
         print("building construction : done")
     else:
         # TODO : fix envelope function : tilt for floors = 180, tilt for roof=0 
@@ -287,13 +295,12 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # mapping csv path --currently it is in the SD_2026 folder undr name "hvac_mapping.csv"
     hvac_system_path = r"SFD_2026\hvac_mapping.csv"
     if team_id != "poly":
-        hvac_system = get_hvac_system(building_type,hvac_system_path)
+        hvac_system = get_hvac_system(building_type, size_of_build, hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
         print("building hvac : done")
     else:
-        hvac_system = get_hvac_system(building_type, hvac_system_path)
+        hvac_system = get_hvac_system(building_type, size_of_build, hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
-
 
     # TODO: build comparison table when reference data is available
     # The comparison table was embedded in the process_energy_data() function,
@@ -347,7 +354,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
                  "comparison_table":comparison_table,
                  # translated data
                  "construction_data": translate_dict(construction_data, TRANSLATIONS_FR),
-                 "hvac_system":translate_dict_values(hvac_system, TRANSLATIONS_FR),
+                 "hvac_system":translate_dict_values(translate_dict(hvac_system, TRANSLATIONS_FR), TRANSLATIONS_FR),
                  "end_uses": translate_dict(end_uses, TRANSLATIONS_FR),
                  "wwr": translate_list_of_rows(wwr, TRANSLATIONS_FR),
                  # FR-specific figure paths

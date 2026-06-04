@@ -113,13 +113,11 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
   <!-- TITLE -->
   <div class="title-bar">
     <div>
-      <div class="title-label">Fiche Énergétique du Bâtiment · Archetype-QC</div>
+      <div class="title-label">Fiche descriptive du modèle - Archétype QC</div>
       <div class="title-name">{{building_name}}</div>
     </div>
     <div class="title-meta">
-      <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">{{version}}</span></div>
-      <div class="meta-divider"></div>
-      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">{{report_date}}</span></div>
+      <div class="meta-item"><span class="meta-label">Version | Date </span><span class="meta-value">{{report_date}}</span></div>
     </div>
   </div>
 
@@ -156,8 +154,8 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
       <div class="panel">
         <div class="panel-title">Caractéristiques du Bâtiment</div>
         <table><tbody>
-          <tr><td>Superficie de Plancher</td><td class="val">{{floor_area | round(1)}} m²</td></tr>
-          <tr><td>Zone Climatique</td><td class="val">{{climate_zone}}</td></tr>
+          <tr><td>Superficie de plancher [m²]</td><td class="val">{{floor_area | round(0)}} </td></tr>
+          <tr><td>Zone climatique</td><td class="val">{{climate_zone}}</td></tr>
 
           <tr class="table-subtitle">
             <td colspan="2">Système CVCA</td>

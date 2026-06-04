@@ -126,6 +126,71 @@ def get_vintage_column_KV(folder_name):
     archetypekeys_modelnames["Row-2Floor-middle_Pre1945"] = "row, '<1946', 2"
     archetypekeys_modelnames["Row-2Floor-middle_new-construction"] = "row, '>2011', 2"
 
+
+    archetypekeys_modelnames['Duplex_1945-1985-attached'] = "duplex, milieu-rangee, '[1946 , 1983]'"
+    archetypekeys_modelnames['Duplex_1945-1985-attached_empty-basement'] = "duplex, milieu-rangee, '[1946 , 1983]'"
+    archetypekeys_modelnames['Duplex_1945-1985-attached_main-with-basement'] = "duplex, milieu-rangee, '[1946 , 1983]'"
+
+    archetypekeys_modelnames['Duplex_1945-1985-detached'] = "duplex, individuel, '[1946 , 1983]'"
+    archetypekeys_modelnames['Duplex_1945-1985-detached_empty-basement'] = "duplex, individuel, '[1946 , 1983]'"
+    archetypekeys_modelnames['Duplex_1945-1985-detached_main-with-basement'] = "duplex, individuel, '[1946 , 1983]'"
+
+    archetypekeys_modelnames['Duplex_1985-2010-attached'] = "duplex, milieu-rangee, '[1984 , 2011]'"
+    archetypekeys_modelnames['Duplex_1985-2010-attached_empty-basement'] = "duplex, milieu-rangee, '[1984 , 2011]'"
+    archetypekeys_modelnames['Duplex_1985-2010-attached_main-with-basement'] = "duplex, milieu-rangee, '[1984 , 2011]'"
+
+    archetypekeys_modelnames['Duplex_1985-2010-detached'] = "duplex, individuel, '[1984 , 2011]'"
+    archetypekeys_modelnames['Duplex_1985-2010-detached_empty-basement'] = "duplex, individuel, '[1984 , 2011]'"
+    archetypekeys_modelnames['Duplex_1985-2010-detached_main-with-basement'] = "duplex, individuel, '[1984 , 2011]'"
+
+    archetypekeys_modelnames['Duplex_post-2010-attached'] = "duplex, milieu-rangee, '>2011'"
+    archetypekeys_modelnames['Duplex_post-2010-attached_empty-basement'] = "duplex, milieu-rangee, '>2011'"
+    archetypekeys_modelnames['Duplex_post-2010-attached_main-with-basement'] = "duplex, milieu-rangee, '>2011'"
+
+    archetypekeys_modelnames['Duplex_post-2010-detached'] = "duplex, individuel, '>2011'"
+    archetypekeys_modelnames['Duplex_post-2010-detached_empty-basement'] = "duplex, individuel, '>2011'"
+    archetypekeys_modelnames['Duplex_post-2010-detached_main-with-basement'] = "duplex, individuel, '>2011'"
+
+    archetypekeys_modelnames['Duplex_pre_1945-attached'] = "duplex, milieu-rangee, '<1946'"
+    archetypekeys_modelnames['Duplex_pre_1945-attached_empty-basement'] = "duplex, milieu-rangee, '<1946'"
+    archetypekeys_modelnames['Duplex_pre_1945-attached_main-with-basement'] = "duplex, milieu-rangee, '<1946'"
+
+    archetypekeys_modelnames['Duplex_pre_1945-detached'] = "duplex, individuel, '<1946'"
+    archetypekeys_modelnames['Duplex_pre_1945-detached_empty-basement'] = "duplex, individuel, '<1946'"
+    archetypekeys_modelnames['Duplex_pre_1945-detached_main-with-basement'] = "duplex, individuel, '<1946'"
+
+    archetypekeys_modelnames['Triplex_1945-1985-attached'] = "triplex, milieu-rangee, '[1946 , 1983]'"
+    archetypekeys_modelnames['Triplex_1945-1985-attached_empty-basement'] = "triplex, milieu-rangee, '[1946 , 1983]'"
+    archetypekeys_modelnames['Triplex_1945-1985-attached_main-with-basement'] = "triplex, milieu-rangee, '[1946 , 1983]'"
+
+    archetypekeys_modelnames['Triplex_1945-1985-detached'] = "triplex, individuel, '[1946 , 1983]'"
+    archetypekeys_modelnames['Triplex_1945-1985-detached_empty-basement'] = "triplex, individuel, '[1946 , 1983]'"
+    archetypekeys_modelnames['Triplex_1945-1985-detached_main-with-basement'] = "triplex, individuel, '[1946 , 1983]'"
+
+    archetypekeys_modelnames['Triplex_1985-2010-attached'] = "triplex, milieu-rangee, '[1984 , 2011]'"
+    archetypekeys_modelnames['Triplex_1985-2010-attached_empty-basement'] = "triplex, milieu-rangee, '[1984 , 2011]'"
+    archetypekeys_modelnames['Triplex_1985-2010-attached_main-with-basement'] = "triplex, milieu-rangee, '[1984 , 2011]'"
+
+    archetypekeys_modelnames['Triplex_1985-2010-detached'] = "triplex, individuel, '[1984 , 2011]'"
+    archetypekeys_modelnames['Triplex_1985-2010-detached_empty-basement'] = "triplex, individuel, '[1984 , 2011]'"
+    archetypekeys_modelnames['Triplex_1985-2010-detached_main-with-basement'] = "triplex, individuel, '[1984 , 2011]'"
+
+    archetypekeys_modelnames['Triplex_post-2010-attached'] = "triplex, milieu-rangee, '>2011'"
+    archetypekeys_modelnames['Triplex_post-2010-attached_empty-basement'] = "triplex, milieu-rangee, '>2011'"
+    archetypekeys_modelnames['Triplex_post-2010-attached_main-with-basement'] = "triplex, milieu-rangee, '>2011'"
+
+    archetypekeys_modelnames['Triplex_post-2010-detached'] = "triplex, individuel, '>2011'"
+    archetypekeys_modelnames['Triplex_post-2010-detached_empty-basement'] = "triplex, individuel, '>2011'"
+    archetypekeys_modelnames['Triplex_post-2010-detached_main-with-basement'] = "triplex, individuel, '>2011'"
+
+    archetypekeys_modelnames['Triplex_pre_1945-attached'] = "triplex, milieu-rangee, '<1946'"
+    archetypekeys_modelnames['Triplex_pre_1945-attached_empty-basement'] = "triplex, milieu-rangee, '<1946'"
+    archetypekeys_modelnames['Triplex_pre_1945-attached_main-with-basement'] = "triplex, milieu-rangee, '<1946'"
+
+    archetypekeys_modelnames['Triplex_pre_1945-detached'] = "triplex, individuel, '<1946'"
+    archetypekeys_modelnames['Triplex_pre_1945-detached_empty-basement'] = "triplex, individuel, '<1946'"
+    archetypekeys_modelnames['Triplex_pre_1945-detached_main-with-basement'] = "triplex, individuel, '<1946'"
+
     if folder_name in archetypekeys_modelnames.keys():
         return archetypekeys_modelnames[folder_name]
     else:
@@ -240,14 +305,16 @@ def plot_banana(df, output_path,lang):
     plt.savefig(output_path)
     plt.close()
 
-def get_hvac_system(building_type, csv_path):
+def get_hvac_system(building_type, building_size, csv_path):
 
     df = pd.read_csv(csv_path)
 
-
-    type_map = [ 'LR', 'MR','HR']
-    if building_type in type_map:
-        building_type = "Multi-Residential"
+    # Duplex/triplex are also Multi-Unit types so no way to distinguis with type alone, enteres building_size as an additional identifier
+    # could have seperate entry using double keys, but they use the same systems as SFD, so we locally change the type to fetch the correct HVAC system properties
+    # TODO : improve mapping to use multiple identifiers and create seperate entries for duplex/triplex
+    type_map = ['Duplex', 'Triplex']
+    if building_size == "Multi-Unit":
+        building_type = "Single-Family"
 
 
     # Find matching row
