@@ -40,7 +40,8 @@ from helpers.extract_info import (
     extract_construction_summary as extract_construction_summary_KV, 
     get_infiltration, 
     get_building_characteristics, 
-    get_folder_structure
+    get_folder_structure, 
+    get_french_characteristic
     )
 
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
@@ -67,7 +68,7 @@ TRANSLATIONS_FR = {
     "South": "Sud",
     "East": "Est",
     "West": "Ouest",
-    "Average":"Moyenne",
+    "Average [%]":"Moyenne [%]",
     # End uses
     "Heating": "Chauffage",
     "Cooling": "Refroidissement",
@@ -85,13 +86,14 @@ TRANSLATIONS_FR = {
     "Generators": "Générateurs",
     "Total End Uses": "Total des usages",
     # Construction data
-    "Walls Ext [W/m2-K]": "Murs ext. [W/m²·K]",
-    "Walls Int [W/m2-K]": "Murs int. [W/m²·K]",
-    "Roof [W/m2-K]": "Toit [W/m²·K]",
-    "Slabs [W/m2-K]": "Dalles [W/m²·K]",
-    "Glazing [W/m2-K]": "Vitrage [W/m²·K]",
+    "Exterior walls [W/m²/K]": "Murs extérieurs [W/m²/K]",
+    "Interior walls [W/m²/K]": "Murs intérieurs [W/m²/K]",
+    "Roof [W/m²/K]": "Toit [W/m²/K]",
+    "Slabs [W/m²/K]": "Dalles [W/m²/K]",
+    "Glazing [W/m²/K]": "Vitrage [W/m²/K]",
     "SHGC": "FCS",
-    "Infiltration [m^3/h-m^2]": "Infiltration [m³/h·m²]",
+    "Infiltration [m³/h/m²]": "Infiltration [m³/h/m²]",
+    "Infiltration (ELA @4Pa) [cm²]" :"Infiltration (ELA @4Pa) [cm²]",
     # HVAC systems
     "Cooling system":"Système de climatisation",
     "Heating system":"Système de chauffage", 
@@ -180,28 +182,29 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # TODO : make function compatible with both model structures
     if team_id=='poly':
         # NEW : added different infiltration identifier for SFD since it uses a different approach
+        # TODO : figure out way to just have the names/units in one location. Currently need to make modifications in too many places
         construction_data_filter = [
-            'Walls Ext [W/m2-K]',
-            'Walls Int [W/m2-K]',
-            'Roof [W/m2-K]',
-            'Slabs [W/m2-K]',
+            'Exterior walls [W/m²/K]',
+            'Interior walls [W/m²/K]',
+            'Roof [W/m²/K]',
+            'Slabs [W/m²/K]',
             'Infiltration (ELA @4Pa) [cm²]'
         ]
         glazing_data_filter = [
             'SHGC',
-            'Glazing [W/m2-K]'
+            'Glazing [W/m²/K]'
         ]
     else:
         construction_data_filter = [
-            'Walls Ext [W/m2-K]',
-            'Walls Int [W/m2-K]',
-            'Roof [W/m2-K]',
-            'Slabs [W/m2-K]',
-            'Infiltration [m^3/h-m^2]'
+            'Exterior walls [W/m²/K]',
+            'Interior walls [W/m²/K]',
+            'Roof [W/m²/K]',
+            'Slabs [W/m²/K]',
+            'Infiltration [m³/h/m²]'
         ]
         glazing_data_filter = [
             'SHGC',
-            'Glazing [W/m2-K]'
+            'Glazing [W/m²/K]'
         ]
 
 
@@ -311,7 +314,6 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     # --- Shared render kwargs (EN) ---
     shared_en = dict(
-        model_description="Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.Your building description text here.",
         building_name=building_name,
         building_sector=building_sector,
         building_type=building_type,
@@ -336,6 +338,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         gas_total=gas_total,
         comparison_table=comparison_table_en,
         report_date=datetime.today().strftime("%Y-%m-%d"),
+        data_description="The reference data used for the comparison come from a dataset of more than 60,000 residential electricity meters, combined with metadata. Filters were applied to ensure consistency with the building type and subtype of this card, as well as to exclude end uses such as pool, spa, and electric vehicle charging.",
         figure3_path="geometry.png",
         figure1_path="banana.png",
         monthly_chart="monthly.png",  
@@ -351,12 +354,18 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # TODO : translate new table entries
     # --- Shared render kwargs (FR) ---
     shared_fr = {**shared_en,
-                 "comparison_table":comparison_table,
+                "building_sector":get_french_characteristic(building_sector),
+                "building_type":get_french_characteristic(building_type),
+                "building_subtype":get_french_characteristic(building_subtype),
+                "size_of_build":get_french_characteristic(size_of_build),
+                "vintage":get_french_characteristic(building_vintage),
+                "comparison_table":comparison_table,
                  # translated data
                  "construction_data": translate_dict(construction_data, TRANSLATIONS_FR),
                  "hvac_system":translate_dict_values(translate_dict(hvac_system, TRANSLATIONS_FR), TRANSLATIONS_FR),
                  "end_uses": translate_dict(end_uses, TRANSLATIONS_FR),
                  "wwr": translate_list_of_rows(wwr, TRANSLATIONS_FR),
+                 "data_description": "Les données de référence utilisées pour la comparaison proviennent d’un jeu de données de plus de 60 000 compteurs électriques de clients résidentiels, couplé à des métadonnées. Des filtres ont été appliqués afin de respecter le type et le sous-type de bâtiment de cette fiche, ainsi que pour exclure les usages piscine, spa et recharge de véhicule électrique.", 
                  # FR-specific figure paths
                  "figure1_path": "banana_fr.png",
                  "monthly_chart": "monthly_fr.png",

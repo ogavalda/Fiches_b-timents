@@ -138,13 +138,13 @@ def extract_construction_summary(html_input: str, json_path) -> dict:
     Infiltration = get_airtightness_value(json_path)
 
     return {
-        "Walls Ext [W/m2-K]": avg(data["Walls Ext"]),
-        "Walls Int [W/m2-K]": avg(data["Walls Int"]),
-        "Roof [W/m2-K]": avg(data["Roof"]),
-        "Slabs [W/m2-K]": avg(data["Slabs"]),
-        "Glazing [W/m2-K]": avg(data["Glazing"]),
+        "Exterior walls [W/m²/K]": avg(data["Walls Ext"]),
+        "Interior walls [W/m²/K]": avg(data["Walls Int"]),
+        "Roof [W/m²/K]": avg(data["Roof"]),
+        "Slabs [W/m²/K]": avg(data["Slabs"]),
+        "Glazing [W/m²/K]": avg(data["Glazing"]),
         "SHGC": avg(data["SHGC"]),
-        "Infiltration [m^3/h-m^2]": Infiltration
+        "Infiltration [m³/h/m²]": Infiltration
     }
 
 

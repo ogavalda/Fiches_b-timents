@@ -32,7 +32,7 @@ def create_monthly_plot(sim_results, output_path, lang, team_id):
 
     # reorder columns for plot
     df_monthly = df_monthly[['PlugLoads', 'Other (Fans,...)', 'Lighting', 'DHW', 'Heating', 'Cooling']]
-    fig, ax = plt.subplots(1,1, figsize=(9, 5))
+    fig, ax = plt.subplots(1,1, figsize=(10, 5))
 
     colors = {'Cooling':"#58b3e7", 'DHW':'darkred', 'Heating':"#e95454ff", 'PlugLoads':'gray', 'Lighting':'gold', 'Other (Fans,...)':'lightgrey'}
     df_monthly.plot.bar(stacked=True, color=colors, ax=ax)
@@ -40,14 +40,14 @@ def create_monthly_plot(sim_results, output_path, lang, team_id):
     ax.set_xlabel('')
 
     if lang=="eng":
-        ax.set_ylabel("Energy [kWh]")
+        ax.set_ylabel("Monthly consumption [kWh]")
         #ax.set_title("Monthly Energy Consumption by Type")
         legend_english = {'PlugLoads':'Plug Loads', "DHW":"Domestic/Service Hot Water"}
         h, l = ax.get_legend_handles_labels()
         ax.legend(handles = h[::-1], labels = [legend_english[l_] if l_ in legend_english.keys() else l_ for l_ in l][::-1] )
         ax.set_xticklabels(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
     else:
-        ax.set_ylabel("Consommation Mensuel [kWh]")
+        ax.set_ylabel("Consommation mensuel [kWh]")
         #ax.set_title("Consommation mensuelle par usage")
         legend_french = {'PlugLoads':'Charges aux prises', 'Lighting':'Éclairage', 'Other (Fans,...)':'Autres (ventilateurs,...)', 'Heating':"Chauffage", 'Cooling':"Climatisation", "DHW":"Eau Chaude"}
         h, l = ax.get_legend_handles_labels()
@@ -94,20 +94,22 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_i
     ax.set_xlim([0, 24*3600-15*60])
 
     if lang=="eng":
-        ax.set_ylabel("Electric consumption [kWh]")
+        ax.set_ylabel("Hourly electricity consumption [kWh]")
         ax.set_xlabel('Time of Day')
 
         legend_english = {'PlugLoads':'Plug Loads', "DHW":"Domestic/Service Hot Water"}
         h, l = ax.get_legend_handles_labels()
         ax.legend(handles = h[::-1], labels = [legend_english[l_] if l_ in legend_english.keys() else l_ for l_ in l][::-1] )
+        ax.set_title(period)
     else:
-        ax.set_ylabel('Consommation électrique (khW)')
+        ax.set_ylabel('Consommation électrique horaire [kWh]')
         ax.set_xlabel('Heure de la journée')
 
         day_type_french = {'winter':'hiver', 'summer':'été'}
         legend_french = {'PlugLoads':'Charges aux prises', 'Lighting':'Éclairage', 'Other (Fans,...)':'Autres (ventilateurs,...)', 'Heating':"Chauffage", 'Cooling':"Climatisation", "DHW":"Eau Chaude"}
         h, l = ax.get_legend_handles_labels()
         ax.legend(handles = h[::-1], labels = [legend_french[l_] for l_ in l ][::-1])
+        ax.set_title(day_type_french[period])
 
     xticks = np.arange(0,24,2)   # xticks by hours for starters to use in labels
     xtick_labels = [str(time)+':00' for time in xticks]
@@ -236,7 +238,7 @@ def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
 
             meter_profile = [row[f"meter_{h}"] for h in range(24)]
             ax.plot(range(24), meter_profile,
-                    color="red", alpha=0.15)
+                    color="red", alpha=0.15, label='simulated profile')
 
         # --- Meter average (dashed red) ---
         meter_mean = [
@@ -245,7 +247,7 @@ def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
 
         ax.plot(range(24), meter_mean,
                 color="red", linestyle="--", linewidth=2,
-                label="Meter Avg" if (i == 0 and j == 0) else "")
+                label="Meter Avg")
 
         # --- OPE: ONLY average (bold blue) ---
         ope_mean = [
@@ -254,17 +256,30 @@ def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
 
         ax.plot(range(24), ope_mean,
                 color="blue", linewidth=3,
-                label="OPE Avg" if (i == 0 and j == 0) else "")
+                label="OPE Avg")
+
+        
+        title_dict_en = {'weekday':'Weekday', 'weekend':'Weekend', 'winter':'Winter', 'summer':'Summer'}
+        title_dict_fr = {'weekday':'Jour de semaine', 'weekend':'Fin de semaine', 'winter':'Hiver', 'summer':'Été'}
+
+        h, l = ax.get_legend_handles_labels()
+        to_keep_index = [0,-2,-1]
+        hanldes_to_keep = list(np.array(h)[to_keep_index])
 
         # remove title, html already has title
-        #ax.set_title(f"{season} - {day_type}")
         if lang=="eng":
             ax.set_xlabel("Hour of Day")
-            ax.set_ylabel("Consumption (kWh)")
+            ax.set_ylabel("Hourly Consumption [kWh]")
+            ax.set_title(f"{title_dict_en[season]} - {title_dict_en[day_type]}")
+            ax.legend(handles=hanldes_to_keep, labels=['simulated profiles', 'average simulated profile', 'average reference profile'])
         else:
             ax.set_xlabel("Heure du jour")
-            ax.set_ylabel("Consommation (kWh)")
+            ax.set_ylabel("Consommation horaire [kWh]")
+            ax.set_title(f"{title_dict_fr[season]} - {title_dict_fr[day_type]}")
+            ax.legend(handles=hanldes_to_keep, labels=['profils modélisés', 'profil moyen modélisé', 'profil moyen de référence'])
+      
         ax.set_xlim(0, 23)
+        ax.set_xticks(np.arange(0, 24, 3))
         ax.grid(True)
 
     plt.tight_layout()
@@ -390,14 +405,16 @@ def plot_banana(df, output_path,lang):
                 color="red", alpha=0.5, label="Meter")
 
     if lang=="eng":
-        plt.xlabel("Outdoor Temperature (°C)")
-        plt.ylabel("Consumption (kWh)")
+        plt.xlabel("Daily average outdoor temperature [°C]")
+        plt.ylabel("Daily consumption [kWh]")
+        plt.legend(labels=['Reference', 'Model'])
         #plt.title("PRISM Curve")
     else:
-        plt.xlabel("Température Extérieure (°C)")
-        plt.ylabel("Consommation (kWh)")
+        plt.xlabel("Température extérieure moyenne quotidienne[°C]")
+        plt.ylabel("Consommation quotidienne [kWh]")
+        plt.legend(labels=['Référence', 'Modèle'])
         #plt.title("Curve PRISM")
-    plt.legend()
+    
 
     plt.grid(True)
 
@@ -493,36 +510,52 @@ def calculate_kpi_from_df(
     # Delta --> calculates the difference between model and reference (error)
     comparison_table["delta"] = (comparison_table["model"]- comparison_table["reference"])
 
-    # ROUNDING
-    comparison_table["model"] = (comparison_table["model"].round(2))
-    comparison_table["reference"] = (comparison_table["reference"].round(2))
+    # ROUNDING : all to one digit
+    comparison_table["model"] = (comparison_table["model"].round(1))
+    comparison_table["reference"] = (comparison_table["reference"].round(1))
     comparison_table["delta"] = (comparison_table["delta"].round(1))
+    
     comparison_table_en=comparison_table.copy()
     rename_map = {
-        "Conso_annuelle_electricite_kWh": "Consommation annuelle électricité (kWh)",
-        "Conso_base_electricite_kWhParJour": "Consommation de base électricité (kWh/jour)",
-        "Pente_chauffage_electricite_WparK": "Pente chauffage électricité (W/K)",
-        "Pente_climatisation_electricite_WparK": "Pente climatisation électricité (W/K)",
-        "Pointe_hiver_am_kW": "Pointe hiver AM (kW)",
+        "Conso_annuelle_electricite_kWh": "Consommation annuelle électricité [kWh]",
+        "Conso_base_electricite_kWhParJour": "Consommation de base électricité [kWh/jour]",
+        "Pente_chauffage_electricite_WparK": "Pente chauffage électricité [W/K]",
+        "Pente_climatisation_electricite_WparK": "Pente climatisation électricité [W/K]",
+        "Pointe_hiver_am_kW": "Pointe hiver AM [kW]",
         "Pointe_h_hiver_am": "Heure pointe hiver AM",
-        "Pointe_hiver_pm_kW": "Pointe hiver PM (kW)",
+        "Pointe_hiver_pm_kW": "Pointe hiver PM [kW]",
         "Pointe_h_hiver_pm": "Heure pointe hiver PM",
     }
     rename_map_en = {
-        "Conso_annuelle_electricite_kWh": "Yearly electricity consumption (kWh)",
-        "Conso_base_electricite_kWhParJour": "Yearly baseload consumption (kWh/jour)",
-        "Pente_chauffage_electricite_WparK": "Slope electricity heating (W/K)",
-        "Pente_climatisation_electricite_WparK": "Slope climatisation cooling (W/K)",
-        "Pointe_hiver_am_kW": "Peak winter AM (kW)",
-        "Pointe_h_hiver_am": "Hour peak winter AM",
-        "Pointe_hiver_pm_kW": "Peak winter PM (kW)",
-        "Pointe_h_hiver_pm": "Hour peak winter PM",
+        "Conso_annuelle_electricite_kWh": "Yearly electricity consumption [kWh]",
+        "Conso_base_electricite_kWhParJour": "Baseload consumption [kWh/day]",
+        "Pente_chauffage_electricite_WparK": "Electric heating slope [W/K]",
+        "Pente_climatisation_electricite_WparK": "Cooling slope [W/K]",
+        "Pointe_hiver_am_kW": "Winter peak demand - AM [kW]",
+        "Pointe_h_hiver_am": "Winter time of peak - AM",
+        "Pointe_hiver_pm_kW": "Winter peak demand - PM [kW]",
+        "Pointe_h_hiver_pm": "Winter time of peak - PM",
     }
     comparison_table["indicator"] = comparison_table["indicator"].replace(rename_map)
     comparison_table_en["indicator"] = comparison_table_en["indicator"].replace(rename_map_en)
+    
     # convert to dictionary --> it prepares the return for a ready to pass to html output
     comparison_table = (comparison_table.to_dict(orient="records"))
     comparison_table_en = (comparison_table_en.to_dict(orient="records"))
+
+    # round yearly consumption to int
+    for row in comparison_table:
+        if row['indicator'] == 'Consommation annuelle électricité [kWh]':
+            row['model'] = int(round(row['model'], 0))
+            row['reference'] = int(round(row['model'],0))
+            row['delta'] = int(round(row['model'],0))
+    
+    for row in comparison_table_en:
+        if row['indicator'] == 'Yearly electricity consumption [kWh]':
+            row['model'] = int(round(row['model'],0))
+            row['reference'] = int(round(row['model'],0))
+            row['delta'] = int(round(row['model'],0))
+
     # RETURN
     return comparison_table,comparison_table_en
 

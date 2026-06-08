@@ -26,7 +26,7 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
   font-weight:600;
   text-transform:uppercase;
   letter-spacing:.08em;
-  padding:4px 5px;
+  padding:10px 5px 2px;
   border-top:1px solid var(--rule);
   border-bottom:1px solid var(--rule);
 }
@@ -53,6 +53,9 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
 .panel.grow .img-frame { flex:1; min-height:0; }
 .panel-title { font-size:7.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid var(--accent-lt); padding-bottom:3px; margin-bottom:5px; flex-shrink:0; }
 .panel-title.green { color:var(--accent2); border-color:var(--accent2-lt); }
+
+/* formatting exception : units */
+.keep-case {text-transform: none;}
 
 /* TABLE */
 table { width:100%; border-collapse:collapse; table-layout:fixed; font-family:var(--mono); font-size:9.5px; }
@@ -136,10 +139,9 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
         <div class="panel-title">Description du Bâtiment</div>
         <table><tbody>
           <tr><td>Secteur</td><td class="val">{{building_sector}} </td></tr>
-          <tr><td>Type de Bâtiment</td><td class="val">{{building_type}}</td></tr>
-          <tr><td>Sous-type de Bâtiment</td><td class="val">{{building_subtype}}</td></tr>
-          <tr><td>Taille du bâtiment</td><td class="val">{{size_of_build}}</td></tr>
-          <tr><td>Periode de Construction</td><td class="val">{{vintage}}</td></tr>
+          <tr><td>Type de bâtiment</td><td class="val">{{building_type}}</td></tr>
+          <tr><td>Sous-type de bâtiment</td><td class="val">{{size_of_build}} {{building_subtype}}</td></tr>
+          <tr><td>Période de construction</td><td class="val">{{vintage}}</td></tr>
         </tbody></table>
       </div>
 
@@ -154,7 +156,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
       <div class="panel">
         <div class="panel-title">Caractéristiques du Bâtiment</div>
         <table><tbody>
-          <tr><td>Superficie de plancher [m²]</td><td class="val">{{floor_area | round(0)}} </td></tr>
+          <tr><td>Superficie de plancher [m²]</td><td class="val">{{floor_area | round(0) | int}} </td></tr>
           <tr><td>Zone climatique</td><td class="val">{{climate_zone}}</td></tr>
 
           <tr class="table-subtitle">
@@ -164,14 +166,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           {% for k,v in hvac_system.items() %}
           <tr><td>{{k}}</td><td class="val">{{ v }}</td></tr>
           {% endfor %}
-        </tbody></table>
-      </div>
 
-      
-
-      <div class="panel">
-        <div class="panel-title">Enveloppe</div>
-        <table><tbody>
           <tr class="table-subtitle">
             <td colspan="2">Isolation &amp; Étanchéité à l'Air</td>
           </tr>
@@ -189,14 +184,10 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           {% endfor %}
           
           <tr class="table-subtitle">
-            <td colspan="2">RTF (Ratio Fenêtres/Façade)</td>
+            <td colspan="2">Ratio Fenêtres/Façade</td>
           </tr>
 
-          <tbody>{% for row in wwr %}<tr><td>{{row[0]}}</td><td class="val">{{row[1]}}</td></tr>{% endfor %}</tbody>
-
-
-
-
+          {% for row in wwr %}<tr><td>{{row[0]}}</td><td class="val">{{row[1]}}</td></tr>{% endfor %}
 
         </tbody></table>
       </div>
@@ -208,66 +199,62 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="col">
 
       <div class="panel">
-        <div class="panel-title">Usages Finaux Annuels — Électricité [kWh]</div>
+        <div class="panel-title">Usages Finaux Annuels — Électricité <span class="keep-case">[kWh]</span> </div>
         <table>
-          <thead><tr><th>Usage Final</th><th>kWh/an</th></tr></thead>
-          <tbody>{% for k,v in end_uses.items() %}<tr><td>{{k}}</td><td class="val">{{ v | round(1) }}</td></tr>{% endfor %}</tbody>
+          <thead><tr><th>Usage Final</th><th><span class="keep-case">[kWh/an]</span></th></tr></thead>
+          <tbody>{% for k,v in end_uses.items() %}<tr><td>{{k}}</td><td class="val">{{ v | round(0) }}</td></tr>{% endfor %}</tbody>
         </table>
       </div>
 
-      <div class="panel grow">
+      <div class="panel">
         <div class="panel-title">Consommation Mensuelle par Usage Final</div>
-        <div class="img-frame fluid">
+        <div class="img-frame">
           <img src="{{monthly_chart}}" alt="Consommation mensuelle">
         </div>
-        <div class="caption">Décomposition de la consommation énergétique mensuelle par usage final, montrant la contribution du chauffage, de la climatisation, de l'éclairage, de l'eau chaude sanitaire, des prises de courant et des systèmes auxiliaires tout au long de l'année.</div>
+        <div class="caption">Décomposition de la consommation énergétique mensuelle par usage final, montrant la contribution du chauffage, de la climatisation, de l'éclairage, de l'eau chaude sanitaire, des chaurges aux prises et des systèmes auxiliaires tout au long de l'année.</div>
       </div>
 
-      <div class="panel grow">
-        <div class="panel-title">Profil Journalier Typique — Hiver</div>
-        <div class="img-frame fluid">
-          <img src="{{daily_chart1_winter}}" alt="Profil journalier typique - hiver">
+      <div class="panel">
+        <div class="panel-title">Profil journalier moyen par usage </div>
+        <div class="img-frame">
+          <img src="{{daily_chart1_winter}}" alt="Profil journalier moyen par - hiver">
         </div>
-        <div class="caption">Profil de consommation journalière hivernale empilée, montrant la contribution du chauffage, de l'éclairage, de l'eau chaude sanitaire, des prises de courant et des systèmes auxiliaires au cours d'une journée hivernale typique.</div>
-      </div>
 
-            <div class="panel grow">
-        <div class="panel-title">Profil Journalier Typique — Été</div>
-        <div class="img-frame fluid">
+        <div class="img-frame">
           <img src="{{daily_chart1_summer}}" alt="Profil journalier typique - été">
         </div>
-        <div class="caption">Profil de consommation journalière estivale empilée, montrant la contribution de la climatisation, de l'éclairage, de l'eau chaude sanitaire, des prises de courant et des systèmes auxiliaires au cours d'une journée estivale typique.</div>
-      </div>
 
+        <div class="caption">Profil de consommation journalière moyen des jours d'hiver et d'été, montrant la contribution du chauffage, de l'éclairage, de l'eau chaude sanitaire, des chaurges aux prises et des systèmes auxiliaires au cours d'une journée hivernale ou estivale moyenne.</div>
+      </div>
     </div>
   </div>
 
   <!-- KPI strip: full width below both columns -->
   <div class="kpi-row">
     <div class="kpi">
-      <span class="kpi-label">Intensité d'Usage Énergétique</span>
-      <span class="kpi-value">{{energy_intensity | round(1)}}</span>
+      <span class="kpi-label">Intensité énergétique</span>
+      <span class="kpi-value">{{energy_intensity | round(0) | int}}</span>
       <span class="kpi-unit">kWh/m²/an</span>
     </div>
     <div class="kpi">
       <span class="kpi-label">Consommation Totale</span>
-      <span class="kpi-value">{{total_energy | round(0)}}</span>
+      <span class="kpi-value">{{total_energy | round(0) | int}}</span>
       <span class="kpi-unit">kWh/an</span>
     </div>
     <div class="kpi green">
       <span class="kpi-label">Électricité</span>
-      <span class="kpi-value">{{elec_total | round(0)}}</span>
+      <span class="kpi-value">{{elec_total | round(0) | int}}</span>
       <span class="kpi-unit">kWh/an</span>
     </div>
     <div class="kpi green">
       <span class="kpi-label">Gaz Naturel</span>
-      <span class="kpi-value">{{gas_total | round(0)}}</span>
+      <span class="kpi-value">{{gas_total | round(0) | int}}</span>
       <span class="kpi-unit">kWh/an</span>
     </div>
   </div>
 
   <div class="page-footer">
-    <span>Fiche Énergétique du Bâtiment Archetype-QC · Rapport Automatisé</span>
+    <span>Fiche descriptive du modèle · Rapport Automatisé</span>
     <span>{{building_name}} · {{report_date}}</span>
     <span class="page-num">1 / 2</span>
   </div>
@@ -283,21 +270,25 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="section-label-line"></div>
   </div>
 
+  <!-- FULL-WIDTH: data description -->
+  <div class="panel">
+    <div class="panel-title">Données de référence</div>
+    <p class="description-text">{{data_description}}</p>
+  </div>
+
   <!-- top middle: typical days -->
   <div class="col">
       <div class="panel">
-        <div class="panel-title">Journée Typique — Hiver</div>
+        <div class="panel-title">Profil journalier</div>
         <div class="img-frame">
           <img src="{{daily_chart2_winter}}" alt="Journée d'hiver">
         </div>
-        <div class="caption">Profil de consommation journalière hivernale comparant la consommation énergétique horaire simulée et mesurée. Les lignes rouges représentent les journées hivernales individuelles du modèle, la ligne rouge pointillée indique le profil simulé moyen, et la ligne bleue montre les données mesurées. Le graphique de gauche représente les jours de semaine, celui de droite les fins de semaine.</div>
-      </div>
-      <div class="panel">
-        <div class="panel-title">Journée Typique — Été</div>
+        
         <div class="img-frame">
           <img src="{{daily_chart2_summer}}" alt="Journée d'été">
         </div>
-        <div class="caption">Profil de consommation journalière estivale comparant la consommation énergétique horaire simulée et mesurée. Les lignes rouges représentent les journées individuelles du modèle, la ligne rouge pointillée indique le profil simulé moyen, et la ligne bleue montre les données mesurées. Le graphique de gauche représente les jours de semaine, celui de droite les fins de semaine.</div>
+
+        <div class="caption">Profil de consommation journalière hivernale et estivale comparant la consommation énergétique horaire simulée avec les données de référence. Les lignes rouges représentent les journées individuelles du modèle pour la période indiquée, la ligne rouge pointillée indique le profil moyen de la simulation, et la ligne bleue montre le profil moyen des données de référence. Les graphiques de gauche représentent les jours de semaine, ceux de droite les fins de semaine.</div>
       </div>
     </div>
 
@@ -311,11 +302,11 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="col">
       
       <div class="panel">
-        <div class="panel-title">Courbe PRISM</div>
+        <div class="panel-title">Consommation quotidienne vs. Température extérieure moyenne quotidienne</div>
         <div class="img-frame">
           <img src="{{figure1_path}}" alt="Courbe PRISM">
         </div>
-        <div class="caption">Courbe PRISM comparant la consommation énergétique simulée (OPE) et mesurée en fonction de la température extérieure, illustrant la relation entre les conditions météorologiques et la demande énergétique du bâtiment au cours de l'année.</div>
+        <div class="caption">Comparaison entre la consommation quotidienne modélisée et la consommation de référence en fonction de la température extérieure, pour tous les jours de l’année de référence. </div>
       </div>
     </div>
 
@@ -360,7 +351,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
   </div>
 
   <div class="page-footer">
-    <span>Fiche Énergétique du Bâtiment Archetype-QC · Rapport Automatisé</span>
+    <span>Fiche descriptive du modèle · Rapport Automatisé</span>
     <span>{{building_name}} · {{report_date}}</span>
     <span class="page-num">2 / 2</span>
   </div>

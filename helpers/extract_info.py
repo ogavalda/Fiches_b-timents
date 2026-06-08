@@ -177,11 +177,11 @@ def extract_construction_summary(html_input: str, osm) -> dict:
 
 
     return {
-        "Walls Ext [W/m2-K]": avg(data["Walls Ext"]),
-        "Walls Int [W/m2-K]": 0, ## no int walls
-        "Roof [W/m2-K]": avg(data["Roof"]), 
-        "Slabs [W/m2-K]": avg(data["Slabs"]), 
-        "Glazing [W/m2-K]": avg(data["Glazing"]),
+        "Exterior walls [W/m²/K]": avg(data["Walls Ext"]),
+        "Interior walls [W/m²/K]": 0, ## no int walls
+        "Roof [W/m²/K]": avg(data["Roof"]), 
+        "Slabs [W/m²/K]": avg(data["Slabs"]), 
+        "Glazing [W/m²/K]": avg(data["Glazing"]),
         "SHGC": avg(data["SHGC"]),
         "Infiltration (ELA @4Pa) [cm²]": get_infiltration(osm), 
     }, floor_area
@@ -217,7 +217,7 @@ def get_building_characteristics(folder_name):
         elif ('Duplex' in parts) or ('Triplex' in parts):
             sector = "Residential"
             building_type = "Multi-Unit"
-            building_size = parts[0]
+            building_size =  parts[0]
 
             if 'attached' in parts:
                 building_subtype = 'Attached'
@@ -235,7 +235,7 @@ def get_building_characteristics(folder_name):
             building_type = "Single-Family"
             
             category = category_dict.get(parts[0], parts[0]) 
-            building_size = floors_dict[parts[1]]
+            building_size = floors_dict.get(parts[1])
 
             if 'Row' in category:
                 if 'middle' in parts:
@@ -281,6 +281,28 @@ def get_abbreviation_dicts():
     vintages = {"After 2012":'post2012', "Before 1945":'pre1945',"A_Pre1945":"pre1945","B_19461983":"1946-1983","C_19842010":"1984-2010","D_Post2011":"post2011"}
     return sectors, building_types, building_subtypes, building_sizes, vintages
 
+def get_french_characteristic(characteristic):
+    sectors = {"Commercial-Institutional":'Commerical-Institutionnel', "Residential":'Résidentiel'}
+    building_types = {"Single-Family":'Unifamilial', "Multi-Unit":'Multilogement', "Education":'Éducation'}
+    building_subtypes = {"Attached":'Attaché', "Detached":'Détaché', "Semi-Detached":'Semi-Détaché', "Row":'Rangé',"Apartment":"Appartement"}
+    building_sizes = {"Duplex":'Duplex', "Triplex":'Triplex', "1 Floor":'1 étage', "2 Floors":'2 étages',"LR":"LR","MR":"MR","HR":"HR"}
+    vintages = {"After 2012":'Après 2012', "Before 1945":'Avant 1945',"A_Pre1945":"Avant 1945","B_19461983":"1946-1983","C_19842010":"1984-2010","D_Post2011":"Après 2011"}
+    
+    if characteristic in sectors.keys():
+        return sectors[characteristic]
+    elif characteristic in building_types.keys():
+        return building_types[characteristic]
+    elif characteristic in building_subtypes.keys():
+        return building_subtypes[characteristic]
+    elif characteristic in building_sizes.keys():
+        return building_sizes[characteristic]
+    elif characteristic in vintages.keys():
+        return vintages[characteristic]
+    else:
+        print('characteristic not yet in dict, see "get_french_characteristics" function in extract_info')
+        return characteristic
+    return 
+
 def abbreviate_name(sector, building_type, building_subtype, building_size, vintage):
     sectors, building_types, building_subtypes, building_sizes, vintages = get_abbreviation_dicts()
     
@@ -295,12 +317,26 @@ def abbreviate_name(sector, building_type, building_subtype, building_size, vint
 def get_folder_structure(sector, building_type, building_subtype, building_size, building_name):
     sectors, building_types, building_subtypes, building_sizes, vintages = get_abbreviation_dicts()
 
-    folders = [sectors.get(sector, sector),
-                    building_types.get(building_type, building_type),
-                    building_subtypes.get(building_subtype, building_subtype),
-                    building_sizes.get(building_size, building_size), 
-                    building_name
-    ]
+    if (building_type=='Multi-Unit') and ('plex' in building_size):
+        folders = [sectors.get(sector, sector),
+                        building_types.get(building_type, building_type),
+                        building_sizes.get(building_size, building_size), 
+                        building_name
+        ]
+    elif (building_type=='Multi-Unit') and (building_subtype=='Apartment'):
+        folders = [sectors.get(sector, sector),
+                        building_types.get(building_type, building_type),
+                        building_subtypes.get(building_subtype, building_subtype),
+                        building_sizes.get(building_size, building_size), 
+                        building_name
+        ]
+    
+    else:
+        folders = [sectors.get(sector, sector),
+                        building_types.get(building_type, building_type),
+                        building_subtypes.get(building_subtype, building_subtype),
+                        building_name
+        ]
 
     return folders
 

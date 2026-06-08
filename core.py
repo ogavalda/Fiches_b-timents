@@ -188,6 +188,7 @@ def building_description(model):
     climate_zone = "Not defined"
     czs = model.getClimateZones()
 
+    # TODO : this isn't always correctly configured (eg. 7 for duplex/triplex?)
     if czs.numClimateZones() > 0:
         climate_zone = czs.getClimateZone(0).value()
 
@@ -213,8 +214,8 @@ def compute_wwr_new(eplustbl_file):
     row_tag = soup.find("td", string=lambda x: x and "Above Ground Window-Wall Ratio" in x).parent
     cells = [td.get_text(strip=True) for td in row_tag.find_all("td")]
 
-    facades = ["Average"]
-    values = [float(cells[1])]
+    facades = ["Average [%]"]
+    values = [round(float(cells[1]),1)]
 
     return pd.DataFrame(list(zip(facades, values)), columns=["Facade", "WWR"])
 
