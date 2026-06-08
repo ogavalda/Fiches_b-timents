@@ -9,6 +9,7 @@ Code contributors: Kato Vanroy, kato.vanroy@polymtl.ca
 """
 import os
 
+import re
 from config import team_id
 from core import *
 from jinja2 import Environment, FileSystemLoader
@@ -40,7 +41,8 @@ from helpers.extract_info import (
     extract_construction_summary as extract_construction_summary_KV, 
     get_infiltration, 
     get_building_characteristics, 
-    get_folder_structure
+    get_folder_structure,
+    french_name
     )
 
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
@@ -107,7 +109,7 @@ def translate_list_of_rows(rows, translations):
     """Translate first element of each [key, value] row."""
     return [[translations.get(row[0], row[0])] + row[1:] for row in rows]
 
-def process_building(building_path, template_path, idd_path, operation_folder, view_folder, team_id):
+def process_building(building_path, template_path, idd_path, operation_folder, view_folder):
 
     
     folder_name = os.path.basename(building_path)
@@ -117,8 +119,10 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     building_type = building_characteristics["building_type"]
     building_subtype = building_characteristics["building_subtype"]
     building_name = building_characteristics["building_name"]
+    building_name_fr = french_name(building_name)
     building_vintage = building_characteristics["vintage"]
     size_of_build = building_characteristics["size"]
+    building_shape = building_characteristics["building_shape"]
     print("building characteristics : done")
 
     
@@ -227,21 +231,21 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # --- Monthly charts ---
     monthly_img    = os.path.join(output_path, "monthly.png")
     monthly_img_fr = os.path.join(output_path, "monthly_fr.png")
-    create_monthly_plot_KV(sim_object, monthly_img, "eng", team_id)
-    create_monthly_plot_KV(sim_object, monthly_img_fr, "fr", team_id)
+    create_monthly_plot_KV(sim_object, monthly_img, "eng")
+    create_monthly_plot_KV(sim_object, monthly_img_fr, "fr")
     
     # NEW : add figure with typical day-stacked area graph of simulation 
     # --- Daily chart : simulation only ---
     # winter
     Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_winter.png")
     Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_winter_fr.png")
-    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path,    "eng", team_id)
-    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path_fr, "fr", team_id)
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path,    "eng")
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path_fr, "fr")
     # summer
     Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_summer.png")
     Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_summer_fr.png")
-    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng", team_id)
-    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr", team_id)
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng")
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr")
     
 
 
@@ -252,8 +256,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     df, df_hourly, comparison_table,comparison_table_en = process_energy_data_KV(
         f"{building_path}/{folder_name}",
         households_dict, ope_df, weather_df, 
-        sim_object, 
-        team_id
+        sim_object
     )
 
 
@@ -278,12 +281,11 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path_fr, "fr")
 
 
-    # TODO: extract glazing properties when function is implemented
-    # glazing_data = extract_glazing_data(html, json_path)
+
 
 
     # TODO: extract mechanical systems when function is implemented
-    # mechanical_systems = extract_mechanical_systems(html, json_path)
+
     # mapping csv path --currently it is in the SD_2026 folder undr name "hvac_mapping.csv"
     hvac_system_path = r"SFD_2026\hvac_mapping.csv"
     if team_id != "poly":
@@ -338,12 +340,13 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         figure_winter_day="daily_profiles.png",   # using combined plot for now
         daily_chart2_winter = "daily_profiles_winter.png", 
         daily_chart2_summer = "daily_profiles_summer.png"
-
+        
     )
 
     # TODO : translate new table entries
     # --- Shared render kwargs (FR) ---
     shared_fr = {**shared_en,
+                 "building_name":building_name_fr,
                  "comparison_table":comparison_table,
                  # translated data
                  "construction_data": translate_dict(construction_data, TRANSLATIONS_FR),
@@ -399,7 +402,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     render_and_write("energy_card_en.html", shared_en, "Energy card.html", operation_folder)
     render_and_write("fiche_energie_fr.html", shared_fr, "Fiche energie.html", operation_folder)
     
-    return get_folder_structure(building_sector, building_type, building_subtype, size_of_build, building_name)
+    return get_folder_structure(building_sector, building_type, building_subtype, size_of_build, building_name,building_shape)
 
 
 
@@ -407,12 +410,11 @@ def run_single_building():
     if team_id != "poly":
 
         return process_building(
-        building_path=r"MURBS_2026/ID39_MR_ND_1945",
+        building_path=r"MURBS_2026/ID43_MR_SG_20112020",
         template_path=r"SFD_2026",
         idd_path=r"C:\EnergyPlusV25-2-0\Energy+.idd",
         operation_folder=r"Operation cards",
-        view_folder=r"View cards",
-        team_id=team_id
+        view_folder=r"View cards"
                 )
 
     else:
@@ -421,8 +423,7 @@ def run_single_building():
         template_path=r"SFD_2026",
         idd_path=r"C:\EnergyPlusV25-2-0\Energy+.idd",
         operation_folder=r"Operation cards",
-        view_folder=r"View cards",
-        team_id=team_id
+        view_folder=r"View cards"
                 )
 
 

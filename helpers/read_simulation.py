@@ -1,17 +1,23 @@
 # imports
+from runpy import run_path
 from sqlite3 import connect
 import pandas as pd
-
+import openstudio
 import os
+from pathlib import Path
+from config import team_id
 
 
 # A class which allows easily accessing and retrieving simulation results at a provided file location
 class ReadSimulation():
     def __init__(self, run_path):
         results_folder = "eplusout.sql"
+        path = Path(run_path)
+        self.osm_path = path.parent.parent / f"{path.parents[1].name}.osm"
+
         self.set_file_path(run_path+"\\"+results_folder)
         return
-        
+
 
     def set_file_path(self, path):
         self.path = path
@@ -81,7 +87,7 @@ class ReadSimulation():
 
 
     # function to get timeseries of the different loads
-    def get_loadprofile(self, team_id, HW_keys=''):
+    def get_loadprofile(self):
         if team_id=='poly':
             query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
@@ -103,8 +109,26 @@ class ReadSimulation():
             # TODO : make sure this works
 
             # for multiple keys
-            HW_keys = ['Electric Equipment 5', 'Electric Equipment 6']
-            HW_keys = [key.upper() for key in HW_keys] # keyvalue in sql is always upper case
+            # HW_keys = ['Electric Equipment 5', 'Electric Equipment 6']
+            # HW_keys = [key.upper() for key in HW_keys] # keyvalue in sql is always upper case
+            translator = openstudio.osversion.VersionTranslator()
+            model = translator.loadModel(self.osm_path).get()
+
+            mapping_data = []
+            # LOOP THROUGH ELECTRIC EQUIPMENT
+            for eq in model.getElectricEquipments():
+                eq_instance_name = eq.nameString()
+
+                definition = eq.electricEquipmentDefinition()
+                definition_name = definition.nameString()
+
+                mapping_data.append({"Equipment_Instance": eq_instance_name, "Definition": definition_name})
+
+            df = pd.DataFrame(mapping_data)
+
+            HW_keys_series = df.loc[df["Definition"].str.contains("Chau", na=False), "Equipment_Instance"]
+
+            HW_keys = HW_keys_series.tolist()
 
             query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
@@ -203,7 +227,7 @@ class ReadSimulation():
         return results_
 
 
-    def get_monthly_consumption(self, team_id, HW_keys=''):
+    def get_monthly_consumption(self):
         if team_id == 'poly':
             query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 
@@ -223,9 +247,28 @@ class ReadSimulation():
         else:
             # TODO : make sure this works
 
-            # for multiple keys
-            HW_keys = ['Electric Equipment 5', 'Electric Equipment 6']
-            HW_keys = [key.upper() for key in HW_keys] # keyvalue in sql is always upper case
+            # # for multiple keys
+            # HW_keys = ['Electric Equipment 5', 'Electric Equipment 6']
+            # HW_keys = [key.upper() for key in HW_keys] # keyvalue in sql is always upper case
+            translator = openstudio.osversion.VersionTranslator()
+            model = translator.loadModel(self.osm_path).get()
+
+            mapping_data = []
+            # LOOP THROUGH ELECTRIC EQUIPMENT
+            for eq in model.getElectricEquipments():
+                eq_instance_name = eq.nameString()
+
+                definition = eq.electricEquipmentDefinition()
+                definition_name = definition.nameString()
+
+                mapping_data.append({"Equipment_Instance": eq_instance_name, "Definition": definition_name})
+
+            df = pd.DataFrame(mapping_data)
+
+            HW_keys_series = df.loc[df["Definition"].str.contains("Chau", na=False), "Equipment_Instance"]
+
+            HW_keys = HW_keys_series.tolist()
+
 
             query = """SELECT ReportDataDictionary.ReportDataDictionaryIndex, TimeIndex, Value, KeyValue, name, units 
                     FROM ReportData 

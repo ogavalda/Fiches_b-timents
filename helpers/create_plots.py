@@ -7,6 +7,7 @@ import pandas as pd
 import re
 import matplotlib.pyplot as plt
 import numpy as np
+from config import team_id
 
 from core_2 import get_vintage_column_KV, get_vintage_column, normalize_time
 from Kpi import *
@@ -17,15 +18,15 @@ from Kpi import *
 ### alternative to current version : use sql results only 
 # function relies on a class ReadSimulation which makes querying the sql easier
 # requires having the correct meters & variables specified as outputs during simulation (should be OK when running the provided workflow) 
-def create_monthly_plot(sim_results, output_path, lang, team_id):
+def create_monthly_plot(sim_results, output_path, lang):
     if team_id=='poly':
-        df_monthly = sim_results.get_monthly_consumption(team_id)
+        df_monthly = sim_results.get_monthly_consumption()
     else:
         # TODO : connect to function that gets HW variable names from the mapping_df
         #mapping_df = get_mappingdf()
         #HW_key_osm = get_varaibles_from_mapping()
-        HW_key_osm = ""
-        df_monthly = sim_results.get_monthly_consumption(team_id, HW_keys=HW_key_osm)
+
+        df_monthly = sim_results.get_monthly_consumption()
 
     df_monthly = df_monthly.sort_values(by=['Month'])
 
@@ -66,9 +67,9 @@ def create_monthly_plot(sim_results, output_path, lang, team_id):
 # DAILY PROFILE PLOT - TYPE 1 : SIMULATION STACKED AREA
 # --------------------------------    
 
-def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_id='poly'):
+def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng'):
     # day is number to represent day of week, picked random weekday here
-    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation, team_id=team_id)
+    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation)
 
     if period == 'winter':
         # define order of columns
@@ -126,15 +127,15 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_i
 
 ### function to get typical load profile (weekday vs weekend day)
 # works on both simulation results or OPE metered data
-def get_load_profile_typical(period, day, Simulation=None, OPE_profile = None, team_id='poly'):
+def get_load_profile_typical(period, day, Simulation=None, OPE_profile = None):
     if team_id != 'poly':
         # TODO : # TODO : connect to function that gets HW variable names from the mapping_df
         #mapping_df = get_mappingdf()
         #HW_key_osm = get_varaibles_from_mapping()
         HW_key_osm = ""
-        df_lp = Simulation.get_loadprofile(team_id, HW_keys=HW_key_osm).resample('1h').mean()
+        df_lp = Simulation.get_loadprofile().resample('1h').mean()
     else:
-        df_lp = Simulation.get_loadprofile(team_id).resample('1h').mean()
+        df_lp = Simulation.get_loadprofile().resample('1h').mean()
 
 
     # TODO : coordinate what's winter/mid/summer between the different functions
@@ -282,8 +283,7 @@ def process_energy_data(
     households_dict,
     ope_df,
     weather_df, 
-    sim_object, 
-    team_id
+    sim_object
 ):
     folder_name = os.path.basename(building_path)
     run_path = os.path.join(building_path,"run")
