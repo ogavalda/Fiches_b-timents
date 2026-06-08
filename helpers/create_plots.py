@@ -32,7 +32,7 @@ def create_monthly_plot(sim_results, output_path, lang, team_id):
 
     # reorder columns for plot
     df_monthly = df_monthly[['PlugLoads', 'Other (Fans,...)', 'Lighting', 'DHW', 'Heating', 'Cooling']]
-    fig, ax = plt.subplots(1,1, figsize=(10, 5))
+    fig, ax = plt.subplots(1,1, figsize=(10, 4.5))
 
     colors = {'Cooling':"#58b3e7", 'DHW':'darkred', 'Heating':"#e95454ff", 'PlugLoads':'gray', 'Lighting':'gold', 'Other (Fans,...)':'lightgrey'}
     df_monthly.plot.bar(stacked=True, color=colors, ax=ax)
@@ -86,7 +86,7 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng', team_i
     colors = {'Cooling':"#58b3e7", 'DHW':'darkred', 'Heating':"#e95454ff", 'PlugLoads':'gray', 'Lighting':'gold', 'Other (Fans,...)':'lightgrey'}
     
     # start figure
-    fig, ax = plt.subplots(1,1,figsize=(10,5))
+    fig, ax = plt.subplots(1,1,figsize=(10,4.5))
 
     df_profile[column_order].plot.area(ax=ax, color=colors, 
                                        linewidth = 0)

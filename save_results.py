@@ -25,8 +25,10 @@ def save_files(building_path, root, dest_folders):
         dest_path = dest_path + "\\" + folder
     os.makedirs(dest_path, exist_ok=True)
 
+    last_folder = dest_folders[-1]
+
     # define all output locations
-    path_results_osm = dest_path+"\\"+folder_name +".osm"
+    path_results_osm = dest_path+"\\"+last_folder +".osm"
     path_results_html = dest_path+"\\eplustbl.htm" # simulation results summary
     path_results_idf = dest_path+"\\in.idf" # idf (for geometry)
     path_results_pdf_en = dest_path+"\\Energy card.pdf" # English pdf 

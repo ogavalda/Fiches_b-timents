@@ -217,12 +217,19 @@ def get_building_characteristics(folder_name):
         elif ('Duplex' in parts) or ('Triplex' in parts):
             sector = "Residential"
             building_type = "Multi-Unit"
-            building_size =  parts[0]
+            building_subtype =  parts[0]
 
             if 'attached' in parts:
-                building_subtype = 'Attached'
+                building_size = 'Attached'
             elif 'detached' in parts:
-                building_subtype = 'Detached'
+                building_size = 'Detached'
+
+            if 'empty' in parts:
+                building_size = building_size + ", unconditioned basement"
+            elif 'main' in parts:
+                building_size = building_size + ", conditioned basement (with main floor)"
+            else:
+                building_size = building_size + ", conditioned basement (separate unit)"
 
             if 'new' in parts:
                 vintage = "After 2012"
@@ -239,9 +246,11 @@ def get_building_characteristics(folder_name):
 
             if 'Row' in category:
                 if 'middle' in parts:
-                    building_subtype = category + ' - middle of row'
+                    building_subtype = category 
+                    building_size = 'middle of row'
                 elif 'end' in parts:
-                    building_subtype = category + ' - end of row'
+                    building_subtype = category 
+                    building_size = 'end of row'
                 else:
                     raise Exception('building type not recognized')
             else:
@@ -276,8 +285,11 @@ def get_abbreviation_dicts():
     # TODO : add abbreviations for MURBS, schools and offices
     sectors = {"Commercial-Institutional":'CI', "Residential":'R'}
     building_types = {"Single-Family":'SF', "Multi-Unit":'MU', "Education":'EDU'}
-    building_subtypes = {"Attached":'Att', "Detached":'Det', "Semi-Detached":'SD', "Row":'Row',"Apartment":"Apt"}
-    building_sizes = {"Duplex":'Dup', "Triplex":'Trip', "1 Floor":'1fl', "2 Floors":'2fl',"LR":"LR","MR":"MR","HR":"HR"}
+    building_subtypes = {"Duplex":'Dup', "Triplex":'Trip',"Attached":'Att', "Detached":'Det', "Semi-Detached":'SD', "Row":'Row',"Apartment":"Apt"}
+    building_sizes = {"Attached":'Att', "Detached":'Det', "1 Floor":'1fl', "2 Floors":'2fl',"LR":"LR","MR":"MR","HR":"HR", "middle of row":'mid', "end of row":'end', 
+                        "Attached, unconditioned basement":'Att-bsmt-empty', "Detached, unconditioned basement":'Det-bsmt-empty', 
+                        "Attached, conditioned basement (with main floor)":'Att-bsmt-main', "Detached, conditioned basement (with main floor)":'Det-bsmt-main', 
+                        "Attached, conditioned basement (separate unit)":'Att-bsmt-unit', "Detached, conditioned basement (separate unit)":'Det-bsmt-unit'}
     vintages = {"After 2012":'post2012', "Before 1945":'pre1945',"A_Pre1945":"pre1945","B_19461983":"1946-1983","C_19842010":"1984-2010","D_Post2011":"post2011"}
     return sectors, building_types, building_subtypes, building_sizes, vintages
 
@@ -285,7 +297,10 @@ def get_french_characteristic(characteristic):
     sectors = {"Commercial-Institutional":'Commerical-Institutionnel', "Residential":'Résidentiel'}
     building_types = {"Single-Family":'Unifamilial', "Multi-Unit":'Multilogement', "Education":'Éducation'}
     building_subtypes = {"Attached":'Attaché', "Detached":'Détaché', "Semi-Detached":'Semi-Détaché', "Row":'Rangé',"Apartment":"Appartement"}
-    building_sizes = {"Duplex":'Duplex', "Triplex":'Triplex', "1 Floor":'1 étage', "2 Floors":'2 étages',"LR":"LR","MR":"MR","HR":"HR"}
+    building_sizes = {"Attached":'Attaché', "Detached":'Détaché', "1 Floor":'1 étage', "2 Floors":'2 étages',"LR":"LR","MR":"MR","HR":"HR",  "middle of row":'unité milieu', "end of row":'unité coin', 
+                        "Attached, unconditioned basement":'Attaché, sous-sol non-chauffé', "Detached, unconditioned basement":'Détaché, sous-sol non-chauffé',
+                        "Attached, conditioned basement (with main floor)":'Attaché, sous-sol chauffé (avec première étage)', "Detached, conditioned basement (with main floor)":'Détaché, sous-sol chauffé (avec première étage)', 
+                        "Attached, conditioned basement (separate unit)":'Attaché, sous-sol chauffé (unité propre)', "Detached, conditioned basement (separate unit)":'Détaché, sous-sol chuaffé (unité propre)'}
     vintages = {"After 2012":'Après 2012', "Before 1945":'Avant 1945',"A_Pre1945":"Avant 1945","B_19461983":"1946-1983","C_19842010":"1984-2010","D_Post2011":"Après 2011"}
     
     if characteristic in sectors.keys():
@@ -317,13 +332,7 @@ def abbreviate_name(sector, building_type, building_subtype, building_size, vint
 def get_folder_structure(sector, building_type, building_subtype, building_size, building_name):
     sectors, building_types, building_subtypes, building_sizes, vintages = get_abbreviation_dicts()
 
-    if (building_type=='Multi-Unit') and ('plex' in building_size):
-        folders = [sectors.get(sector, sector),
-                        building_types.get(building_type, building_type),
-                        building_sizes.get(building_size, building_size), 
-                        building_name
-        ]
-    elif (building_type=='Multi-Unit') and (building_subtype=='Apartment'):
+    if (building_type=='Multi-Unit') and (building_subtype=='Apartment'):
         folders = [sectors.get(sector, sector),
                         building_types.get(building_type, building_type),
                         building_subtypes.get(building_subtype, building_subtype),
