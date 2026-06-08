@@ -46,7 +46,7 @@ def run_all():
         try:            
             # FIRST : create outputs (reports) 
             print(f"Processing {name}...")
-            out = process_building(path, TEMPLATES, IDD_PATH, operation_folder,view_folder, team_id) # returns folder structure for git
+            out = process_building(path, TEMPLATES, IDD_PATH, operation_folder,view_folder) # returns folder structure for git
             print(f"✔ Done: {name}")
             # THEN : save all into proper file structure            
             print(f"Saving {name}...")
