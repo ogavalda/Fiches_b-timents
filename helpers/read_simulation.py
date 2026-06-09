@@ -198,7 +198,14 @@ class ReadSimulation():
 
         # read time index of results
         # if design periods are included in results, we have to query as follows : 
-        df_time = pd.read_sql('SELECT * FROM Time WHERE EnvironmentPeriodIndex LIKE 3', conn)
+        df_time = pd.read_sql("""SELECT * FROM Time t
+                                    JOIN EnvironmentPeriods ep 
+                                    ON t.EnvironmentPeriodIndex = ep.EnvironmentPeriodIndex
+
+                                    WHERE ep.EnvironmentType LIKE 3 
+
+                                    """, conn)
+
         d = {'TimeIndex': df_time['TimeIndex'], 'DateTime': pd.to_datetime(df_time[['Year', 'Month', 'Day', 'Hour', 'Minute']])}
         time = pd.DataFrame(data=d)
         time.set_index('TimeIndex', inplace=True)

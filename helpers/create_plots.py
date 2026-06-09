@@ -310,11 +310,15 @@ def process_energy_data(
         building_name = folder_name
 
         parts = folder_name.split("_")
-        if parts[0] in ['Duplex', 'Triplex']:
+        if parts[0] == 'Duplex':
+            households = 2
             if parts[-1] in ['empty-basement', 'main-with-basement']:
-                households = 2
-            else:
-                households = 3
+                households = households + 1
+        elif parts[0] == 'Triplex':
+            households = 3
+            if parts[-1] in ['empty-basement', 'main-with-basement']:
+                households = households + 1
+
 
         
     else:

@@ -10,6 +10,7 @@ Code contributors: Kato Vanroy, kato.vanroy@polymtl.ca
 import os
 
 import re
+import matplotlib
 from config import team_id
 from core import *
 from jinja2 import Environment, FileSystemLoader
@@ -43,7 +44,7 @@ from helpers.extract_info import (
     get_building_characteristics, 
     get_folder_structure, 
     get_french_characteristic
-    french_name
+    #french_name don't need to translate the buidling name
     )
 
 households_dict = load_households(r"MURBS_2026\dadesarquetips.csv")
@@ -122,6 +123,7 @@ def translate_list_of_rows(rows, translations):
 
 def process_building(building_path, template_path, idd_path, operation_folder, view_folder):
 
+    matplotlib.use("agg")
     
     folder_name = os.path.basename(building_path)
     building_characteristics = get_building_characteristics(folder_name)
@@ -130,7 +132,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     building_type = building_characteristics["building_type"]
     building_subtype = building_characteristics["building_subtype"]
     building_name = building_characteristics["building_name"]
-    building_name_fr = french_name(building_name)
+    #building_name_fr = french_name(building_name)
     building_vintage = building_characteristics["vintage"]
     size_of_build = building_characteristics["size"]
     building_shape = building_characteristics["building_shape"]
@@ -300,11 +302,11 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # mapping csv path --currently it is in the SD_2026 folder undr name "hvac_mapping.csv"
     hvac_system_path = r"SFD_2026\hvac_mapping.csv"
     if team_id != "poly":
-        hvac_system = get_hvac_system(building_type, size_of_build, hvac_system_path)
+        hvac_system = get_hvac_system(building_type, building_subtype, hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
         print("building hvac : done")
     else:
-        hvac_system = get_hvac_system(building_type, size_of_build, hvac_system_path)
+        hvac_system = get_hvac_system(building_type, building_subtype, hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
 
     # TODO: build comparison table when reference data is available
@@ -328,7 +330,6 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         climate_zone=climate_zone,
         wwr=wwr,
         size_of_build=size_of_build,
-
         construction_data=construction_data,
         glazing_data=glazing_data,
         hvac_system=hvac_system,

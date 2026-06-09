@@ -265,7 +265,7 @@ def get_building_characteristics(folder_name):
             else:
                 vintage = parts[-2]+'-'+parts[-1]
 
-
+        building_name = abbreviate_name(sector, building_type, building_subtype, building_size, vintage)
     else:
         # TODO : expand
         parts = folder_name.split("_")
@@ -277,8 +277,8 @@ def get_building_characteristics(folder_name):
         vintage = get_vintage_column(parts[3])
         building_shape = parts[2]
 
+        building_name = abbreviate_name(sector, building_type, building_subtype, building_size, vintage,building_shape)
     
-    building_name = abbreviate_name(sector, building_type, building_subtype, building_size, vintage,building_shape)
     print(building_name)
 
     return {"building_shape":building_shape,"building_name":building_name, "sector":sector, "building_type":building_type, "building_subtype":building_subtype, "vintage":vintage, "size":building_size}
@@ -323,7 +323,7 @@ def get_french_characteristic(characteristic):
     return 
 
 
-def abbreviate_name(sector, building_type, building_subtype, building_size, vintage,building_shape):
+def abbreviate_name(sector, building_type, building_subtype, building_size, vintage,building_shape=''):
     sectors, building_types, building_subtypes, building_sizes, vintages,building_shapes = get_abbreviation_dicts()
 
     if building_shapes.get(building_shape,"") != "":
@@ -331,28 +331,21 @@ def abbreviate_name(sector, building_type, building_subtype, building_size, vint
                         building_types.get(building_type, building_type) + "_" +
                         building_subtypes.get(building_subtype, building_subtype) + "_" +
                         building_sizes.get(building_size, building_size) + "_" +
-                        building_shapes.get(building_shape,"")
                         vintages.get(vintage, vintage) + "_"+
+                        building_shapes.get(building_shape,"")
         )
-        return abbr_name
     else:
         abbr_name = (sectors.get(sector, sector) + "_" +
                      building_types.get(building_type, building_type) + "_" +
                      building_subtypes.get(building_subtype, building_subtype) + "_" +
                      building_sizes.get(building_size, building_size) + "_" +
                      vintages.get(vintage, vintage) )
-        return abbr_name
+    
+    return abbr_name
 
 def get_folder_structure(sector, building_type, building_subtype, building_size, building_name,building_shape):
     sectors, building_types, building_subtypes, building_sizes, vintages,building_shapes = get_abbreviation_dicts()
 
-    folders = [sectors.get(sector, sector),
-                    building_types.get(building_type, building_type),
-                    building_subtypes.get(building_subtype, building_subtype),
-                    building_sizes.get(building_size, building_size), 
-                    building_name,
-                    building_shapes.get(building_shape,"")
-    ]
     if (building_type=='Multi-Unit') and (building_subtype=='Apartment'):
         folders = [sectors.get(sector, sector),
                         building_types.get(building_type, building_type),
@@ -392,10 +385,3 @@ def french_name(building_name):
     else:
         return building_name
 
-
-
-if __name__ == "__main__":
-
-    name = "R_MU_Apt_Hight Rise_1946-1983_L-shaped"
-
-    print(french_name((name)))

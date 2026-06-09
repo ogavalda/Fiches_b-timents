@@ -1,5 +1,5 @@
 ﻿Typology,Cooling system,Heating system,Ventilation system,Typical COP cooling
-Single-Family,Air-Source Heat Pump (Mini-Split),Electric Baseboards,/,2.5
+Single-Family,Air-Source Heat Pump (Mini-Split),Electric Baseboards,/,2.50
 Multi-Unit,Central Electric Heat Pump System,Central Heat Pump / Boiler,Corridor Exhaust + Fresh Air Make-Up,3.50 – 5.00
 Office Building,Variable Air Volume (VAV) with Central AHU,Boiler / Heat Pump,Mechanical Ventilation with AHU,4.00 – 6.00
 Retail Building,Rooftop Packaged Units (RTU),,,

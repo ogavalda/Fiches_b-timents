@@ -305,7 +305,7 @@ def plot_banana(df, output_path,lang):
     plt.savefig(output_path)
     plt.close()
 
-def get_hvac_system(building_type, building_size, csv_path):
+def get_hvac_system(building_type, building_subtype, csv_path):
 
     df = pd.read_csv(csv_path)
 
@@ -313,7 +313,7 @@ def get_hvac_system(building_type, building_size, csv_path):
     # could have seperate entry using double keys, but they use the same systems as SFD, so we locally change the type to fetch the correct HVAC system properties
     # TODO : improve mapping to use multiple identifiers and create seperate entries for duplex/triplex
     type_map = ['Duplex', 'Triplex']
-    if building_size == "Multi-Unit":
+    if building_subtype in type_map:
         building_type = "Single-Family"
 
 
