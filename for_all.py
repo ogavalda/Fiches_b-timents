@@ -16,15 +16,15 @@ from per_folder import process_building
 from save_results import save_files
 
 # PATHS
-PROJECTS_ROOT = r"MURBS_2026"
+PROJECTS_ROOT = r"DupTrip_2026"
 GIT_ROOT = r"git_root"
 
 # NEW: updated template here 
 TEMPLATES = r"SFD_2026"
 #TEMPLATES = r"MURBS_2026"
 
-IDD_PATH = r"C:\EnergyPlusV25-2-0\Energy+.idd"
-# IDD_PATH = r"C:\EnergyPlusV22-2-0\Energy+.idd"
+#IDD_PATH = r"C:\EnergyPlusV25-2-0\Energy+.idd"
+IDD_PATH = r"C:\EnergyPlusV22-2-0\Energy+.idd"
 
 ### not used : 
 view_folder = r"View cards"
