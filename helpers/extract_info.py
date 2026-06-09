@@ -272,7 +272,7 @@ def get_building_characteristics(folder_name):
         sector = 'Residential'
         building_type = "Multi-Unit"
         building_subtype = "Apartment"
-        building_size = size(parts[1])
+        building_size = parts[1]
         #building_name = parts[2] : TODO : building name will be the abbreviations of all other characteristics collected here, the function below will cast the full names to their abbreviations
         vintage = get_vintage_column(parts[3])
         building_shape = parts[2]

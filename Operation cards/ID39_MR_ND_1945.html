@@ -26,7 +26,7 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
   font-weight:600;
   text-transform:uppercase;
   letter-spacing:.08em;
-  padding:4px 5px;
+  padding:10px 5px 2px;
   border-top:1px solid var(--rule);
   border-bottom:1px solid var(--rule);
 }
@@ -53,6 +53,9 @@ body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:
 .panel.grow .img-frame { flex:1; min-height:0; }
 .panel-title { font-size:7.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid var(--accent-lt); padding-bottom:3px; margin-bottom:5px; flex-shrink:0; }
 .panel-title.green { color:var(--accent2); border-color:var(--accent2-lt); }
+
+/* formatting exception : units */
+.keep-case {text-transform: none;}
 
 /* TABLE */
 table { width:100%; border-collapse:collapse; table-layout:fixed; font-family:var(--mono); font-size:9.5px; }
@@ -113,13 +116,11 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
   <!-- TITLE -->
   <div class="title-bar">
     <div>
-      <div class="title-label">Fiche Énergétique du Bâtiment · Archetype-QC</div>
-      <div class="title-name">R_MU_Apt_MID Rise_pre1945</div>
+      <div class="title-label">Fiche descriptive du modèle - Archétype QC</div>
+      <div class="title-name">R_MU_Apt_MR_pre1945</div>
     </div>
     <div class="title-meta">
-      <div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">2026-05</span></div>
-      <div class="meta-divider"></div>
-      <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">2026-06-08</span></div>
+      <div class="meta-item"><span class="meta-label">Version | Date </span><span class="meta-value">2026-06-09</span></div>
     </div>
   </div>
 
@@ -137,11 +138,10 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
       <div class="panel">
         <div class="panel-title">Description du Bâtiment</div>
         <table><tbody>
-          <tr><td>Secteur</td><td class="val">Residential </td></tr>
-          <tr><td>Type de Bâtiment</td><td class="val">Multi-Unit</td></tr>
-          <tr><td>Sous-type de Bâtiment</td><td class="val">Apartment</td></tr>
-          <tr><td>Taille du bâtiment</td><td class="val">MID Rise</td></tr>
-          <tr><td>Periode de Construction</td><td class="val">A_Pre1945</td></tr>
+          <tr><td>Secteur</td><td class="val">Résidentiel </td></tr>
+          <tr><td>Type de bâtiment</td><td class="val">Multilogement</td></tr>
+          <tr><td>Sous-type de bâtiment</td><td class="val">Appartement - MR</td></tr>
+          <tr><td>Période de construction</td><td class="val">Avant 1945</td></tr>
         </tbody></table>
       </div>
 
@@ -156,44 +156,37 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
       <div class="panel">
         <div class="panel-title">Caractéristiques du Bâtiment</div>
         <table><tbody>
-          <tr><td>Superficie de Plancher</td><td class="val">1325.0 m²</td></tr>
-          <tr><td>Zone Climatique</td><td class="val">6A</td></tr>
+          <tr><td>Superficie de plancher [m²]</td><td class="val">1325 </td></tr>
+          <tr><td>Zone climatique</td><td class="val">6A</td></tr>
 
           <tr class="table-subtitle">
             <td colspan="2">Système CVCA</td>
           </tr>
 
           
-          <tr><td>cooling system</td><td class="val">Système centrale avec thermopompe</td></tr>
+          <tr><td>Système de climatisation</td><td class="val">Système centrale avec thermopompe</td></tr>
           
-          <tr><td>Heating system</td><td class="val">Système centrale avec thermopompe et chaurière</td></tr>
+          <tr><td>Système de chauffage</td><td class="val">Système centrale avec thermopompe et chaurière</td></tr>
           
-          <tr><td>Ventilation system</td><td class="val">Corridor Exhaust + Fresh Air Make-Up</td></tr>
+          <tr><td>Système de ventilation</td><td class="val">Corridor Exhaust + Fresh Air Make-Up</td></tr>
           
-          <tr><td>Typical COP cooling</td><td class="val">3.5 – 5.0</td></tr>
+          <tr><td>COP typique en climatisation</td><td class="val">3.50 – 5.00</td></tr>
           
-        </tbody></table>
-      </div>
 
-      
-
-      <div class="panel">
-        <div class="panel-title">Enveloppe</div>
-        <table><tbody>
           <tr class="table-subtitle">
             <td colspan="2">Isolation &amp; Étanchéité à l'Air</td>
           </tr>
 
           
-          <tr><td>Murs ext. [W/m²·K]</td><td class="val">1.13</td></tr>
+          <tr><td>Murs extérieurs [W/m²/K]</td><td class="val">1.13</td></tr>
           
-          <tr><td>Murs int. [W/m²·K]</td><td class="val">2.51</td></tr>
+          <tr><td>Murs intérieurs [W/m²/K]</td><td class="val">2.51</td></tr>
           
-          <tr><td>Toit [W/m²·K]</td><td class="val">2.49</td></tr>
+          <tr><td>Toit [W/m²/K]</td><td class="val">2.49</td></tr>
           
-          <tr><td>Dalles [W/m²·K]</td><td class="val">1.14</td></tr>
+          <tr><td>Dalles [W/m²/K]</td><td class="val">1.14</td></tr>
           
-          <tr><td>Infiltration [m³/h·m²]</td><td class="val">13.5</td></tr>
+          <tr><td>Infiltration [m³/h/m²]</td><td class="val">13.5</td></tr>
           
 
           <tr class="table-subtitle">
@@ -201,20 +194,16 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           </tr>
 
           
-          <tr><td>Glazing [W/m2-K]</td><td class="val">3.32</td></tr>
+          <tr><td>Glazing [W/m²/K]</td><td class="val">3.32</td></tr>
           
           <tr><td>SHGC</td><td class="val">0.66</td></tr>
           
           
           <tr class="table-subtitle">
-            <td colspan="2">RTF (Ratio Fenêtres/Façade)</td>
+            <td colspan="2">Ratio Fenêtres/Façade</td>
           </tr>
 
-          <tbody><tr><td>Moyenne</td><td class="val">30.0</td></tr></tbody>
-
-
-
-
+          <tr><td>Moyenne [%]</td><td class="val">30.0</td></tr>
 
         </tbody></table>
       </div>
@@ -226,55 +215,51 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="col">
 
       <div class="panel">
-        <div class="panel-title">Usages Finaux Annuels — Électricité [kWh]</div>
+        <div class="panel-title">Usages Finaux Annuels — Électricité <span class="keep-case">[kWh]</span> </div>
         <table>
-          <thead><tr><th>Usage Final</th><th>kWh/an</th></tr></thead>
-          <tbody><tr><td>Chauffage</td><td class="val">169148.6</td></tr><tr><td>Refroidissement</td><td class="val">14250.1</td></tr><tr><td>Éclairage intérieur</td><td class="val">7086.2</td></tr><tr><td>Éclairage extérieur</td><td class="val">3183.4</td></tr><tr><td>Équipements intérieurs</td><td class="val">110975.9</td></tr><tr><td>Ventilateurs</td><td class="val">17069.6</td></tr><tr><td>Total des usages</td><td class="val">321713.7</td></tr></tbody>
+          <thead><tr><th>Usage Final</th><th><span class="keep-case">[kWh/an]</span></th></tr></thead>
+          <tbody><tr><td>Chauffage</td><td class="val">169149</td></tr><tr><td>Refroidissement</td><td class="val">14250</td></tr><tr><td>Éclairage intérieur</td><td class="val">7086</td></tr><tr><td>Éclairage extérieur</td><td class="val">3183</td></tr><tr><td>Équipements intérieurs</td><td class="val">110976</td></tr><tr><td>Ventilateurs</td><td class="val">17070</td></tr><tr><td>Total des usages</td><td class="val">321714</td></tr></tbody>
         </table>
       </div>
 
-      <div class="panel grow">
+      <div class="panel">
         <div class="panel-title">Consommation Mensuelle par Usage Final</div>
-        <div class="img-frame fluid">
+        <div class="img-frame">
           <img src="monthly_fr.png" alt="Consommation mensuelle">
         </div>
-        <div class="caption">Décomposition de la consommation énergétique mensuelle par usage final, montrant la contribution du chauffage, de la climatisation, de l'éclairage, de l'eau chaude sanitaire, des prises de courant et des systèmes auxiliaires tout au long de l'année.</div>
+        <div class="caption">Décomposition de la consommation énergétique mensuelle par usage final, montrant la contribution du chauffage, de la climatisation, de l'éclairage, de l'eau chaude sanitaire, des chaurges aux prises et des systèmes auxiliaires tout au long de l'année.</div>
       </div>
 
-      <div class="panel grow">
-        <div class="panel-title">Profil Journalier Typique — Hiver</div>
-        <div class="img-frame fluid">
-          <img src="daily_profiles1_winter_fr.png" alt="Profil journalier typique - hiver">
+      <div class="panel">
+        <div class="panel-title">Profil journalier moyen par usage </div>
+        <div class="img-frame">
+          <img src="daily_profiles1_winter_fr.png" alt="Profil journalier moyen par - hiver">
         </div>
-        <div class="caption">Profil de consommation journalière hivernale empilée, montrant la contribution du chauffage, de l'éclairage, de l'eau chaude sanitaire, des prises de courant et des systèmes auxiliaires au cours d'une journée hivernale typique.</div>
-      </div>
 
-            <div class="panel grow">
-        <div class="panel-title">Profil Journalier Typique — Été</div>
-        <div class="img-frame fluid">
+        <div class="img-frame">
           <img src="daily_profiles1_summer_fr.png" alt="Profil journalier typique - été">
         </div>
-        <div class="caption">Profil de consommation journalière estivale empilée, montrant la contribution de la climatisation, de l'éclairage, de l'eau chaude sanitaire, des prises de courant et des systèmes auxiliaires au cours d'une journée estivale typique.</div>
-      </div>
 
+        <div class="caption">Profil de consommation journalière moyen des jours d'hiver et d'été, montrant la contribution du chauffage, de l'éclairage, de l'eau chaude sanitaire, des chaurges aux prises et des systèmes auxiliaires au cours d'une journée hivernale ou estivale moyenne.</div>
+      </div>
     </div>
   </div>
 
   <!-- KPI strip: full width below both columns -->
   <div class="kpi-row">
     <div class="kpi">
-      <span class="kpi-label">Intensité d'Usage Énergétique</span>
-      <span class="kpi-value">242.8</span>
+      <span class="kpi-label">Intensité énergétique</span>
+      <span class="kpi-value">243</span>
       <span class="kpi-unit">kWh/m²/an</span>
     </div>
     <div class="kpi">
       <span class="kpi-label">Consommation Totale</span>
-      <span class="kpi-value">321711.0</span>
+      <span class="kpi-value">321711</span>
       <span class="kpi-unit">kWh/an</span>
     </div>
     <div class="kpi green">
       <span class="kpi-label">Électricité</span>
-      <span class="kpi-value">321714.0</span>
+      <span class="kpi-value">321714</span>
       <span class="kpi-unit">kWh/an</span>
     </div>
     <div class="kpi green">
@@ -285,8 +270,8 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
   </div>
 
   <div class="page-footer">
-    <span>Fiche Énergétique du Bâtiment Archetype-QC · Rapport Automatisé</span>
-    <span>R_MU_Apt_MID Rise_pre1945 · 2026-06-08</span>
+    <span>Fiche descriptive du modèle · Rapport Automatisé</span>
+    <span>R_MU_Apt_MR_pre1945 · 2026-06-09</span>
     <span class="page-num">1 / 2</span>
   </div>
 
@@ -301,21 +286,25 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="section-label-line"></div>
   </div>
 
+  <!-- FULL-WIDTH: data description -->
+  <div class="panel">
+    <div class="panel-title">Données de référence</div>
+    <p class="description-text">Les données de référence utilisées pour la comparaison proviennent d’un jeu de données de plus de 60 000 compteurs électriques de clients résidentiels, couplé à des métadonnées. Des filtres ont été appliqués afin de respecter le type et le sous-type de bâtiment de cette fiche, ainsi que pour exclure les usages piscine, spa et recharge de véhicule électrique.</p>
+  </div>
+
   <!-- top middle: typical days -->
   <div class="col">
       <div class="panel">
-        <div class="panel-title">Journée Typique — Hiver</div>
+        <div class="panel-title">Profil journalier</div>
         <div class="img-frame">
           <img src="daily_profiles_winter_fr.png" alt="Journée d'hiver">
         </div>
-        <div class="caption">Profil de consommation journalière hivernale comparant la consommation énergétique horaire simulée et mesurée. Les lignes rouges représentent les journées hivernales individuelles du modèle, la ligne rouge pointillée indique le profil simulé moyen, et la ligne bleue montre les données mesurées. Le graphique de gauche représente les jours de semaine, celui de droite les fins de semaine.</div>
-      </div>
-      <div class="panel">
-        <div class="panel-title">Journée Typique — Été</div>
+        
         <div class="img-frame">
           <img src="daily_profiles_summer_fr.png" alt="Journée d'été">
         </div>
-        <div class="caption">Profil de consommation journalière estivale comparant la consommation énergétique horaire simulée et mesurée. Les lignes rouges représentent les journées individuelles du modèle, la ligne rouge pointillée indique le profil simulé moyen, et la ligne bleue montre les données mesurées. Le graphique de gauche représente les jours de semaine, celui de droite les fins de semaine.</div>
+
+        <div class="caption">Profil de consommation journalière hivernale et estivale comparant la consommation énergétique horaire simulée avec les données de référence. Les lignes rouges représentent les journées individuelles du modèle pour la période indiquée, la ligne rouge pointillée indique le profil moyen de la simulation, et la ligne bleue montre le profil moyen des données de référence. Les graphiques de gauche représentent les jours de semaine, ceux de droite les fins de semaine.</div>
       </div>
     </div>
 
@@ -329,11 +318,11 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
     <div class="col">
       
       <div class="panel">
-        <div class="panel-title">Courbe PRISM</div>
+        <div class="panel-title">Consommation quotidienne vs. Température extérieure moyenne quotidienne</div>
         <div class="img-frame">
           <img src="banana_fr.png" alt="Courbe PRISM">
         </div>
-        <div class="caption">Courbe PRISM comparant la consommation énergétique simulée (OPE) et mesurée en fonction de la température extérieure, illustrant la relation entre les conditions météorologiques et la demande énergétique du bâtiment au cours de l'année.</div>
+        <div class="caption">Comparaison entre la consommation quotidienne modélisée et la consommation de référence en fonction de la température extérieure, pour tous les jours de l’année de référence. </div>
       </div>
     </div>
 
@@ -362,37 +351,37 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
 
           
           <tr>
-            <td>Consommation annuelle électricité (kWh)</td>
-            <td class="val">16086.08</td>
-            <td class="val">16587.18</td>
-            <td class="val">-501.1</td>
+            <td>Consommation annuelle électricité [kWh]</td>
+            <td class="val">16086</td>
+            <td class="val">16086</td>
+            <td class="val">16086</td>
           </tr>
           
           <tr>
-            <td>Consommation de base électricité (kWh/jour)</td>
-            <td class="val">19.74</td>
-            <td class="val">20.36</td>
+            <td>Consommation de base électricité [kWh/jour]</td>
+            <td class="val">19.7</td>
+            <td class="val">20.4</td>
             <td class="val">-0.6</td>
           </tr>
           
           <tr>
-            <td>Pente chauffage électricité (W/K)</td>
-            <td class="val">-133.33</td>
-            <td class="val">-127.08</td>
+            <td>Pente chauffage électricité [W/K]</td>
+            <td class="val">-133.3</td>
+            <td class="val">-127.1</td>
             <td class="val">-6.2</td>
           </tr>
           
           <tr>
-            <td>Pente climatisation électricité (W/K)</td>
-            <td class="val">41.31</td>
-            <td class="val">43.18</td>
+            <td>Pente climatisation électricité [W/K]</td>
+            <td class="val">41.3</td>
+            <td class="val">43.2</td>
             <td class="val">-1.9</td>
           </tr>
           
           <tr>
-            <td>Pointe hiver AM (kW)</td>
-            <td class="val">7.34</td>
-            <td class="val">6.77</td>
+            <td>Pointe hiver AM [kW]</td>
+            <td class="val">7.3</td>
+            <td class="val">6.8</td>
             <td class="val">0.6</td>
           </tr>
           
@@ -404,9 +393,9 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
           </tr>
           
           <tr>
-            <td>Pointe hiver PM (kW)</td>
-            <td class="val">6.42</td>
-            <td class="val">6.55</td>
+            <td>Pointe hiver PM [kW]</td>
+            <td class="val">6.4</td>
+            <td class="val">6.5</td>
             <td class="val">-0.1</td>
           </tr>
           
@@ -427,8 +416,8 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
   </div>
 
   <div class="page-footer">
-    <span>Fiche Énergétique du Bâtiment Archetype-QC · Rapport Automatisé</span>
-    <span>R_MU_Apt_MID Rise_pre1945 · 2026-06-08</span>
+    <span>Fiche descriptive du modèle · Rapport Automatisé</span>
+    <span>R_MU_Apt_MR_pre1945 · 2026-06-09</span>
     <span class="page-num">2 / 2</span>
   </div>
 
