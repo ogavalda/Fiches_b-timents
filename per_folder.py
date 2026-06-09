@@ -57,12 +57,12 @@ if team_id != 'poly':
 else:
     #paths : poly
     # SFD
-    #weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
-    #ope_df = load_ope(r"SFD_2026\dataOPE.csv")
+    weather_df = load_weather(r"SFD_2026\OPE_temps_new.csv")
+    ope_df = load_ope(r"SFD_2026\dataOPE.csv")
 
     # Dup/Trip
-    weather_df = load_weather(r"DupTrip_2026\OPE_DupTrip_temps.csv")
-    ope_df = load_ope(r"DupTrip_2026\OPE_DupTrip.csv")
+    #weather_df = load_weather(r"DupTrip_2026\OPE_DupTrip_temps.csv")
+    #ope_df = load_ope(r"DupTrip_2026\OPE_DupTrip.csv")
 
 # --- Translation dictionaries (EN → FR) ---
 TRANSLATIONS_FR = {

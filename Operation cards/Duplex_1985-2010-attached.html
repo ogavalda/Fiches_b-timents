@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:#0f1723; --ink-mid:#3a4558; --ink-light:#6b7690;
+  --rule:#d8dde8; --rule-light:#edf0f5; --bg:#f2f4f8; --surface:#ffffff;
+  --accent:#1b4f72; --accent2:#1a7a4a; --accent-lt:#e4edf5; --accent2-lt:#e2f2ea;
+  --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  --radius:4px; --gap:5px;
+}
+@page { size: A4 portrait; margin: 0; }
+html { background: var(--bg); }
+body { font-family:var(--sans); font-size:10.5px; color:var(--ink); line-height:1.45; width:210mm; margin:0 auto; background:var(--bg); }
+
+.page { width:210mm; height:297mm; overflow:hidden; background:var(--bg); padding:7mm 9mm 6mm; page-break-after:always; display:flex; flex-direction:column; gap:var(--gap); }
+
+
+.table-subtitle td {
+  
+  color:var(--accent);
+  font-size:7px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  padding:10px 5px 2px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+
+
+/* TITLE */
+.title-bar { background:var(--accent); color:white; border-radius:var(--radius); padding:8px 13px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.title-label { font-size:7px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; opacity:.7; }
+.title-name  { font-size:14px; font-weight:600; line-height:1.2; }
+.title-meta  { display:flex; gap:14px; align-items:center; }
+.meta-item   { display:flex; flex-direction:column; align-items:flex-end; gap:1px; }
+.meta-label  { font-size:6.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; opacity:.65; }
+.meta-value  { font-family:var(--mono); font-size:10px; font-weight:500; }
+.meta-divider{ width:1px; height:26px; background:rgba(255,255,255,.25); }
+
+/* SECTION LABEL */
+.section-label { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.section-label-text { font-size:7px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-light); white-space:nowrap; }
+.section-label-line { flex:1; height:1px; background:var(--rule); }
+
+/* PANEL */
+.panel { background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:7px 9px; flex-shrink:0; }
+.panel.grow { flex:1; min-height:0; display:flex; flex-direction:column; }
+.panel.grow .img-frame { flex:1; min-height:0; }
+.panel-title { font-size:7.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border-bottom:1px solid var(--accent-lt); padding-bottom:3px; margin-bottom:5px; flex-shrink:0; }
+.panel-title.green { color:var(--accent2); border-color:var(--accent2-lt); }
+
+/* formatting exception : units */
+.keep-case {text-transform: none;}
+
+/* TABLE */
+table { width:100%; border-collapse:collapse; table-layout:fixed; font-family:var(--mono); font-size:9.5px; }
+thead th { background:var(--accent-lt); color:var(--accent); font-size:7.5px; font-weight:500; padding:3px 5px; text-transform:uppercase; letter-spacing:.07em; text-align:left; }
+thead th.green-head { background:var(--accent2-lt); color:var(--accent2); }
+td, th { padding:2.5px 5px; border-bottom:1px solid var(--rule-light); vertical-align:middle; word-wrap:break-word; overflow-wrap:break-word; word-break:break-word; }
+tbody tr:last-child td { border-bottom:none; }
+th:first-child, td:first-child { width:55%; color:var(--ink-mid); font-size:9px; font-family:var(--sans); }
+th:not(:first-child), td:not(:first-child) { width: 14px; }
+td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
+
+/* IMAGE FRAMES */
+.img-frame { width:100%; border:1px solid var(--rule); border-radius:3px; background:#f7f8fa; overflow:hidden; margin-bottom:3px; display:flex; align-items:center; justify-content:center; }
+.img-frame img { width:100%; height:100%; object-fit:contain; display:block; }
+/* true square via padding-top trick */
+.img-frame.square { position:relative; width:100%; padding-top:90%; height:0; }
+.img-frame.square img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; }
+/* fluid: fills flex parent */
+.img-frame.fluid { height:100%; min-height:0; }
+
+.caption { font-size:8px; color:var(--ink-light); font-style:regular; text-align:left; flex-shrink:0; }
+
+/* KPI STRIP */
+.kpi-row { display:flex; gap:var(--gap); flex-shrink:0; }
+.kpi { flex:1; background:var(--accent-lt); border-radius:3px; padding:5px 7px; display:flex; flex-direction:column; gap:1px; }
+.kpi.green { background:var(--accent2-lt); }
+.kpi-label { font-size:7px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+.kpi.green .kpi-label { color:var(--accent2); }
+.kpi-value { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--accent); line-height:1.1; }
+.kpi.green .kpi-value { color:var(--accent2); }
+.kpi-unit  { font-size:7px; color:var(--ink-light); font-family:var(--mono); }
+
+/* LAYOUT */
+.two-col { display:grid; gap:var(--gap); }
+.split-5050 { grid-template-columns: 1fr 1fr; }
+.split-4060 { grid-template-columns: 4fr 6fr; }
+.split-page2 { grid-template-columns: 53% 47%; }
+.fill { flex:1; min-height:0; }
+.col { display:flex; flex-direction:column; gap:var(--gap); min-height:0; }
+
+/* FOOTER */
+.page-footer { display:flex; justify-content:space-between; align-items:center; font-size:7px; color:var(--ink-light); border-top:1px solid var(--rule); padding-top:4px; flex-shrink:0; margin-top:auto; }
+.page-num { font-family:var(--mono); background:var(--accent); color:white; padding:1px 5px; border-radius:2px; font-size:7px; }
+
+/* DESCRIPTION */
+.description-text { font-size:9.5px; color:var(--ink-mid); line-height:1.6; }
+
+/* PLACEHOLDER BOX */
+.placeholder { border:2px dashed var(--rule); border-radius:var(--radius); background:var(--rule-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; padding:18px; }
+.placeholder-text { font-size:9px; color:var(--ink-light); font-style:italic; text-align:center; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ PAGE 1 ══════════════════════════ -->
+<div class="page">
+
+  <!-- TITLE -->
+  <div class="title-bar">
+    <div>
+      <div class="title-label">Fiche descriptive du modèle - Archétype QC</div>
+      <div class="title-name">R_MU_Dup_Att-bsmt-unit_1985-2010</div>
+    </div>
+    <div class="title-meta">
+      <div class="meta-item"><span class="meta-label">Version | Date </span><span class="meta-value">2026-06-08</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <span class="section-label-text">Section 1 — Description du Modèle</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- TWO-COL: left=Building description+3D+characteristics, right=end-uses table+monthly chart+daily plot sim-->
+  <div class="two-col split-4060 fill">
+
+    <!-- LEFT: Building description + square 3D model + building characteristics -->
+    <div class="col">
+
+      <div class="panel">
+        <div class="panel-title">Description du Bâtiment</div>
+        <table><tbody>
+          <tr><td>Secteur</td><td class="val">Résidentiel </td></tr>
+          <tr><td>Type de bâtiment</td><td class="val">Multilogement</td></tr>
+          <tr><td>Sous-type de bâtiment</td><td class="val">Duplex - Attaché, sous-sol chauffé (unité propre)</td></tr>
+          <tr><td>Période de construction</td><td class="val">1985-2010</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="panel" style="flex-shrink:0;">
+        <div class="panel-title">Modèle 3D</div>
+        <div class="img-frame square">
+          <img src="geometry.png" alt="Modèle 3D">
+        </div>
+        <div class="caption">Représentation géométrique tridimensionnelle du modèle de bâtiment utilisé pour la simulation énergétique et l'analyse de performance.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Caractéristiques du Bâtiment</div>
+        <table><tbody>
+          <tr><td>Superficie de plancher [m²]</td><td class="val">349 </td></tr>
+          <tr><td>Zone climatique</td><td class="val">7</td></tr>
+
+          <tr class="table-subtitle">
+            <td colspan="2">Système CVCA</td>
+          </tr>
+
+          
+          <tr><td>Système de climatisation</td><td class="val">Thermopompe à air (mini-split)</td></tr>
+          
+          <tr><td>Système de chauffage</td><td class="val">Plinthes électriques</td></tr>
+          
+          <tr><td>Système de ventilation</td><td class="val">/</td></tr>
+          
+          <tr><td>COP typique en climatisation</td><td class="val">2.50</td></tr>
+          
+
+          <tr class="table-subtitle">
+            <td colspan="2">Isolation &amp; Étanchéité à l'Air</td>
+          </tr>
+
+          
+          <tr><td>Murs extérieurs [W/m²/K]</td><td class="val">0.47</td></tr>
+          
+          <tr><td>Murs intérieurs [W/m²/K]</td><td class="val">0</td></tr>
+          
+          <tr><td>Toit [W/m²/K]</td><td class="val">0.19</td></tr>
+          
+          <tr><td>Dalles [W/m²/K]</td><td class="val">4.16</td></tr>
+          
+          <tr><td>Infiltration (ELA @4Pa) [cm²]</td><td class="val">240.4</td></tr>
+          
+
+          <tr class="table-subtitle">
+            <td colspan="2">Vitrage</td>
+          </tr>
+
+          
+          <tr><td>Glazing [W/m²/K]</td><td class="val">2.94</td></tr>
+          
+          <tr><td>SHGC</td><td class="val">0.6</td></tr>
+          
+          
+          <tr class="table-subtitle">
+            <td colspan="2">Ratio Fenêtres/Façade</td>
+          </tr>
+
+          <tr><td>Moyenne [%]</td><td class="val">13.7</td></tr>
+
+        </tbody></table>
+      </div>
+
+      
+    </div>
+
+    <!-- RIGHT: annual end-uses + monthly chart (grows) + KPI summary -->
+    <div class="col">
+
+      <div class="panel">
+        <div class="panel-title">Usages Finaux Annuels — Électricité <span class="keep-case">[kWh]</span> </div>
+        <table>
+          <thead><tr><th>Usage Final</th><th><span class="keep-case">[kWh/an]</span></th></tr></thead>
+          <tbody><tr><td>Chauffage</td><td class="val">8983</td></tr><tr><td>Refroidissement</td><td class="val">1822</td></tr><tr><td>Éclairage intérieur</td><td class="val">1067</td></tr><tr><td>Éclairage extérieur</td><td class="val">61</td></tr><tr><td>Équipements intérieurs</td><td class="val">22261</td></tr><tr><td>Ventilateurs</td><td class="val">128</td></tr><tr><td>Total des usages</td><td class="val">34320</td></tr></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Consommation Mensuelle par Usage Final</div>
+        <div class="img-frame">
+          <img src="monthly_fr.png" alt="Consommation mensuelle">
+        </div>
+        <div class="caption">Décomposition de la consommation énergétique mensuelle par usage final, montrant la contribution du chauffage, de la climatisation, de l'éclairage, de l'eau chaude sanitaire, des chaurges aux prises et des systèmes auxiliaires tout au long de l'année.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Profil journalier moyen par usage </div>
+        <div class="img-frame">
+          <img src="daily_profiles1_winter_fr.png" alt="Profil journalier moyen par - hiver">
+        </div>
+
+        <div class="img-frame">
+          <img src="daily_profiles1_summer_fr.png" alt="Profil journalier typique - été">
+        </div>
+
+        <div class="caption">Profil de consommation journalière moyen des jours d'hiver et d'été, montrant la contribution du chauffage, de l'éclairage, de l'eau chaude sanitaire, des chaurges aux prises et des systèmes auxiliaires au cours d'une journée hivernale ou estivale moyenne.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI strip: full width below both columns -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <span class="kpi-label">Intensité énergétique</span>
+      <span class="kpi-value">98</span>
+      <span class="kpi-unit">kWh/m²/an</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Consommation Totale</span>
+      <span class="kpi-value">34319</span>
+      <span class="kpi-unit">kWh/an</span>
+    </div>
+    <div class="kpi green">
+      <span class="kpi-label">Électricité</span>
+      <span class="kpi-value">34320</span>
+      <span class="kpi-unit">kWh/an</span>
+    </div>
+    <div class="kpi green">
+      <span class="kpi-label">Gaz Naturel</span>
+      <span class="kpi-value">0</span>
+      <span class="kpi-unit">kWh/an</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Fiche descriptive du modèle · Rapport Automatisé</span>
+    <span>R_MU_Dup_Att-bsmt-unit_1985-2010 · 2026-06-08</span>
+    <span class="page-num">1 / 2</span>
+  </div>
+
+</div><!-- end page 1 -->
+
+
+<!-- ══════════════════════════ PAGE 2 ══════════════════════════ -->
+<div class="page">
+
+  <div class="section-label">
+    <span class="section-label-text">Section 2 — Résultats de Simulation &amp; Comparaison</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- FULL-WIDTH: data description -->
+  <div class="panel">
+    <div class="panel-title">Données de référence</div>
+    <p class="description-text">Les données de référence utilisées pour la comparaison proviennent d’un jeu de données de plus de 60 000 compteurs électriques de clients résidentiels, couplé à des métadonnées. Des filtres ont été appliqués afin de respecter le type et le sous-type de bâtiment de cette fiche, ainsi que pour exclure les usages piscine, spa et recharge de véhicule électrique.</p>
+  </div>
+
+  <!-- top middle: typical days -->
+  <div class="col">
+      <div class="panel">
+        <div class="panel-title">Profil journalier</div>
+        <div class="img-frame">
+          <img src="daily_profiles_winter_fr.png" alt="Journée d'hiver">
+        </div>
+        
+        <div class="img-frame">
+          <img src="daily_profiles_summer_fr.png" alt="Journée d'été">
+        </div>
+
+        <div class="caption">Profil de consommation journalière hivernale et estivale comparant la consommation énergétique horaire simulée avec les données de référence. Les lignes rouges représentent les journées individuelles du modèle pour la période indiquée, la ligne rouge pointillée indique le profil moyen de la simulation, et la ligne bleue montre le profil moyen des données de référence. Les graphiques de gauche représentent les jours de semaine, ceux de droite les fins de semaine.</div>
+      </div>
+    </div>
+
+
+  <!-- TWO-COL: left=PRISM, right=kpi table -->
+  <div class="two-col split-page2" style="gap:var(--gap); margin-top:0;">
+    
+    
+
+    <!-- LEFT: PRISM curve -->
+    <div class="col">
+      
+      <div class="panel">
+        <div class="panel-title">Consommation quotidienne vs. Température extérieure moyenne quotidienne</div>
+        <div class="img-frame">
+          <img src="banana_fr.png" alt="Courbe PRISM">
+        </div>
+        <div class="caption">Comparaison entre la consommation quotidienne modélisée et la consommation de référence en fonction de la température extérieure, pour tous les jours de l’année de référence. </div>
+      </div>
+    </div>
+
+    <div class="panel">
+    
+    <div class="panel">
+      <div class="panel-title green">Tableau Comparatif — Indicateurs Clés</div>
+      <table>
+          <table style="table-layout: fixed; width: 100%;">
+              <colgroup>
+                <col style="width: 30%">
+                <col style="width: 23%">
+                <col style="width: 23%">
+                <col style="width: 24%">
+              </colgroup>
+        <thead>
+          <tr>
+            <th>Indicateur</th>
+            <th class="green-head">Modèle</th>
+            <th class="green-head">Référence</th>
+            <th class="green-head">Écart</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          
+          <tr>
+            <td>Consommation annuelle électricité [kWh]</td>
+            <td class="val">11440</td>
+            <td class="val">11440</td>
+            <td class="val">11440</td>
+          </tr>
+          
+          <tr>
+            <td>Consommation de base électricité [kWh/jour]</td>
+            <td class="val">19.8</td>
+            <td class="val">17.4</td>
+            <td class="val">2.4</td>
+          </tr>
+          
+          <tr>
+            <td>Pente chauffage électricité [W/K]</td>
+            <td class="val">-62.9</td>
+            <td class="val">-78.6</td>
+            <td class="val">15.7</td>
+          </tr>
+          
+          <tr>
+            <td>Pente climatisation électricité [W/K]</td>
+            <td class="val">34.4</td>
+            <td class="val">46.0</td>
+            <td class="val">-11.6</td>
+          </tr>
+          
+          <tr>
+            <td>Pointe hiver AM [kW]</td>
+            <td class="val">5.4</td>
+            <td class="val">4.0</td>
+            <td class="val">1.5</td>
+          </tr>
+          
+          <tr>
+            <td>Heure pointe hiver AM</td>
+            <td class="val">7.0</td>
+            <td class="val">9.0</td>
+            <td class="val">-2.0</td>
+          </tr>
+          
+          <tr>
+            <td>Pointe hiver PM [kW]</td>
+            <td class="val">3.6</td>
+            <td class="val">4.1</td>
+            <td class="val">-0.4</td>
+          </tr>
+          
+          <tr>
+            <td>Heure pointe hiver PM</td>
+            <td class="val">12.0</td>
+            <td class="val">19.0</td>
+            <td class="val">-7.0</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+
+    
+
+  </div>
+
+  <div class="page-footer">
+    <span>Fiche descriptive du modèle · Rapport Automatisé</span>
+    <span>R_MU_Dup_Att-bsmt-unit_1985-2010 · 2026-06-08</span>
+    <span class="page-num">2 / 2</span>
+  </div>
+
+</div><!-- end page 2 -->
+
+</body>
+</html>
