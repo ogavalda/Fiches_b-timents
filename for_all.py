@@ -16,7 +16,7 @@ from per_folder import process_building
 from save_results import save_files
 
 # PATHS
-PROJECTS_ROOT = r"DupTrip_2026"
+PROJECTS_ROOT = r"D:\Onedrive-alternative\Archetypes\Fiches\SFD\SFD_2026"
 GIT_ROOT = r"git_root"
 
 # NEW: updated template here 
