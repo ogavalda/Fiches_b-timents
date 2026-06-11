@@ -316,6 +316,17 @@ def get_hvac_system(building_type, building_subtype, csv_path):
     if building_subtype in type_map:
         building_type = "Single-Family"
 
+    if building_subtype=='Primary school, no mechanical ventilation':
+        building_type='School1'
+    elif building_subtype=='Primary or secondary school, no mechanical ventilation':
+        building_type='School2'
+    elif building_subtype=='Primary or secondary school, mechanical ventilation':
+        building_type='School3'
+    elif building_subtype=='Secondary school, no cooling':
+        building_type='School4'
+    elif building_subtype=='Secondary school, with cooling':
+        building_type='School5'
+
 
     # Find matching row
     match = df[df["Typology"] == building_type]
