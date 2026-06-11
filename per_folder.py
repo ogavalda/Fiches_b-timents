@@ -106,7 +106,10 @@ TRANSLATIONS_FR = {
     "Electric Baseboards":"Plinthes électriques", 
     "No central ventilation":"Aucun système de ventilation centrale", 
     "Central Electric Heat Pump System":"Système centrale avec thermopompe", 
-    "Central Heat Pump / Boiler":"Système centrale avec thermopompe et chaurière"
+    "Central Heat Pump / Boiler":"Système centrale avec thermopompe et chaurière", 
+    "Electric Boiler with hydronic baseboard heaters":"Chaudière électrique avec plinthes hydroniques",
+    "Electric Boiler with hydronic baseboard heaters for perimeter": "Chaudière électrique avec plinthes hydroniques périphériques",
+    "Constant air volume with recirculation and terminal reheat":"Système à volume constant avec recirculation"
 }
 
 def translate_dict(d, translations):
@@ -124,6 +127,8 @@ def translate_list_of_rows(rows, translations):
 def process_building(building_path, template_path, idd_path, operation_folder, view_folder):
 
     matplotlib.use("agg")
+
+    ############ GENERAL ###############
     
     folder_name = os.path.basename(building_path)
     building_characteristics = get_building_characteristics(folder_name)
@@ -137,8 +142,6 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     size_of_build = building_characteristics["size"]
     building_shape = building_characteristics["building_shape"]
     print("building characteristics : done")
-
-    
 
 
     run_path = os.path.join(building_path, f"{folder_name}/run")
@@ -159,6 +162,9 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     # NEW : added "simulation object" for easy access to data in sql file
     sim_object = ReadSimulation(run_path) 
+
+
+    ############ PAGE 1 ###############
 
     # --------------------------------
     # GEOMETRY FIGURE
@@ -200,6 +206,10 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
             'SHGC',
             'Glazing [W/m²/K]'
         ]
+        
+        if building_sector != "Residential":
+            construction_data_filter[-1] = 'Infiltration (I_design) [m³/h/m²]'
+        
     else:
         construction_data_filter = [
             'Exterior walls [W/m²/K]',
@@ -260,45 +270,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng")
     plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr")
     
-
-
-
-    # NEW : change process energy to use a simulation object (relying on sql) to fetch electricity profile 
-    # + added different temperature profiles for OPE 
-    # --- Banana / PRISM curves ---
-    df, df_hourly, comparison_table,comparison_table_en = process_energy_data_KV(
-        f"{building_path}/{folder_name}",
-        households_dict, ope_df, weather_df, 
-        sim_object
-    )
-
-
-    # NEW : slightly changed to take unique temperature profile for OPE (provided in the df when new process_energy_data is used)
-    Prism_plot_path    = os.path.join(output_path, "banana.png")
-    Prism_plot_path_fr = os.path.join(output_path, "banana_fr.png")
-    plot_banana_KV(df, Prism_plot_path, "eng")
-    plot_banana_KV(df, Prism_plot_path_fr, "fr")
-
-
-    # NEW : create summer/winter plots seperately
-    # --- Daily profiles (combined, one image for now) ---
-    # summer
-    Daily_P_plot_path    = os.path.join(output_path, "daily_profiles_summer.png")
-    Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles_summer_fr.png")
-    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "summer", Daily_P_plot_path,    "eng")
-    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "summer", Daily_P_plot_path_fr, "fr")
-    # winter
-    Daily_P_plot_path    = os.path.join(output_path, "daily_profiles_winter.png")
-    Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles_winter_fr.png")
-    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path,    "eng")
-    plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path_fr, "fr")
-
-
-
-
-
-    # TODO: extract mechanical systems when function is implemented
-
+    
+    # --- HVAC systems --- #
     # mapping csv path --currently it is in the SD_2026 folder undr name "hvac_mapping.csv"
     hvac_system_path = r"SFD_2026\hvac_mapping.csv"
     if team_id != "poly":
@@ -309,9 +282,51 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         hvac_system = get_hvac_system(building_type, building_subtype, hvac_system_path)
         hvac_system = dict(list(hvac_system.items())[1:])
 
-    # TODO: build comparison table when reference data is available
-    # The comparison table was embedded in the process_energy_data() function,
-    # and it returns the comparison table as dictionary
+
+
+    ############ PAGE 2 ###############
+
+    # only add second page if Residential building
+    if building_sector == "Residential":
+
+        # NEW : change process energy to use a simulation object (relying on sql) to fetch electricity profile 
+        # + added different temperature profiles for OPE 
+        # --- Banana / PRISM curves ---
+        df, df_hourly, comparison_table,comparison_table_en = process_energy_data_KV(
+            f"{building_path}/{folder_name}",
+            households_dict, ope_df, weather_df, 
+            sim_object
+        )
+
+
+        # NEW : slightly changed to take unique temperature profile for OPE (provided in the df when new process_energy_data is used)
+        Prism_plot_path    = os.path.join(output_path, "banana.png")
+        Prism_plot_path_fr = os.path.join(output_path, "banana_fr.png")
+        plot_banana_KV(df, Prism_plot_path, "eng")
+        plot_banana_KV(df, Prism_plot_path_fr, "fr")
+
+
+        # NEW : create summer/winter plots seperately
+        # --- Daily profiles (combined, one image for now) ---
+        # summer
+        Daily_P_plot_path    = os.path.join(output_path, "daily_profiles_summer.png")
+        Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles_summer_fr.png")
+        plot_daily_profiles_ope_vs_meter_KV(df_hourly, "summer", Daily_P_plot_path,    "eng")
+        plot_daily_profiles_ope_vs_meter_KV(df_hourly, "summer", Daily_P_plot_path_fr, "fr")
+        # winter
+        Daily_P_plot_path    = os.path.join(output_path, "daily_profiles_winter.png")
+        Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles_winter_fr.png")
+        plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path,    "eng")
+        plot_daily_profiles_ope_vs_meter_KV(df_hourly, "winter", Daily_P_plot_path_fr, "fr")
+
+    else:
+        # TODO : find proper fix, variables don't exist if second page content not generated
+        # it won't be used in the template either, but throws error when dict is set up and variables not initiated
+        comparison_table = []
+        comparison_table_en = []
+        pass
+
+
 
     # --- Logos ---
 
@@ -414,10 +429,15 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
         pdf_folder_path = os.path.join(folder_dest, f"{folder_name}.pdf")
         shutil.copy(pdf_path, pdf_folder_path)
-    
-    render_and_write("energy_card_en.html", shared_en, "Energy card.html", operation_folder)
-    render_and_write("fiche_energie_fr.html", shared_fr, "Fiche energie.html", operation_folder)
-    
+
+    # only add second page if Residential building
+    if building_sector == "Residential":
+        render_and_write("energy_card_en.html", shared_en, "Energy card.html", operation_folder)
+        render_and_write("fiche_energie_fr.html", shared_fr, "Fiche energie.html", operation_folder)
+    else: # use different template for 1 page only 
+        render_and_write("energy_card_1page_en.html", shared_en, "Energy card.html", operation_folder)
+        render_and_write("fiche_energie_1page_fr.html", shared_fr, "Fiche energie.html", operation_folder)
+        
     return get_folder_structure(building_sector, building_type, building_subtype, size_of_build, building_name,building_shape)
 
 

@@ -102,7 +102,8 @@ class ReadSimulation():
                         OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Timestep")
                         OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Timestep")
                         OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Timestep")
-                        OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep"))
+                        OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "WaterSystems%" AND ReportingFrequency LIKE "%Timestep"))
                     """
             
         else:
@@ -161,21 +162,35 @@ class ReadSimulation():
 
         # rename columns
         column_names = {'Electricity:Facility':'Total Facility', 'ExteriorLights:Electricity':'ExtLights', 'InteriorLights:Electricity':'IntLights',
-                        'InteriorEquipment:Electricity':'PlugLoads', 'Cooling:Electricity':'Cooling', 'Heating:Electricity':'Heating', 'Electric Equipment Electricity Energy':'DHW'}
+                        'InteriorEquipment:Electricity':'PlugLoads', 'Cooling:Electricity':'Cooling', 'Heating:Electricity':'Heating', 'Electric Equipment Electricity Energy':'DHW', 'WaterSystems:Electricity':'SHW'}
         load_profile.rename(columns=column_names, inplace=True)
 
-        # add ext and int lighting together
-        load_profile['Lighting'] = load_profile['ExtLights'] + load_profile['IntLights']
-        load_profile.drop(columns=['ExtLights', 'IntLights'], inplace=True)
+        if 'ExtLights' in load_profile.columns:
+            # add ext and int lighting together
+            load_profile['Lighting'] = load_profile['ExtLights'] + load_profile['IntLights']
+            load_profile.drop(columns=['ExtLights', 'IntLights'], inplace=True)
+        else:
+            # rename lighting
+            load_profile['Lighting'] = load_profile['IntLights']
+            load_profile.drop(columns=['IntLights'], inplace=True)
+
 
         # subtract DHW consumption from plugloads 
-        load_profile['PlugLoads'] = load_profile['PlugLoads'] - load_profile['DHW']
+        if 'DHW' in load_profile.columns:
+            load_profile['PlugLoads'] = load_profile['PlugLoads'] - load_profile['DHW']
+        elif 'SHW' in load_profile.columns:
+            load_profile['DHW'] = load_profile['SHW']
+            load_profile.drop(columns=['SHW'], inplace=True)
+
+        # if there is no cooling in model, add as zero : 
+        if 'Cooling' not in load_profile.columns:
+            load_profile['Cooling'] = 0
 
         # currenlty column with facility total elec consumption and then all end uses
         # calculate "other" from (tot - end uses)
         load_profile['Other (Fans,...)'] = (load_profile['Total Facility'] - (
             load_profile['Cooling']+load_profile['Heating']+load_profile['Lighting']+load_profile['PlugLoads']+load_profile['DHW'])).clip(lower=0)
-
+        
         load_profile.drop(columns=['Total Facility'], inplace=True)
 
         # derrive timestep from simulation length : 
@@ -249,7 +264,8 @@ class ReadSimulation():
                         OR (name LIKE "InteriorLights%" AND ReportingFrequency LIKE "%Timestep")
                         OR (name LIKE "ExteriorLights%" AND ReportingFrequency LIKE "%Timestep")
                         OR (name LIKE "%InteriorEquipment%" AND ReportingFrequency LIKE "%Timestep")
-                        OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep"))
+                        OR (name LIKE "%Equipment Electricity%" AND ReportingFrequency LIKE "%Timestep")
+                        OR (name LIKE "WaterSystems%" AND ReportingFrequency LIKE "%Timestep"))
                     """
         else:
             # TODO : make sure this works
@@ -309,22 +325,31 @@ class ReadSimulation():
 
         # rename columns
         column_names = {'Electricity:Facility':'Total Facility', 'ExteriorLights:Electricity':'ExtLights', 'InteriorLights:Electricity':'IntLights',
-                        'InteriorEquipment:Electricity':'PlugLoads', 'Cooling:Electricity':'Cooling', 'Heating:Electricity':'Heating', 'Electric Equipment Electricity Energy':'DHW'}
+                        'InteriorEquipment:Electricity':'PlugLoads', 'Cooling:Electricity':'Cooling', 'Heating:Electricity':'Heating', 'Electric Equipment Electricity Energy':'DHW', 'WaterSystems:Electricity':'DHW'}
 
         load_profile.rename(columns=column_names, inplace=True)
-
+        
         # add ext and int lighting together
-        load_profile['Lighting'] = load_profile['ExtLights'] + load_profile['IntLights']
-        load_profile.drop(columns=['ExtLights', 'IntLights'], inplace=True)
+        if 'ExtLights' in load_profile.columns:
+            load_profile['Lighting'] = load_profile['ExtLights'] + load_profile['IntLights']
+            load_profile.drop(columns=['ExtLights', 'IntLights'], inplace=True)
+        else:
+            # rename lighting
+            load_profile['Lighting'] = load_profile['IntLights']
+            load_profile.drop(columns=['IntLights'], inplace=True)
 
         # subtract DHW consumption from plugloads 
         load_profile['PlugLoads'] = load_profile['PlugLoads'] - load_profile['DHW']
+
+        # if there is no cooling in model, add as zero : 
+        if 'Cooling' not in load_profile.columns:
+            load_profile['Cooling'] = 0
 
         # currenlty column with facility total elec consumption and then all end uses
         # calculate "other" from (tot - end uses)
         load_profile['Other (Fans,...)'] = (load_profile['Total Facility'] - (
             load_profile['Cooling']+load_profile['Heating']+load_profile['Lighting']+load_profile['PlugLoads']+load_profile['DHW'])).clip(lower=0)
-
+        
         load_profile.drop(columns=['Total Facility'], inplace=True)
 
         # derrive timestep from simulation length : 

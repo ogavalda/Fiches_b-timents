@@ -3,3 +3,8 @@ Single-Family,Air-Source Heat Pump (Mini-Split),Electric Baseboards,/,2.50
 Multi-Unit,Central Electric Heat Pump System,Central Heat Pump / Boiler,Corridor Exhaust + Fresh Air Make-Up,3.50 – 5.00
 Office Building,Variable Air Volume (VAV) with Central AHU,Boiler / Heat Pump,Mechanical Ventilation with AHU,4.00 – 6.00
 Retail Building,Rooftop Packaged Units (RTU),,,
+School1,/,Electric Boiler with hydronic baseboard heaters,/,/
+School2,/,Electric Boiler with hydronic baseboard heaters,/,/
+School3,/,Electric Boiler with hydronic baseboard heaters for perimeter,Constant air volume with recirculation and terminal reheat,/
+School4,/,Electric Boiler with hydronic baseboard heaters for perimeter,Constant air volume with recirculation and terminal reheat,/
+School5,Central Electric Heat Pump System,Electric Boiler with hydronic baseboard heaters for perimeter,Constant air volume with recirculation and terminal reheat,2.60

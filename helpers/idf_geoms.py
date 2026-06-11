@@ -25,8 +25,29 @@ def view_geometry(idd_path, idf_path, savepath=None):
 
     traces = build_plotly_geometry(idf)
 
+    is_wide = False
+    is_kinda_wide = False
+
     for t in traces:
         fig.add_trace(t)
+        if (max(x for x in t['x']if x is not None)-min(x for x in t['x'] if x is not None)>100):
+            is_wide=True
+        elif (max(x for x in t['x']if x is not None)-min(x for x in t['x'] if x is not None)>55):
+            is_kinda_wide = True
+
+    
+    if is_wide:
+        eye_y = -2.8
+        eye_x = 1.5
+        eye_center_x=-0.5
+    elif is_kinda_wide:
+        eye_y = -2.3
+        eye_x = 1.5
+        eye_center_x=-0.1
+    else:
+        eye_y = -2.5
+        eye_x = 1.5
+        eye_center_x=0
 
     fig.update_layout(
 
@@ -40,9 +61,14 @@ def view_geometry(idd_path, idf_path, savepath=None):
 
             camera=dict(
                 eye=dict(
-                    x=1.0,
-                    y=-2.0,
+                    x=eye_x,
+                    y=eye_y,
                     z=0.8
+                ),
+                center=dict(
+                    x=eye_center_x,
+                    y=0,
+                    z=0
                 )
             )
         ),
