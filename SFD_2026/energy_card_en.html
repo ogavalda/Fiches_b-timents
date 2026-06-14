@@ -205,7 +205,7 @@ td.val { font-family:var(--mono); font-size:9px; color:var(--ink); }
       <div class="panel">
         <div class="panel-title">Annual End Uses — Electricity <span class="keep-case">[kWh]</span> </div>
         <table>
-          <thead><tr><th>End Use</th><th><span class="keep-case">[kWh/year]</span></th></tr></thead>
+          <thead><tr><th>End Use</th><th><span class="keep-case">[kWh/year{{per_apartment_label}}]</th></tr></thead>
           <tbody>{% for k,v in end_uses.items() %}<tr><td>{{k}}</td><td class="val">{{ v | round(0) | int}}</td></tr>{% endfor %}</tbody>
         </table>
       </div>
