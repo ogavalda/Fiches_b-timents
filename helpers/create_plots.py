@@ -283,8 +283,8 @@ def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
         hanldes_to_keep = list(np.array(h)[to_keep_index])
 
         if config.per_household_toggle ==1:
-        units_add_eng = ' - apart.'
-        units_add_fr = ' - appart.'
+            units_add_eng = ' - apart.'
+            units_add_fr = ' - appart.'
         else:
             units_add_eng = ''
             units_add_fr = ''
