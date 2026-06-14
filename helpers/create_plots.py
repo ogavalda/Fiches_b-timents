@@ -282,15 +282,23 @@ def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
         to_keep_index = [0,-2,-1]
         hanldes_to_keep = list(np.array(h)[to_keep_index])
 
+        if config.per_household_toggle ==1:
+            units_add_eng = ' - appart.'
+            units_add_fr = ' - apart.'
+        else:
+            units_add_eng = ''
+            units_add_fr = ''
+
+
         # remove title, html already has title
         if lang=="eng":
             ax.set_xlabel("Hour of Day")
-            ax.set_ylabel("Hourly Consumption [kWh]")
+            ax.set_ylabel("Hourly Consumption [kWh"+units_add_eng+']')
             ax.set_title(f"{title_dict_en[season]} - {title_dict_en[day_type]}")
             ax.legend(handles=hanldes_to_keep, labels=['simulated profiles', 'average simulated profile', 'average reference profile'])
         else:
             ax.set_xlabel("Heure du jour")
-            ax.set_ylabel("Consommation horaire [kWh]")
+            ax.set_ylabel("Consommation horaire [kWh"+units_add_fr+']')
             ax.set_title(f"{title_dict_fr[season]} - {title_dict_fr[day_type]}")
             ax.legend(handles=hanldes_to_keep, labels=['profils modélisés', 'profil moyen modélisé', 'profil moyen de référence'])
       
@@ -423,14 +431,22 @@ def plot_banana(df, output_path,lang):
     plt.scatter(df["temperature_sim"], df["meter"],
                 color="red", alpha=0.5, label="Meter")
 
+    
+    if config.per_household_toggle ==1:
+        units_add_eng = ' - appart.'
+        units_add_fr = ' - apart.'
+    else:
+        units_add_eng = ''
+        units_add_fr = ''
+
     if lang=="eng":
         plt.xlabel("Daily average outdoor temperature [°C]")
-        plt.ylabel("Daily consumption [kWh]")
+        plt.ylabel("Daily consumption [kWh"+units_add_eng+']')
         plt.legend(labels=['Reference', 'Model'])
         #plt.title("PRISM Curve")
     else:
         plt.xlabel("Température extérieure moyenne quotidienne[°C]")
-        plt.ylabel("Consommation quotidienne [kWh]")
+        plt.ylabel("Consommation quotidienne [kWh"+units_add_fr+']')
         plt.legend(labels=['Référence', 'Modèle'])
         #plt.title("Curve PRISM")
     

@@ -150,7 +150,6 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         print("No it is still 1 inside per_folder")
         if team_id == 'poly':
             households = 1
-            building_name = folder_name
             parts = folder_name.split("_")
             if parts[0] == 'Duplex':
                 households = 2
@@ -369,8 +368,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         per_apartment_label_eng = ' per appart.'
         per_apartment_label_fr = ' per apart.'
     else:
-        per_apartment_label_eng = '.'
-        per_apartment_label_fr = '.'
+        per_apartment_label_eng = ''
+        per_apartment_label_fr = ''
 
     # --- Logos ---
 
