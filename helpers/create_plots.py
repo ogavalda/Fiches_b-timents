@@ -42,8 +42,8 @@ def create_monthly_plot(sim_results, output_path,households, lang):
     ax.set_xlabel('')
 
     if config.per_household_toggle ==1:
-        units_add_eng = ' - appart.'
-        units_add_fr = ' - apart.'
+        units_add_eng = ' - apart.'
+        units_add_fr = ' - appart.'
     else:
         units_add_eng = ''
         units_add_fr = ''
@@ -103,8 +103,8 @@ def plot_loadprofile_stacked(Simulation, period, output_path,households, lang='e
     ax.set_xlim([0, 24*3600-15*60])
 
     if config.per_household_toggle ==1:
-        units_add_eng = ' - appart.'
-        units_add_fr = ' - apart.'
+        units_add_eng = ' - apart.'
+        units_add_fr = ' - appart.'
     else:
         units_add_eng = ''
         units_add_fr = ''
@@ -283,8 +283,8 @@ def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
         hanldes_to_keep = list(np.array(h)[to_keep_index])
 
         if config.per_household_toggle ==1:
-            units_add_eng = ' - appart.'
-            units_add_fr = ' - apart.'
+        units_add_eng = ' - apart.'
+        units_add_fr = ' - appart.'
         else:
             units_add_eng = ''
             units_add_fr = ''
@@ -433,8 +433,8 @@ def plot_banana(df, output_path,lang):
 
     
     if config.per_household_toggle ==1:
-        units_add_eng = ' - appart.'
-        units_add_fr = ' - apart.'
+        units_add_eng = ' - apart.'
+        units_add_fr = ' - appart.'
     else:
         units_add_eng = ''
         units_add_fr = ''

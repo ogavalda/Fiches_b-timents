@@ -365,8 +365,8 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     ##---label to be added to the End Use title
     if building_subtype in ['Duplex','Triplex','Apartment'] and config.per_household_toggle ==1:
-        per_apartment_label_eng = ' per appart.'
-        per_apartment_label_fr = ' per apart.'
+        per_apartment_label_eng = ' per apart.'
+        per_apartment_label_fr = ' per appart.'
     else:
         per_apartment_label_eng = ''
         per_apartment_label_fr = ''
