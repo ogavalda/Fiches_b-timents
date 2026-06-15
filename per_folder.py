@@ -12,6 +12,7 @@ import os
 import re
 import matplotlib
 from config import team_id
+import config
 from core import *
 from jinja2 import Environment, FileSystemLoader
 from geomeppy import IDF
@@ -143,6 +144,33 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     building_shape = building_characteristics["building_shape"]
     print("building characteristics : done")
 
+    ## Initially calculate the household from a modifier in config -> per_household_toggle = 1 if yes, 0 if no
+
+    if config.per_household_toggle == 1 :
+        print("No it is still 1 inside per_folder")
+        if team_id == 'poly':
+            households = 1
+            parts = folder_name.split("_")
+            if parts[0] == 'Duplex':
+                households = 2
+                if parts[-1] in ['empty-basement', 'main-with-basement']:
+                    households = households + 1
+            elif parts[0] == 'Triplex':
+                households = 3
+                if parts[-1] in ['empty-basement', 'main-with-basement']:
+                    households = households + 1
+        else:
+            parts = folder_name.split("_")
+            building_name_temp = parts[2]
+
+            for temp_name in households_dict:
+                if building_name_temp in temp_name:
+                    households = households_dict[temp_name]
+    elif config.per_household_toggle ==0:
+        households = 1
+        print("Yes it is now zero inside per_folder")
+
+    ##----------------------------------------------
 
     run_path = os.path.join(building_path, f"{folder_name}/run")
     output_path = os.path.join(building_path, "output")
@@ -189,7 +217,15 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     # --- Energy extraction ---
     energy = extract_energy(html)
+    for k in energy:
+        energy[k] /= households  ## Normalization
+
+    # --- End use extraction
     end_uses = extract_end_uses(html)
+    for k in end_uses:
+        end_uses[k] /= households  ## Normalization
+
+
     wwr = compute_wwr_new(html).values.tolist()
     # TODO : make function compatible with both model structures
     if team_id=='poly':
@@ -254,21 +290,21 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # --- Monthly charts ---
     monthly_img    = os.path.join(output_path, "monthly.png")
     monthly_img_fr = os.path.join(output_path, "monthly_fr.png")
-    create_monthly_plot_KV(sim_object, monthly_img, "eng")
-    create_monthly_plot_KV(sim_object, monthly_img_fr, "fr")
+    create_monthly_plot_KV(sim_object, monthly_img,households, "eng",)
+    create_monthly_plot_KV(sim_object, monthly_img_fr,households, "fr")
     
     # NEW : add figure with typical day-stacked area graph of simulation 
     # --- Daily chart : simulation only ---
     # winter
     Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_winter.png")
     Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_winter_fr.png")
-    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path,    "eng")
-    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path_fr, "fr")
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path,households,    "eng")
+    plot_daily_profiles_sim_KV(sim_object, 'winter', Daily_P_plot_path_fr,households, "fr")
     # summer
     Daily_P_plot_path    = os.path.join(output_path, "daily_profiles1_summer.png")
     Daily_P_plot_path_fr = os.path.join(output_path, "daily_profiles1_summer_fr.png")
-    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,    "eng")
-    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr, "fr")
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path,households,    "eng")
+    plot_daily_profiles_sim_KV(sim_object, 'summer', Daily_P_plot_path_fr,households, "fr")
     
     
     # --- HVAC systems --- #
@@ -327,12 +363,20 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         pass
 
 
+    ##---label to be added to the End Use title
+    if building_subtype in ['Duplex','Triplex','Apartment'] and config.per_household_toggle ==1:
+        per_apartment_label_eng = ' per apart.'
+        per_apartment_label_fr = ' per appart.'
+    else:
+        per_apartment_label_eng = ''
+        per_apartment_label_fr = ''
 
     # --- Logos ---
 
 
     # --- Shared render kwargs (EN) ---
     shared_en = dict(
+        per_apartment_label= per_apartment_label_eng,
         building_name=building_name,
         building_sector=building_sector,
         building_type=building_type,
@@ -372,6 +416,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # TODO : translate new table entries
     # --- Shared render kwargs (FR) ---
     shared_fr = {**shared_en,
+                "per_apartment_label": per_apartment_label_fr,
                 "building_sector":get_french_characteristic(building_sector),
                 "building_type":get_french_characteristic(building_type),
                 "building_subtype":get_french_characteristic(building_subtype),

@@ -8,6 +8,7 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 from config import team_id
+import config
 
 from core_2 import get_vintage_column_KV, get_vintage_column, normalize_time
 from Kpi import *
@@ -18,7 +19,7 @@ from Kpi import *
 ### alternative to current version : use sql results only 
 # function relies on a class ReadSimulation which makes querying the sql easier
 # requires having the correct meters & variables specified as outputs during simulation (should be OK when running the provided workflow) 
-def create_monthly_plot(sim_results, output_path, lang):
+def create_monthly_plot(sim_results, output_path,households, lang):
     if team_id=='poly':
         df_monthly = sim_results.get_monthly_consumption()
     else:
@@ -28,7 +29,7 @@ def create_monthly_plot(sim_results, output_path, lang):
 
         df_monthly = sim_results.get_monthly_consumption()
 
-    df_monthly = df_monthly.sort_values(by=['Month'])
+    df_monthly = df_monthly.sort_values(by=['Month'])/households
 
 
     # reorder columns for plot
@@ -40,15 +41,22 @@ def create_monthly_plot(sim_results, output_path, lang):
 
     ax.set_xlabel('')
 
+    if config.per_household_toggle ==1:
+        units_add_eng = ' - apart.'
+        units_add_fr = ' - appart.'
+    else:
+        units_add_eng = ''
+        units_add_fr = ''
+
     if lang=="eng":
-        ax.set_ylabel("Monthly consumption [kWh]")
+        ax.set_ylabel("Monthly consumption [kWh"+units_add_eng+']')
         #ax.set_title("Monthly Energy Consumption by Type")
         legend_english = {'PlugLoads':'Plug Loads', "DHW":"Domestic/Service Hot Water"}
         h, l = ax.get_legend_handles_labels()
         ax.legend(handles = h[::-1], labels = [legend_english[l_] if l_ in legend_english.keys() else l_ for l_ in l][::-1] )
         ax.set_xticklabels(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
     else:
-        ax.set_ylabel("Consommation mensuel [kWh]")
+        ax.set_ylabel("Consommation mensuel [kWh"+units_add_fr+']')
         #ax.set_title("Consommation mensuelle par usage")
         legend_french = {'PlugLoads':'Charges aux prises', 'Lighting':'Éclairage', 'Other (Fans,...)':'Autres (ventilateurs,...)', 'Heating':"Chauffage", 'Cooling':"Climatisation", "DHW":"Eau Chaude"}
         h, l = ax.get_legend_handles_labels()
@@ -67,9 +75,9 @@ def create_monthly_plot(sim_results, output_path, lang):
 # DAILY PROFILE PLOT - TYPE 1 : SIMULATION STACKED AREA
 # --------------------------------    
 
-def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng'):
+def plot_loadprofile_stacked(Simulation, period, output_path,households, lang='eng'):
     # day is number to represent day of week, picked random weekday here
-    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation)
+    df_profile = get_load_profile_typical(period, 2, Simulation=Simulation)/households
 
     if period == 'winter':
         # define order of columns
@@ -94,8 +102,15 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng'):
 
     ax.set_xlim([0, 24*3600-15*60])
 
+    if config.per_household_toggle ==1:
+        units_add_eng = ' - apart.'
+        units_add_fr = ' - appart.'
+    else:
+        units_add_eng = ''
+        units_add_fr = ''
+
     if lang=="eng":
-        ax.set_ylabel("Hourly electricity consumption [kWh]")
+        ax.set_ylabel("Hourly electricity consumption [kWh"+units_add_eng+']')
         ax.set_xlabel('Time of Day')
 
         legend_english = {'PlugLoads':'Plug Loads', "DHW":"Domestic/Service Hot Water"}
@@ -103,7 +118,7 @@ def plot_loadprofile_stacked(Simulation, period, output_path, lang='eng'):
         ax.legend(handles = h[::-1], labels = [legend_english[l_] if l_ in legend_english.keys() else l_ for l_ in l][::-1] )
         ax.set_title(period)
     else:
-        ax.set_ylabel('Consommation électrique horaire [kWh]')
+        ax.set_ylabel('Consommation électrique horaire [kWh'+units_add_fr+']')
         ax.set_xlabel('Heure de la journée')
 
         day_type_french = {'winter':'hiver', 'summer':'été'}
@@ -267,15 +282,23 @@ def plot_daily_profiles_ope_vs_meter(df, season, output_path,lang):
         to_keep_index = [0,-2,-1]
         hanldes_to_keep = list(np.array(h)[to_keep_index])
 
+        if config.per_household_toggle ==1:
+            units_add_eng = ' - apart.'
+            units_add_fr = ' - appart.'
+        else:
+            units_add_eng = ''
+            units_add_fr = ''
+
+
         # remove title, html already has title
         if lang=="eng":
             ax.set_xlabel("Hour of Day")
-            ax.set_ylabel("Hourly Consumption [kWh]")
+            ax.set_ylabel("Hourly Consumption [kWh"+units_add_eng+']')
             ax.set_title(f"{title_dict_en[season]} - {title_dict_en[day_type]}")
             ax.legend(handles=hanldes_to_keep, labels=['simulated profiles', 'average simulated profile', 'average reference profile'])
         else:
             ax.set_xlabel("Heure du jour")
-            ax.set_ylabel("Consommation horaire [kWh]")
+            ax.set_ylabel("Consommation horaire [kWh"+units_add_fr+']')
             ax.set_title(f"{title_dict_fr[season]} - {title_dict_fr[day_type]}")
             ax.legend(handles=hanldes_to_keep, labels=['profils modélisés', 'profil moyen modélisé', 'profil moyen de référence'])
       
@@ -408,14 +431,22 @@ def plot_banana(df, output_path,lang):
     plt.scatter(df["temperature_sim"], df["meter"],
                 color="red", alpha=0.5, label="Meter")
 
+    
+    if config.per_household_toggle ==1:
+        units_add_eng = ' - apart.'
+        units_add_fr = ' - appart.'
+    else:
+        units_add_eng = ''
+        units_add_fr = ''
+
     if lang=="eng":
         plt.xlabel("Daily average outdoor temperature [°C]")
-        plt.ylabel("Daily consumption [kWh]")
+        plt.ylabel("Daily consumption [kWh"+units_add_eng+']')
         plt.legend(labels=['Reference', 'Model'])
         #plt.title("PRISM Curve")
     else:
         plt.xlabel("Température extérieure moyenne quotidienne[°C]")
-        plt.ylabel("Consommation quotidienne [kWh]")
+        plt.ylabel("Consommation quotidienne [kWh"+units_add_fr+']')
         plt.legend(labels=['Référence', 'Modèle'])
         #plt.title("Curve PRISM")
     
