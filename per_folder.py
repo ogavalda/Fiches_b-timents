@@ -213,6 +213,9 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     # TODO : remove stories here, since the osm doesn't provide a reliable way of fetching that info, 
     # we got a "size" descriptor from the file name in earlier code 
     floor_area, stories, space_count, climate_zone = building_description(model)
+
+    # TODO : for now, hard code climate_zone to 6A because it isn't well configured in some models (because it isn't a necessary attribute for simulation)
+    climate_zone = '6A'
     print("building description : done")
 
     # --- Energy extraction ---
