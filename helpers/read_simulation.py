@@ -360,3 +360,16 @@ class ReadSimulation():
         monthly_consumption = monthly_consumption/(3600*1000) # en kWh
         monthly_consumption['Month'] = monthly_consumption.index.month
         return monthly_consumption
+
+
+
+    def get_yearly_enduses(self):
+        monthly_consumption = self.get_monthly_consumption()
+
+        yearly_enduses = pd.DataFrame({'yearly_conso': monthly_consumption.sum()})
+        yearly_enduses = yearly_enduses.transpose()
+        yearly_enduses = yearly_enduses.rename_axis(None, axis=1)
+        yearly_enduses = yearly_enduses.loc[:,['Heating', 'Cooling', 'DHW', 'Lighting', 'PlugLoads', 'Other (Fans,...)']]
+        yearly_enduses['Total'] = yearly_enduses.sum(axis=1)
+
+        return yearly_enduses
