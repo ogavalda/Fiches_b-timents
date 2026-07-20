@@ -272,6 +272,19 @@ def extract_end_uses(html_path):
     raise ValueError("End uses not found")
 
 
+
+def extract_end_uses_new(sim_object):
+    df_enduses = sim_object.get_yearly_enduses()
+
+    legend_english = {'PlugLoads':'Plug Loads', "DHW":"Domestic/Service Hot Water"}
+    legend_french = {'PlugLoads':'Charges aux prises', 'Lighting':'Éclairage', 'Other (Fans,...)':'Autres (ventilateurs,...)', 'Heating':"Chauffage", 'Cooling':"Climatisation", "DHW":"Eau Chaude"}
+
+    yearly_enduses_eng = df_enduses.rename(columns=legend_english).transpose()
+    yearly_enduses_fr = df_enduses.rename(columns=legend_french).transpose()
+
+    return yearly_enduses_eng.to_dict()['yearly_conso'], yearly_enduses_fr.to_dict()['yearly_conso']
+    
+
 # def create_monthly_plot(eplustbl_file, output_path):
 #     with open(eplustbl_file, "r", encoding="utf-8") as f:
 #         soup = BeautifulSoup(f, "lxml")

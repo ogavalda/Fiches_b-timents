@@ -215,6 +215,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     floor_area, stories, space_count, climate_zone = building_description(model)
 
     # TODO : for now, hard code climate_zone to 6A because it isn't well configured in some models (because it isn't a necessary attribute for simulation)
+    # info on object : https://openstudio-sdk-documentation.s3.amazonaws.com/cpp/OpenStudio-3.3.0-doc/model/html/classopenstudio_1_1model_1_1_climate_zones.html
     climate_zone = '6A'
     print("building description : done")
 
@@ -223,10 +224,22 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
     for k in energy:
         energy[k] /= households  ## Normalization
 
+
+    ## OLD VERSION : 
+    ## --- End use extraction
+    #end_uses = extract_end_uses(html)
+    #for k in end_uses:
+    #    end_uses[k] /= households  ## Normalization
+
+
+    ## NEW VERSION : using sql data (through sim_object)
     # --- End use extraction
-    end_uses = extract_end_uses(html)
-    for k in end_uses:
-        end_uses[k] /= households  ## Normalization
+    end_uses_eng, end_uses_fr = extract_end_uses_new(sim_object)
+    for k in end_uses_eng:
+        end_uses_eng[k] /= households  ## Normalization
+    
+    for k in end_uses_fr:
+        end_uses_fr[k] /= households  ## Normalization
 
 
     wwr = compute_wwr_new(html).values.tolist()
@@ -278,7 +291,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
 
     # --- Scalar KPIs ---
     total_energy = energy.get("Total Energy [kWh]", 0)
-    elec_total = end_uses.get("Total End Uses", 0)
+    elec_total = end_uses_eng.get("Total", 0)
     gas_total = 0
     energy_intensity = energy.get("EUI Total Area [kWh/m2]", 0)
 
@@ -396,7 +409,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
         glazing_data=glazing_data,
         hvac_system=hvac_system,
         energy=energy,
-        end_uses=end_uses,
+        end_uses=end_uses_eng,
         energy_intensity=energy_intensity,
         total_energy=total_energy,
         elec_total=elec_total,
@@ -429,7 +442,7 @@ def process_building(building_path, template_path, idd_path, operation_folder, v
                  # translated data
                  "construction_data": translate_dict(construction_data, TRANSLATIONS_FR),
                  "hvac_system":translate_dict_values(translate_dict(hvac_system, TRANSLATIONS_FR), TRANSLATIONS_FR),
-                 "end_uses": translate_dict(end_uses, TRANSLATIONS_FR),
+                 "end_uses": end_uses_fr,
                  "wwr": translate_list_of_rows(wwr, TRANSLATIONS_FR),
                  "data_description": "Les données de référence utilisées pour la comparaison proviennent d’un jeu de données de plus de 60 000 compteurs électriques de clients résidentiels, couplé à des métadonnées. Des filtres ont été appliqués afin de respecter le type et le sous-type de bâtiment de cette fiche, ainsi que pour exclure les usages piscine, spa et recharge de véhicule électrique.", 
                  # FR-specific figure paths
