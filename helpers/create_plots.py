@@ -582,14 +582,14 @@ def calculate_kpi_from_df(
     for row in comparison_table:
         if row['indicator'] == 'Consommation annuelle électricité [kWh]':
             row['model'] = int(round(row['model'], 0))
-            row['reference'] = int(round(row['model'],0))
-            row['delta'] = int(round(row['model'],0))
+            row['reference'] = int(round(row['reference'],0))
+            row['delta'] = int(round(row['delta'],0))
     
     for row in comparison_table_en:
         if row['indicator'] == 'Yearly electricity consumption [kWh]':
             row['model'] = int(round(row['model'],0))
-            row['reference'] = int(round(row['model'],0))
-            row['delta'] = int(round(row['model'],0))
+            row['reference'] = int(round(row['reference'],0))
+            row['delta'] = int(round(row['delta'],0))
 
     # RETURN
     return comparison_table,comparison_table_en
